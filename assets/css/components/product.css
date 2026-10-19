@@ -1,0 +1,161 @@
+/**
+ * Productpagina: kruimelpad, galerij, maatkiezer, aankoopkeuze, aantal, zekerheden, Blik-illustratie
+ */
+
+@layer components {
+
+  .kruimelpad { padding-top: 24px; }
+  .kruimelpad ol { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; @apply text-klein; color: var(--kleur-steen); }
+  .kruimelpad li + li::before { content: '/'; margin-right: 8px; color: var(--kleur-lijn); }
+  .kruimelpad a:hover { color: var(--kleur-mos); }
+  .kruimelpad [aria-current] { color: var(--kleur-mos); }
+
+  .product { padding-block: 16px 64px; }
+  @media (min-width: 1024px) { .product { padding-block: 32px 128px; } }
+  .product__rij { row-gap: 32px; align-items: start; }
+  .product__galerij { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 16px; }
+  .product__info { grid-column: 1 / -1; }
+  @media (min-width: 1024px) {
+    .product__galerij { grid-column: 1 / span 6; }
+    .product__info { grid-column: 7 / span 6; }
+  }
+  .product__hoofdbeeld { height: 358px; border-radius: var(--afronding-groot); }
+  @media (min-width: 1024px) { .product__hoofdbeeld { height: 720px; } }
+  .product__beelden { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .product__foto { height: 220px; }
+  @media (min-width: 1024px) { .product__foto { height: 360px; } }
+
+  .buybox { display: flex; flex-direction: column; gap: 32px; }
+  .buybox__kop { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+  .buybox__labels { display: flex; flex-wrap: wrap; gap: 8px; }
+  .buybox__prijs { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  [data-prijs], [data-prijs-regel] { transition: opacity 200ms var(--ease); }
+  .is-wisselt [data-prijs], .is-wisselt [data-prijs-regel] { opacity: 0; }
+
+  /* Maatkiezer */
+  .maatkiezer { display: flex; flex-direction: column; gap: 16px; border: 0; padding: 0; min-width: 0; }
+  .maatkiezer__kop { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .maatkiezer__titel { display: flex; align-items: baseline; gap: 8px; }
+  .maatkiezer__hulp { display: inline-flex; align-items: center; gap: 6px; text-decoration: underline; text-underline-position: from-font; }
+  .maatkiezer__hulp svg { width: 16px; height: 16px; }
+  .maatkiezer__hulp:hover { color: var(--kleur-mos); }
+  .maatkiezer__maten { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  @media (min-width: 768px) { .maatkiezer__maten { gap: 16px; } }
+  .maatkiezer__uitleg { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: var(--afronding-middel); background-color: var(--kleur-rijstpapier); color: var(--kleur-mos); }
+  .maatkiezer__uitleg svg { width: 18px; height: 18px; flex: none; }
+
+  .maatoptie {
+    position: relative; display: flex; flex-direction: column; gap: 16px; padding: 12px; cursor: pointer;
+    border-radius: var(--afronding-groot); background-color: var(--kleur-wit);
+    box-shadow: inset 0 0 0 1px var(--kleur-lijn);
+    transition: box-shadow 200ms var(--ease), background-color 200ms var(--ease);
+  }
+  .maatoptie:hover { box-shadow: inset 0 0 0 1px var(--kleur-steen); }
+  .maatoptie.is-geselecteerd { box-shadow: inset 0 0 0 1.5px var(--kleur-mos); }
+  .maatoptie input { position: absolute; opacity: 0; pointer-events: none; }
+  .maatoptie:has(input:focus-visible) { outline: 2px solid var(--kleur-matcha); outline-offset: 3px; }
+  .maatoptie__beeld {
+    position: relative; height: 144px; border-radius: var(--afronding-middel); overflow: hidden;
+    background-color: var(--kleur-rijstpapier); transition: background-color 200ms var(--ease);
+  }
+  .maatoptie.is-geselecteerd .maatoptie__beeld { background-color: var(--kleur-jong-blad); }
+  .maatoptie__beeld .blik { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); transition: height 200ms var(--ease); }
+  .maatoptie__radio {
+    position: absolute; top: 12px; right: 12px; width: 20px; height: 20px; border-radius: 10px;
+    background: var(--kleur-wit); box-shadow: inset 0 0 0 1.25px var(--kleur-steen);
+    display: flex; align-items: center; justify-content: center; color: var(--kleur-rijstpapier);
+    transition: background-color 200ms var(--ease), box-shadow 200ms var(--ease);
+  }
+  .maatoptie__radio svg { width: 14px; height: 14px; opacity: 0; transition: opacity 200ms var(--ease); }
+  .maatoptie.is-geselecteerd .maatoptie__radio { background: var(--kleur-mos); box-shadow: none; }
+  .maatoptie.is-geselecteerd .maatoptie__radio svg { opacity: 1; }
+  .maatoptie__badge { position: absolute; top: 12px; left: 12px; }
+  .maatoptie__tekst { display: flex; flex-direction: column; gap: 4px; padding-inline: 8px; }
+  .maatoptie__maat { display: flex; align-items: baseline; gap: 4px; }
+  .maatoptie__prijs { display: flex; flex-direction: column; gap: 2px; padding: 12px 8px 0; border-top: 1px solid var(--kleur-lijn); }
+  .maatoptie__prijs .text-meta { color: var(--kleur-matcha); }
+  .maatoptie.is-uitverkocht { cursor: not-allowed; }
+  .maatoptie.is-uitverkocht .blik { opacity: 0.35; }
+  .maatoptie.is-uitverkocht .maatoptie__radio { box-shadow: inset 0 0 0 1.25px var(--kleur-lijn); }
+  .maatoptie.is-uitverkocht .maatoptie__tekst, .maatoptie.is-uitverkocht .maatoptie__prijs, .maatoptie.is-uitverkocht .maatoptie__prijs .text-meta { color: var(--kleur-steen); }
+  @media (max-width: 767px) { .maatoptie__tekst .text-h3 { font-size: 26px; } .maatoptie { padding: 8px; gap: 12px; } .maatoptie__beeld { height: 120px; } }
+
+  /* Blik (Figma: Blik) */
+  .blik { position: relative; display: block; height: var(--blik-h, 68px); width: calc(var(--blik-h, 68px) * 0.75); container-type: size; }
+  .blik > span { position: absolute; display: block; }
+  .blik__schaduw { inset: 92.5% 6.67% 1.25% 6.67%; background: radial-gradient(ellipse at center, rgba(31, 42, 27, 0.32) 0%, rgba(31, 42, 27, 0) 70%); transform: scale(1.3, 2.2); }
+  .blik__romp { inset: 18.75% 10% 3.75% 10%; background: var(--kleur-mos); border-radius: 8px; }
+  .blik__etiket { inset: 41.25% 10% 22.5% 10%; background: var(--kleur-rijstpapier); }
+  .blik__lijn { inset: 71.25% 10% 27.5% 10%; background: var(--kleur-matcha); }
+  .blik__teken { inset: 46.25% 10% 38.75% 10%; font-family: 'Shippori Mincho', serif; font-weight: 500; font-size: 15cqh; line-height: 1; text-align: center; color: var(--kleur-mos); }
+  .blik__naam { inset: 63.75% 10% 30.63% 10%; font-weight: 600; font-size: 4.4cqh; letter-spacing: 0.4em; padding-left: 0.4em; text-align: center; color: var(--kleur-mos); }
+  .blik__deksel { inset: 8.75% 6.67% 77.5% 6.67%; background: var(--kleur-bosgroen); border-radius: 6px; }
+  .blik__deksel-rand { inset: 20.63% 6.67% 77.5% 6.67%; background: var(--kleur-mos); }
+  .blik__glans { inset: 22.5% 74.17% 7.5% 20%; background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
+  .blik__glans-deksel { inset: 10.63% 74.17% 80.63% 20%; background: rgba(255, 255, 255, 0.12); border-radius: 3px; }
+
+  /* Aankoopkeuze: niet voorgeselecteerd, hoe je opzegt staat er altijd bij */
+  .aankoopkeuze { display: flex; flex-direction: column; border: 0; padding: 0; margin: 0; min-width: 0; background: var(--kleur-wit); border-radius: var(--afronding-groot); box-shadow: inset 0 0 0 1px var(--kleur-lijn); overflow: hidden; }
+  .aankoopkeuze__optie { position: relative; display: flex; gap: 16px; padding: 24px; cursor: pointer; transition: background-color 200ms var(--ease); }
+  .aankoopkeuze__optie + .aankoopkeuze__optie { border-top: 1px solid var(--kleur-lijn); }
+  .aankoopkeuze__optie input { position: absolute; opacity: 0; pointer-events: none; }
+  .aankoopkeuze__optie:has(input:focus-visible) { outline: 2px solid var(--kleur-matcha); outline-offset: -2px; }
+  .aankoopkeuze__optie:has(input:checked) { background-color: var(--kleur-rijstpapier); }
+  .aankoopkeuze__radio { flex: none; position: relative; width: 22px; height: 22px; border-radius: 11px; background: var(--kleur-wit); box-shadow: inset 0 0 0 1.5px var(--kleur-steen); transition: box-shadow 200ms var(--ease); margin-top: 2px; }
+  .aankoopkeuze__radio::after { content: ''; position: absolute; inset: 5px; border-radius: 50%; background: var(--kleur-mos); transform: scale(0); transition: transform 200ms var(--ease); }
+  .aankoopkeuze__optie:has(input:checked) .aankoopkeuze__radio { box-shadow: inset 0 0 0 1.5px var(--kleur-mos); }
+  .aankoopkeuze__optie:has(input:checked) .aankoopkeuze__radio::after { transform: scale(1); }
+  .aankoopkeuze__inhoud { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .aankoopkeuze__kop { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .aankoopkeuze__titel { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .aankoopkeuze__prijzen { display: flex; align-items: baseline; gap: 8px; }
+  .aankoopkeuze__oud { text-decoration: line-through; }
+  .aankoopkeuze__onder { display: flex; justify-content: space-between; gap: 12px; }
+  .aankoopkeuze__details { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 450ms var(--ease); }
+  .aankoopkeuze__optie:has(input:checked) .aankoopkeuze__details { grid-template-rows: 1fr; }
+  .aankoopkeuze__details-binnen { overflow: hidden; display: flex; flex-direction: column; gap: 12px; opacity: 0; transition: opacity 300ms var(--ease); }
+  .aankoopkeuze__optie:has(input:checked) .aankoopkeuze__details-binnen { opacity: 1; padding-top: 16px; }
+  .aankoopkeuze__voordeel { display: flex; align-items: center; gap: 10px; @apply text-body; color: var(--kleur-mos); }
+  .aankoopkeuze__vink { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; flex: none; border-radius: 10px; background: var(--kleur-jong-blad); color: var(--kleur-mos); }
+  .aankoopkeuze__vink svg { width: 12px; height: 12px; }
+  .aankoopkeuze__toelichting { display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px; border-radius: var(--afronding-middel); background: var(--kleur-wit); box-shadow: inset 0 0 0 1px var(--kleur-lijn); color: var(--kleur-mos); }
+  .aankoopkeuze__toelichting svg { width: 16px; height: 16px; flex: none; margin-top: 3px; color: var(--kleur-matcha); }
+  .aankoopkeuze__link { text-decoration: underline; text-underline-position: from-font; align-self: flex-start; }
+  @media (max-width: 767px) { .aankoopkeuze__optie { padding: 16px; } .aankoopkeuze__voordeel { font-size: 14px; line-height: 1.5; } }
+
+  /* Kopen */
+  .buybox__kopen { display: flex; flex-direction: column; gap: 12px; }
+  .buybox__rij { display: flex; align-items: center; gap: 12px; }
+  .buybox__knop { flex: 1; min-width: 0; }
+  .buybox__knop .kj-button__label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .buybox__hint { display: flex; align-items: center; gap: 8px; }
+  .buybox__hint svg { width: 16px; height: 16px; flex: none; }
+  .buybox__melding { color: var(--kleur-fout); }
+  .aantal--groot { height: 46px; }
+  .aantal--groot button { width: 44px; height: 44px; }
+  .aantal--groot button svg { width: 18px; height: 18px; }
+  .aantal--groot .aantal__waarde { width: 28px; border: 0; background: transparent; @apply text-label; text-align: center; padding: 0; -moz-appearance: textfield; appearance: textfield; }
+  .aantal--groot .aantal__waarde::-webkit-outer-spin-button, .aantal--groot .aantal__waarde::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .buybox__zekerheden { display: flex; flex-direction: column; gap: 14px; padding-top: 24px; border-top: 1px solid var(--kleur-lijn); }
+  .buybox__zekerheden li { display: flex; align-items: center; gap: 12px; }
+  .buybox__zekerheden svg { width: 20px; height: 20px; flex: none; color: var(--kleur-mos); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .maatoptie, .maatoptie *, .aankoopkeuze *, [data-prijs], [data-prijs-regel] { transition: none !important; }
+  }
+
+
+  /* Blik in 3D */
+  .product__hoofd { position: relative; }
+  .blik3d { position: absolute; inset: 0; z-index: 2; border-radius: var(--afronding-groot); background: var(--kleur-gerst); cursor: grab; overflow: hidden; }
+  .blik3d[hidden] { display: none; }
+  .blik3d.is-sleept { cursor: grabbing; }
+  .blik3d:focus-visible { outline: none; box-shadow: inset 0 0 0 3px var(--kleur-matcha); }
+  .blik3d__canvas { display: block; width: 100%; height: 100%; }
+  .blik3d__knop { position: absolute; z-index: 3; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: rgba(255, 255, 255, 0.92); color: var(--kleur-mos); font-size: 14px; font-weight: 500; box-shadow: inset 0 0 0 1px var(--kleur-lijn); cursor: pointer; transition: background-color 200ms var(--ease); }
+  .blik3d__knop:hover { background: var(--kleur-wit); }
+  .blik3d__knop:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--kleur-wit), 0 0 0 5px var(--kleur-matcha); }
+  .blik3d__knop svg { width: 16px; height: 16px; color: var(--kleur-matcha); }
+  .blik3d__hint { position: absolute; z-index: 3; right: 16px; bottom: 24px; margin: 0; font-size: 14px; color: var(--kleur-steen); pointer-events: none; }
+  .blik3d__hint[hidden] { display: none; }
+}

@@ -1,0 +1,295 @@
+{
+    "key": "group_layout_productgrid",
+    "title": "Layout -- Producten met filters",
+    "fields": [
+        {
+            "key": "field_layout_productgrid_tab_inhoud",
+            "label": "Inhoud",
+            "name": "tab_inhoud",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_layout_productgrid_label_alles",
+            "label": "Filter \"Alles\"",
+            "name": "label_alles",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Alles",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_layout_productgrid_label_aantal",
+            "label": "Tekst aantal producten",
+            "name": "label_aantal",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%d wordt het aantal.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "%d producten",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_layout_productgrid_label_sorteren",
+            "label": "Tekst bij het sorteren",
+            "name": "label_sorteren",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Sorteer op",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_layout_productgrid_sorteringen",
+            "label": "Sorteeropties",
+            "name": "sorteringen",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Optie toevoegen",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_layout_productgrid_sorteringen_sleutel",
+                    "label": "Sortering",
+                    "name": "sleutel",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "menu_order": "Aanbevolen (volgorde)",
+                        "price": "Prijs, laag naar hoog",
+                        "price-desc": "Prijs, hoog naar laag",
+                        "date": "Nieuwste eerst"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_layout_productgrid_sorteringen_naam",
+                    "label": "Naam in het menu",
+                    "name": "naam",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "60",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_layout_productgrid_leeg",
+            "label": "Tekst als er geen producten zijn",
+            "name": "leeg",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_layout_productgrid_tab_opmaak",
+            "label": "Opmaak",
+            "name": "tab_opmaak",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_layout_productgrid_achtergrond",
+            "label": "Achtergrondkleur",
+            "name": "achtergrond",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Kleur van het vlak achter dit blok.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "rijstpapier": "Rijstpapier",
+                "wit": "Wit",
+                "gerst": "Gerst",
+                "mos": "Mos (donker)",
+                "bosgroen": "Bosgroen (donker)"
+            },
+            "default_value": "rijstpapier",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_layout_productgrid_ruimte",
+            "label": "Ruimte boven en onder (desktop)",
+            "name": "ruimte",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Past de witruimte aan zonder de mobiele weergave te veranderen.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "80": "80 px",
+                "96": "96 px",
+                "128": "128 px",
+                "144": "144 px",
+                "160": "160 px",
+                "standaard": "Standaard van dit blok"
+            },
+            "default_value": "standaard",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_layout_productgrid_anker",
+            "label": "Anker",
+            "name": "anker",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optioneel. Naam om naar dit blok te linken, bijvoorbeeld \"bereiden\" voor #bereiden.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            },
+            {
+                "param": "page_template",
+                "operator": "!=",
+                "value": "default"
+            }
+        ]
+    ],
+    "menu_order": 9999,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792422641
+}

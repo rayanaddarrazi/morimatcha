@@ -1,0 +1,439 @@
+{
+    "key": "group_layout_hero",
+    "title": "Layout -- Hero met foto",
+    "fields": [
+        {
+            "key": "field_layout_hero_tab_inhoud",
+            "label": "Inhoud",
+            "name": "tab_inhoud",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_layout_hero_foto",
+            "label": "Foto (desktop)",
+            "name": "foto",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Liggende foto, vult het hele scherm. De header wordt op deze pagina automatisch transparant.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_layout_hero_foto_mobiel",
+            "label": "Foto (mobiel)",
+            "name": "foto_mobiel",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Optioneel. Staande foto voor smalle schermen; leeg = de desktopfoto.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_layout_hero_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_layout_hero_titel",
+            "label": "Titel",
+            "name": "titel",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Een nieuwe regel in dit veld wordt een nieuwe regel in de titel.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 2,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_layout_hero_titelgrootte",
+            "label": "Grootte van de titel",
+            "name": "titelgrootte",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "display": "Display (112)",
+                "h1": "H1 (72)"
+            },
+            "default_value": "display",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_layout_hero_tekst",
+            "label": "Tekst",
+            "name": "tekst",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_layout_hero_knop_primair",
+            "label": "Eerste knop",
+            "name": "knop_primair",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Lichte knop met pijl.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_layout_hero_knop_secundair",
+            "label": "Tweede knop",
+            "name": "knop_secundair",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Knop met contour.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_layout_hero_noot",
+            "label": "Kleine regel onder de knoppen",
+            "name": "noot",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optioneel.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_layout_hero_tab_foto_opmaak",
+            "label": "Foto-opmaak",
+            "name": "tab_foto_opmaak",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_layout_hero_hoogte",
+            "label": "Hoogte op desktop (px)",
+            "name": "hoogte",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "In het ontwerp 900, 860 of 820.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 900,
+            "min": 480,
+            "max": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_layout_hero_foto_zoom",
+            "label": "Foto inzoomen",
+            "name": "foto_zoom",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "1 = geen zoom.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "min": 1,
+            "max": "",
+            "step": 0.05,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_layout_hero_foto_focus",
+            "label": "Welk deel van de foto blijft zichtbaar?",
+            "name": "foto_focus",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "midden": "Midden",
+                "onder": "Onder",
+                "boven": "Boven",
+                "links": "Links",
+                "rechts": "Rechts",
+                "onder-links": "Onder links"
+            },
+            "default_value": "midden",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_layout_hero_foto_stijl",
+            "label": "Foto",
+            "name": "foto_stijl",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "vol": "Over het hele vlak",
+                "rechts": "Rechts, met donker vlak links"
+            },
+            "default_value": "vol",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_layout_hero_toon_etiket",
+            "label": "Etiket op het blik tonen",
+            "name": "toon_etiket",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Alleen bij een foto van het Mori-blik met een leeg etiket (stijl \"Rechts\").",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Aan",
+            "ui_off_text": "Uit"
+        },
+        {
+            "key": "field_layout_hero_tab_opmaak",
+            "label": "Opmaak",
+            "name": "tab_opmaak",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_layout_hero_ruimte",
+            "label": "Ruimte boven en onder (desktop)",
+            "name": "ruimte",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Past de witruimte aan zonder de mobiele weergave te veranderen.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "80": "80 px",
+                "96": "96 px",
+                "128": "128 px",
+                "144": "144 px",
+                "160": "160 px",
+                "standaard": "Standaard van dit blok"
+            },
+            "default_value": "standaard",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_layout_hero_anker",
+            "label": "Anker",
+            "name": "anker",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optioneel. Naam om naar dit blok te linken, bijvoorbeeld \"bereiden\" voor #bereiden.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            },
+            {
+                "param": "page_template",
+                "operator": "!=",
+                "value": "default"
+            }
+        ]
+    ],
+    "menu_order": 9999,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792422641
+}

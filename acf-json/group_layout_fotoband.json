@@ -1,0 +1,282 @@
+{
+    "key": "group_layout_fotoband",
+    "title": "Layout -- Fotoband met tekst",
+    "fields": [
+        {
+            "key": "field_layout_fotoband_tab_inhoud",
+            "label": "Inhoud",
+            "name": "tab_inhoud",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_layout_fotoband_foto",
+            "label": "Foto",
+            "name": "foto",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_layout_fotoband_uitsnede_mobiel",
+            "label": "Uitsnede op mobiel",
+            "name": "uitsnede_mobiel",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Welk deel van de foto zichtbaar is op een smal scherm.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "links": "Links",
+                "midden": "Midden",
+                "rechts": "Rechts"
+            },
+            "default_value": "rechts",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_layout_fotoband_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_layout_fotoband_titel",
+            "label": "Titel",
+            "name": "titel",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_layout_fotoband_tekst",
+            "label": "Tekst",
+            "name": "tekst",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_layout_fotoband_tekst_mobiel",
+            "label": "Tekst op mobiel",
+            "name": "tekst_mobiel",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optioneel, kortere tekst voor smalle schermen.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_layout_fotoband_knop",
+            "label": "Knop",
+            "name": "knop",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Knop met contour en pijl.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_layout_fotoband_parallax",
+            "label": "Foto beweegt licht mee bij scrollen",
+            "name": "parallax",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Alleen op desktop, maximaal 40 px.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Aan",
+            "ui_off_text": "Uit"
+        },
+        {
+            "key": "field_layout_fotoband_tab_opmaak",
+            "label": "Opmaak",
+            "name": "tab_opmaak",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_layout_fotoband_ruimte",
+            "label": "Ruimte boven en onder (desktop)",
+            "name": "ruimte",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Past de witruimte aan zonder de mobiele weergave te veranderen.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "80": "80 px",
+                "96": "96 px",
+                "128": "128 px",
+                "144": "144 px",
+                "160": "160 px",
+                "standaard": "Standaard van dit blok"
+            },
+            "default_value": "standaard",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_layout_fotoband_anker",
+            "label": "Anker",
+            "name": "anker",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optioneel. Naam om naar dit blok te linken, bijvoorbeeld \"bereiden\" voor #bereiden.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            },
+            {
+                "param": "page_template",
+                "operator": "!=",
+                "value": "default"
+            }
+        ]
+    ],
+    "menu_order": 9999,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792422641
+}

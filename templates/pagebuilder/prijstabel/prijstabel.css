@@ -1,0 +1,24 @@
+@layer components {
+  .prijstabel { padding-block: 80px; }
+  @media (min-width: 1024px) { .prijstabel { padding-block: 128px; } }
+  .prijstabel__binnen { display: flex; flex-direction: column; gap: 32px; }
+  @media (min-width: 1024px) { .prijstabel__binnen { gap: 48px; } }
+  .prijstabel__kop { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; max-width: 594px; }
+  @media (min-width: 1024px) { .prijstabel__kop { gap: 16px; } }
+
+  .prijstabel__tabel { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--kleur-wit); border-radius: var(--afronding-groot); box-shadow: inset 0 0 0 1px var(--kleur-lijn); overflow: hidden; }
+  .prijstabel__tabel thead { display: none; }
+  @media (min-width: 768px) { .prijstabel__tabel thead { display: table-header-group; } }
+  .prijstabel__tabel th, .prijstabel__tabel td { text-align: left; padding: 24px 32px; vertical-align: middle; font-weight: inherit; }
+  .prijstabel__tabel thead th { padding-block: 18px; background: var(--kleur-rijstpapier); color: var(--kleur-steen); font-weight: 500; }
+  .prijstabel__tabel tbody tr + tr > *, .prijstabel__tabel tbody tr:first-child > * { border-top: 1px solid var(--kleur-lijn); }
+  .prijstabel__abo { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  @media (max-width: 767px) {
+    .prijstabel__tabel, .prijstabel__tabel tbody, .prijstabel__tabel tr { display: block; }
+    .prijstabel__tabel tbody tr { padding: 8px 0; }
+    .prijstabel__tabel tbody tr + tr { border-top: 1px solid var(--kleur-lijn); }
+    .prijstabel__tabel th, .prijstabel__tabel td { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 20px; border: 0 !important; }
+    .prijstabel__tabel td::before { content: attr(data-label); @apply text-meta; color: var(--kleur-steen); }
+    .prijstabel__tabel tbody th { padding-top: 16px; }
+  }
+}

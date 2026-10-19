@@ -1,0 +1,16 @@
+@layer components {
+  .stappen-kaarten { padding-block: 80px; }
+  @media (min-width: 1024px) { .stappen-kaarten { padding-block: 128px; } }
+  .stappen-kaarten__binnen { display: flex; flex-direction: column; gap: 40px; }
+  @media (min-width: 1024px) { .stappen-kaarten__binnen { gap: 64px; } }
+  .stappen-kaarten__kop { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  @media (min-width: 1024px) { .stappen-kaarten__kop { gap: 16px; } }
+  .stappen-kaarten__lijst { display: grid; grid-template-columns: 1fr; gap: 40px; }
+  @media (min-width: 768px) { .stappen-kaarten__lijst { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
+  @media (min-width: 1024px) { .stappen-kaarten__lijst { gap: 32px; } }
+  .stap-kaart { display: flex; flex-direction: column; gap: 16px; }
+  .stap-kaart__beeld { height: 320px; flex: none; }
+  @media (min-width: 1024px) { .stap-kaart__beeld { height: 440px; } }
+  .stap-kaart__nummer { color: var(--kleur-matcha); margin-top: 12px; }
+  @media (min-width: 1024px) { .stap-kaart__nummer { margin-top: 28px; } }
+}

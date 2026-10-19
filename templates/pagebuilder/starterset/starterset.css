@@ -1,0 +1,31 @@
+/* Starterset: foto 6 kolommen, 1 leeg, tekst 5 kolommen (desktop) */
+@layer components {
+
+  .starterset { padding-block: 80px; }
+  @media (min-width: 1024px) { .starterset { padding-block: 128px; } }
+
+  .starterset__rij { row-gap: 28px; align-items: center; }
+  .starterset__foto { grid-column: 1 / -1; }
+  .starterset__beeld { height: 280px; }
+  .starterset__tekst { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 24px; align-items: stretch; }
+  @media (min-width: 1024px) {
+    .starterset__foto { grid-column: 1 / span 6; }
+    .starterset__beeld { height: 680px; }
+    .starterset__tekst { grid-column: 8 / span 5; gap: 32px; padding-block: 26px; }
+  }
+
+  @media (min-width: 1024px) { .starterset--compact .starterset__beeld { height: 640px; } .starterset--compact .starterset__tekst { padding-block: 6px; } }
+
+  .starterset__kop { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  @media (min-width: 1024px) { .starterset__kop { gap: 20px; } }
+
+  .starterset__set { border-top: 1px solid var(--kleur-lijn); }
+  .starterset__item { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--kleur-lijn); }
+  @media (min-width: 1024px) { .starterset__item { padding-block: 18px; } }
+
+  .starterset__prijs { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 14px; }
+  .starterset__was { text-decoration: line-through; }
+
+  .starterset__knoppen { display: flex; align-items: center; gap: 24px; }
+
+}

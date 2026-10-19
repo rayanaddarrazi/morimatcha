@@ -1,0 +1,29 @@
+/* Foto met kenmerken: twee helften van 720, 760 hoog (desktop) */
+@layer components {
+
+  .foto-kenmerken { display: flex; flex-direction: column; }
+  @media (min-width: 1024px) {
+    .foto-kenmerken { display: grid; grid-template-columns: 1fr 1fr; min-height: 760px; }
+    .foto-kenmerken--rechts .foto-kenmerken__foto { order: 2; }
+  }
+  .foto-kenmerken__beeld { height: 360px; }
+  @media (min-width: 1024px) { .foto-kenmerken__beeld { height: 100%; min-height: 760px; } }
+  .foto-kenmerken__foto { background: var(--kleur-bosgroen); }
+
+  .foto-kenmerken__tekst { display: flex; align-items: center; padding: 48px 16px; }
+  @media (min-width: 1024px) { .foto-kenmerken__tekst { padding: 137px 110px 137px 120px; } .foto-kenmerken--rechts .foto-kenmerken__tekst { padding: 137px 120px 137px 110px; justify-content: flex-end; } }
+  .foto-kenmerken__inhoud { width: 100%; max-width: 489.667px; display: flex; flex-direction: column; gap: 28px; }
+  @media (min-width: 1024px) { .foto-kenmerken__inhoud { gap: 32px; } }
+  .foto-kenmerken__kop { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  @media (min-width: 1024px) { .foto-kenmerken__kop { gap: 32px; } }
+  .foto-kenmerken__intro, .foto-kenmerken__uitleg { color: var(--kleur-gerst); }
+  .sectie--rijstpapier .foto-kenmerken__intro, .sectie--wit .foto-kenmerken__intro, .sectie--gerst .foto-kenmerken__intro,
+  .sectie--rijstpapier .foto-kenmerken__uitleg, .sectie--wit .foto-kenmerken__uitleg, .sectie--gerst .foto-kenmerken__uitleg { color: var(--kleur-steen); }
+
+  .foto-kenmerken__lijst { border-bottom: 1px solid var(--kleur-bosgroen); }
+  .foto-kenmerken__lijst li { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 18px; border-top: 1px solid var(--kleur-bosgroen); }
+  .sectie--rijstpapier .foto-kenmerken__lijst, .sectie--wit .foto-kenmerken__lijst, .sectie--gerst .foto-kenmerken__lijst,
+  .sectie--rijstpapier .foto-kenmerken__lijst li, .sectie--wit .foto-kenmerken__lijst li, .sectie--gerst .foto-kenmerken__lijst li { border-color: var(--kleur-lijn); }
+  @media (min-width: 1024px) { .foto-kenmerken__lijst li { align-items: center; flex-wrap: nowrap; } }
+
+}

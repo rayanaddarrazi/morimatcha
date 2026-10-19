@@ -1,0 +1,461 @@
+{
+    "key": "group_productblokken",
+    "title": "Product -- Blokken onder de aankoop",
+    "fields": [
+        {
+            "key": "field_group_productblokken",
+            "label": "Blokken",
+            "name": "productblokken",
+            "aria-label": "",
+            "type": "flexible_content",
+            "instructions": "De blokken onder de aankoopkeuze op de productpagina: herkomst, smaak, bereiding, vragen. Sleep ze in een andere volgorde of voeg er toe.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_hero": {
+                    "key": "layout_hero_product",
+                    "name": "hero",
+                    "label": "Hero met foto",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_hero_product_clone",
+                            "label": "Hero met foto",
+                            "name": "hero_fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_layout_hero"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_kenmerken": {
+                    "key": "layout_kenmerken_product",
+                    "name": "kenmerken",
+                    "label": "Kenmerkenstrook",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_kenmerken_product_clone",
+                            "label": "Kenmerkenstrook",
+                            "name": "kenmerken_fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_layout_kenmerken"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_over_mori": {
+                    "key": "layout_over_mori_product",
+                    "name": "over_mori",
+                    "label": "Foto met tekst en beloftes",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_over_mori_product_clone",
+                            "label": "Foto met tekst en beloftes",
+                            "name": "over_mori_fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_layout_over_mori"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_productsplit": {
+                    "key": "layout_productsplit_product",
+                    "name": "productsplit",
+                    "label": "Productsplit (foto en maten)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_productsplit_product_clone",
+                            "label": "Productsplit (foto en maten)",
+                            "name": "productsplit_fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_layout_productsplit"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_herkomst": {
+                    "key": "layout_herkomst_product",
+                    "name": "herkomst",
+                    "label": "Herkomst (stappen en foto's)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_herkomst_product_clone",
+                            "label": "Herkomst (stappen en foto's)",
+                            "name": "herkomst_fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_layout_herkomst"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_recepten": {
+                    "key": "layout_recepten_product",
+                    "name": "recepten",
+                    "label": "Recepten (kaarten)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_recepten_product_clone",
+                            "label": "Recepten (kaarten)",
+                            "name": "recepten_fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_layout_recepten"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_fotoband": {
+                    "key": "layout_fotoband_product",
+                    "name": "fotoband",
+                    "label": "Fotoband met tekst",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_fotoband_product_clone",
+                            "label": "Fotoband met tekst",
+                            "name": "fotoband_fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_layout_fotoband"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_starterset": {
+                    "key": "layout_starterset_product",
+                    "name": "starterset",
+                    "label": "Starterset (bundel)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_starterset_product_clone",
+                            "label": "Starterset (bundel)",
+                            "name": "starterset_fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_layout_starterset"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_abonnement": {
+                    "key": "layout_abonnement_product",
+                    "name": "abonnement",
+                    "label": "Abonnement (uitleg in stappen)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_abonnement_product_clone",
+                            "label": "Abonnement (uitleg in stappen)",
+                            "name": "abonnement_fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_layout_abonnement"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_vragen": {
+                    "key": "layout_vragen_product",
+                    "name": "vragen",
+                    "label": "Veelgestelde vragen",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_vragen_product_clone",
+                            "label": "Veelgestelde vragen",
+                            "name": "vragen_fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_layout_vragen"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_foto_kenmerken": {
+                    "key": "layout_foto_kenmerken_product",
+                    "name": "foto_kenmerken",
+                    "label": "Foto met kenmerken (herkomst)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_foto_kenmerken_product_clone",
+                            "label": "Foto met kenmerken (herkomst)",
+                            "name": "foto_kenmerken_fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_layout_foto_kenmerken"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_smaakprofiel": {
+                    "key": "layout_smaakprofiel_product",
+                    "name": "smaakprofiel",
+                    "label": "Smaakprofiel en vragen",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_smaakprofiel_product_clone",
+                            "label": "Smaakprofiel en vragen",
+                            "name": "smaakprofiel_fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_layout_smaakprofiel"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_bereiding": {
+                    "key": "layout_bereiding_product",
+                    "name": "bereiding",
+                    "label": "Bereiding (stappen)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_bereiding_product_clone",
+                            "label": "Bereiding (stappen)",
+                            "name": "bereiding_fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_layout_bereiding"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "min": "",
+            "max": "",
+            "button_label": "Blok toevoegen"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            }
+        ]
+    ],
+    "menu_order": 10,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792422641
+}

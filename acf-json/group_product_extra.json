@@ -1,0 +1,369 @@
+{
+    "key": "group_product_extra",
+    "title": "Product -- Extra",
+    "fields": [
+        {
+            "key": "field_product_extra_tab_labels",
+            "label": "Labels",
+            "name": "tab_labels",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_product_extra_badge_blad",
+            "label": "Badge in lichte kleur",
+            "name": "badge_blad",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Bijvoorbeeld \"Voor beginners\". Staat boven de naam op de productpagina en op de kaart.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_product_extra_badge_op_kaart",
+            "label": "Badge ook op de kaart in de shop",
+            "name": "badge_op_kaart",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Aan",
+            "ui_off_text": "Uit"
+        },
+        {
+            "key": "field_product_extra_smaakbadges",
+            "label": "Smaakbadges",
+            "name": "smaakbadges",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Bijvoorbeeld Zacht, Romig, Weinig bitter.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Smaak toevoegen",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_product_extra_smaakbadges_tekst",
+                    "label": "Smaak",
+                    "name": "tekst",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_product_extra_kaart_omschrijving",
+            "label": "Korte omschrijving op de kaart",
+            "name": "kaart_omschrijving",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Eén regel onder de naam in de shop.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_product_extra_kaart_label",
+            "label": "Label bij de prijs op de kaart",
+            "name": "kaart_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Bijvoorbeeld \"vanaf\", \"set\" of \"los\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_product_extra_kaart_meta",
+            "label": "Onderregel op de kaart",
+            "name": "kaart_meta",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Voor producten zonder maten, bijvoorbeeld \"3 delen\" of \"Gereedschap\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_product_extra_tab_kopen",
+            "label": "Kopen",
+            "name": "tab_kopen",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_product_extra_abonnement_mogelijk",
+            "label": "Abonnement mogelijk",
+            "name": "abonnement_mogelijk",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Toont de keuze \"Eenmalig\" of \"Elke maand een blik\" op de productpagina.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Aan",
+            "ui_off_text": "Uit"
+        },
+        {
+            "key": "field_product_extra_hulp_maat_tekst",
+            "label": "Tekst \"Hoe lang doe ik ermee?\"",
+            "name": "hulp_maat_tekst",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_product_extra_hulp_maat_link",
+            "label": "Link \"Hoe lang doe ik ermee?\"",
+            "name": "hulp_maat_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_product_extra_uitleg_maten",
+            "label": "Uitleg onder de maten",
+            "name": "uitleg_maten",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Regel in het grijze vlak onder de maten.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_product_extra_tab_zekerheden",
+            "label": "Zekerheden",
+            "name": "tab_zekerheden",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_product_extra_zekerheden",
+            "label": "Zekerheden onder de knop",
+            "name": "zekerheden",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Leeg = de zekerheden uit Instellingen Mori.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Regel toevoegen",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_product_extra_zekerheden_icoon",
+                    "label": "Icoon",
+                    "name": "icoon",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "verzending": "Verzending",
+                        "herhalen": "Herhalen",
+                        "info": "Info",
+                        "klok": "Klok",
+                        "pauze": "Pauze"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_product_extra_zekerheden_tekst",
+                    "label": "Tekst",
+                    "name": "tekst",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "75",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            }
+        ]
+    ],
+    "menu_order": 5,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792422641
+}

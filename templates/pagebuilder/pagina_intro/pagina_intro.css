@@ -1,0 +1,8 @@
+@layer components {
+  .pagina-intro { padding-block: 40px 32px; }
+  @media (min-width: 1024px) { .pagina-intro { padding-block: 88px 64px; } }
+  .pagina-intro__rij { display: flex; flex-direction: column; gap: 24px; }
+  @media (min-width: 1024px) { .pagina-intro__rij { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
+  .pagina-intro__kop { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+  @media (min-width: 1024px) { .pagina-intro__kop { max-width: 698.333px; } .pagina-intro__tekst { width: 385.333px; flex: none; } }
+}

@@ -1,0 +1,38 @@
+/* Smaakprofiel: kaart 6 kolommen, vragen 6 kolommen (desktop) */
+@layer components {
+
+  .smaakprofiel { padding-block: 80px; }
+  @media (min-width: 1024px) { .smaakprofiel { padding-block: 160px; } }
+  .smaakprofiel__binnen { display: flex; flex-direction: column; gap: 32px; }
+  @media (min-width: 1024px) { .smaakprofiel__binnen { gap: 56px; } }
+  .smaakprofiel__kop { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; max-width: 594px; }
+  @media (min-width: 1024px) { .smaakprofiel__kop { gap: 16px; } }
+  .smaakprofiel__rij { row-gap: 24px; align-items: start; }
+  .profiel, .smaakprofiel__vragen { grid-column: 1 / -1; }
+  @media (min-width: 1024px) { .profiel { grid-column: 1 / span 6; } .smaakprofiel__vragen { grid-column: 7 / span 6; } }
+
+  .profiel { display: flex; flex-direction: column; gap: 24px; padding: 24px; border-radius: var(--afronding-groot); background: var(--kleur-wit); box-shadow: inset 0 0 0 1px var(--kleur-lijn); }
+  @media (min-width: 1024px) { .profiel { gap: 32px; padding: 32px; } }
+  .profiel__kop { display: flex; flex-direction: column; gap: 8px; }
+  .profiel__label { color: var(--kleur-matcha); }
+  .profiel__schalen { display: flex; flex-direction: column; gap: 24px; }
+  .schaal { display: flex; flex-direction: column; gap: 8px; }
+  @media (min-width: 768px) { .schaal { flex-direction: row; gap: 24px; } .schaal__kenmerk { width: 100px; flex: none; } }
+  .schaal__rechts { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+  .schaal__spoor { position: relative; height: 16px; }
+  .schaal__lijn, .schaal__gevuld { position: absolute; left: 0; top: 7px; height: 2px; border-radius: 1px; }
+  .schaal__lijn { right: 0; background: var(--kleur-lijn); }
+  .schaal__gevuld { width: calc((var(--w) - 1) * 25%); background: var(--kleur-matcha); transition: width 700ms var(--ease); }
+  .schaal__stap { position: absolute; top: 5px; left: calc((var(--p) - 1) * 25%); width: 6.4px; height: 6px; margin-left: -3.2px; border-radius: 50%; background: var(--kleur-lijn); }
+  .schaal__stap.is-gevuld { background: var(--kleur-matcha); }
+  .schaal__stap:first-of-type { margin-left: 0; }
+  .schaal__markering { position: absolute; top: 0; left: calc((var(--w) - 1) * 25%); width: 17px; height: 16px; margin-left: -8.5px; border-radius: 50%; background: var(--kleur-mos); box-shadow: 0 0 0 3px var(--kleur-wit), 0 2px 8px rgba(31, 41, 26, 0.12), 0 12px 32px -4px rgba(31, 41, 26, 0.12); }
+  .schaal__labels { display: flex; justify-content: space-between; color: var(--kleur-steen); }
+  .profiel__feiten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 32px; padding-top: 24px; border-top: 1px solid var(--kleur-lijn); }
+  .profiel__feiten div { display: flex; flex-direction: column; gap: 2px; }
+
+  .smaakprofiel__vragen .accordeon__item:first-child { padding-top: 28px; }
+  .smaakprofiel__vragen { margin-top: -28px; }
+  @media (min-width: 1024px) { .smaakprofiel__vragen { margin-top: 0; } }
+
+}

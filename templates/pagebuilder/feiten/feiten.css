@@ -1,0 +1,11 @@
+@layer components {
+  .feiten { padding-block: 40px; }
+  @media (min-width: 1024px) { .feiten { padding-block: 56px; } }
+  .feiten__rij { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
+  @media (min-width: 1024px) { .feiten__rij { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; } }
+  .feit { display: flex; flex-direction: column; gap: 6px; }
+  .feit__waarde { color: var(--kleur-rijstpapier); white-space: nowrap; }
+  .feit__uitleg { color: var(--kleur-gerst); }
+  @media (min-width: 1024px) { .feit + .feit { padding-left: 32px; border-left: 1px solid var(--kleur-bosgroen); } }
+  @media (max-width: 1023px) { .feit:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--kleur-bosgroen); } .feit__waarde { font-size: 32px; } }
+}

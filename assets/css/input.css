@@ -1,0 +1,124 @@
+@import 'tokens.css';
+@import 'fonts.css';
+@import 'header.css';
+@import 'footer.css';
+@import 'components/buttons.css';
+@import 'components/eyebrow.css';
+@import 'components/cart-drawer.css';
+@import 'components/animaties.css';
+
+@import 'components/foto.css';
+@import 'components/product.css';
+@import 'components/abonnement-kaart.css';
+@import 'kassa.css';
+
+/* Pagebuilder Block Styles */
+@import '../../templates/pagebuilder/hero/hero.css';
+@import '../../templates/pagebuilder/kenmerken/kenmerken.css';
+@import '../../templates/pagebuilder/over_mori/over_mori.css';
+@import '../../templates/pagebuilder/productsplit/productsplit.css';
+@import '../../templates/pagebuilder/herkomst/herkomst.css';
+@import '../../templates/pagebuilder/recepten/recepten.css';
+@import '../../templates/pagebuilder/fotoband/fotoband.css';
+@import '../../templates/pagebuilder/starterset/starterset.css';
+@import '../../templates/pagebuilder/abonnement/abonnement.css';
+@import '../../templates/pagebuilder/vragen/vragen.css';
+@import '../../templates/pagebuilder/bereiding/bereiding.css';
+@import '../../templates/pagebuilder/foto_tekst/foto_tekst.css';
+@import '../../templates/pagebuilder/opzeggen/opzeggen.css';
+@import '../../templates/pagebuilder/fouten/fouten.css';
+@import '../../templates/pagebuilder/benodigdheden/benodigdheden.css';
+@import '../../templates/pagebuilder/feiten/feiten.css';
+@import '../../templates/pagebuilder/prijstabel/prijstabel.css';
+@import '../../templates/pagebuilder/stappen_kaarten/stappen_kaarten.css';
+@import '../../templates/pagebuilder/keuzehulp/keuzehulp.css';
+@import '../../templates/pagebuilder/productgrid/productgrid.css';
+@import '../../templates/pagebuilder/beeldband/beeldband.css';
+@import '../../templates/pagebuilder/pagina_intro/pagina_intro.css';
+@import '../../templates/pagebuilder/smaakprofiel/smaakprofiel.css';
+@import '../../templates/pagebuilder/foto_kenmerken/foto_kenmerken.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  body {
+    @apply bg-rijstpapier font-sans text-body text-mos antialiased;
+    overflow-x: clip;
+  }
+
+  /* Anker-links landen onder de vaste header */
+  [id] {
+    scroll-margin-top: calc(var(--header-hoogte) + 16px);
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  /* Fraunces: SOFT 0 en WONK 1 zoals in het ontwerp */
+  .font-serif {
+    font-variation-settings: 'SOFT' 0, 'WONK' 1;
+  }
+
+  img { max-width: 100%; height: auto; }
+
+  /* Mobiel (Figma 390): Display en H1 zijn 52 px met regelhoogte 1,1; H2 is de H3-stijl (32 px, Regular) */
+  @media (max-width: 1023px) {
+    .text-display, .text-h1 { font-size: 52px; line-height: 1.1; letter-spacing: -0.02em; }
+    .text-h2 { font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; font-weight: 400; }
+  }
+
+  :focus-visible { outline: 2px solid var(--kleur-matcha); outline-offset: 3px; }
+
+}
+
+@layer components {
+
+  /* Content-breedte uit het grid: 1220 binnen 1440, marge 110, gutter 32 (mobiel: 4 kolommen, marge 16) */
+  .container {
+    @apply mx-auto w-full;
+    max-width: 1440px;
+    padding-inline: var(--grid-marge);
+  }
+
+  /* 12-kolommen grid (mobiel 4 kolommen) */
+  .grid-mori {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-kolommen), minmax(0, 1fr));
+    column-gap: var(--grid-gutter);
+  }
+
+  /* Sectie-achtergronden (ACF-keuze: Rijstpapier, Wit, Gerst, Mos, Bosgroen) */
+  .sectie--rijstpapier { background-color: var(--kleur-rijstpapier); color: var(--kleur-mos); }
+  .sectie--wit { background-color: var(--kleur-wit); color: var(--kleur-mos); }
+  .sectie--gerst { background-color: var(--kleur-gerst); color: var(--kleur-mos); }
+  .sectie--mos { background-color: var(--kleur-mos); color: var(--kleur-rijstpapier); }
+  .sectie--bosgroen { background-color: var(--kleur-bosgroen); color: var(--kleur-rijstpapier); }
+
+  /* Ruimte boven en onder (ACF-keuze, alleen desktop) */
+  @media (min-width: 1024px) {
+    .ruimte-80 { padding-block: 80px !important; }
+    .ruimte-96 { padding-block: 96px !important; }
+    .ruimte-128 { padding-block: 128px !important; }
+    .ruimte-144 { padding-block: 144px !important; }
+    .ruimte-160 { padding-block: 160px !important; }
+  }
+
+  /* Foto met hover-zoom binnen de afronding */
+  .beeld--zoom .beeld__img { transition: transform 700ms var(--ease); }
+  .beeld--zoom:hover .beeld__img,
+  a:hover .beeld--zoom .beeld__img,
+  .kaart:hover .beeld--zoom .beeld__img { transform: scale(1.04); }
+
+}

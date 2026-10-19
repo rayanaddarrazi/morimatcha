@@ -1,0 +1,37 @@
+/* Over Mori: foto 5 kolommen, 1 leeg, tekst 6 kolommen (desktop); gestapeld op mobiel */
+@layer components {
+
+  .over-mori { padding-block: 80px; }
+  @media (min-width: 1024px) { .over-mori { padding-block: 144px; } }
+
+  .over-mori__rij { row-gap: 32px; align-items: center; }
+
+  .over-mori__foto { grid-column: 1 / -1; }
+  .over-mori__beeld { height: 440px; }
+  @media (min-width: 1024px) {
+    .over-mori__foto { grid-column: 1 / span 5; }
+    .over-mori--rechts .over-mori__foto { grid-column: 8 / span 5; grid-row: 1; }
+    .over-mori--rechts .over-mori__tekst { grid-column: 1 / span 6; grid-row: 1; }
+    .over-mori__beeld { height: 660px; }
+  }
+
+  .over-mori__tekst { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 32px; }
+  @media (min-width: 1024px) { .over-mori__tekst { grid-column: 7 / span 6; gap: 40px; } }
+
+  .over-mori__kop { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+  @media (min-width: 1024px) { .over-mori__kop { gap: 24px; } .over-mori__kop p { max-width: 489.667px; } }
+
+  .over-mori__beloftes { border-bottom: 1px solid var(--kleur-lijn); }
+  .over-mori__belofte {
+    display: grid; grid-template-columns: 24px 1fr; column-gap: 16px; row-gap: 4px;
+    padding-block: 19px; border-top: 1px solid var(--kleur-lijn);
+  }
+  .over-mori__nummer { color: var(--kleur-matcha); padding-top: 6px; }
+  .over-mori__belofte-titel, .over-mori__uitleg { grid-column: 2; }
+  @media (min-width: 1024px) {
+    .over-mori__belofte { grid-template-columns: 32px 200px 1fr; column-gap: 24px; padding-block: 22px; align-items: start; }
+    .over-mori__belofte-titel, .over-mori__uitleg { grid-column: auto; }
+    .over-mori__nummer { padding-top: 6px; }
+  }
+
+}

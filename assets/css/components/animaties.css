@@ -1,0 +1,42 @@
+/**
+ * Animaties: rustig en premium. Easing cubic-bezier(0.22, 1, 0.36, 1).
+ * Alles valt weg bij prefers-reduced-motion.
+ */
+
+@layer components {
+
+  /* Secties: koppen, tekstblokken en kaarten faden eenmalig in bij het scrollen */
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  .js [data-reveal].is-zichtbaar { opacity: 1; transform: none; }
+
+  /* Hero: foto zoomt bij het laden van 1.06 naar 1 (1600 ms); inhoud komt na elkaar binnen (80 ms per element) */
+  .js .hero__foto img { transform: scale(1.06); transition: transform 1600ms var(--ease); }
+  .js .hero.is-geladen .hero__foto img { transform: scale(1); }
+  .js [data-hero-item] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+    transition-delay: calc(var(--i, 0) * 80ms + 150ms);
+  }
+  .js .hero.is-geladen [data-hero-item] { opacity: 1; transform: none; }
+
+  /* Parallax (alleen desktop, max. 40 px): JS zet --parallax */
+  [data-parallax] img { transform: translate3d(0, var(--parallax, 0px), 0) scale(1.08); will-change: transform; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js [data-reveal],
+    .js [data-hero-item],
+    .js .hero__foto img,
+    [data-parallax] img {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+}

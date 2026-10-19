@@ -1,0 +1,187 @@
+{
+    "key": "group_layout_kenmerken",
+    "title": "Layout -- Kenmerkenstrook",
+    "fields": [
+        {
+            "key": "field_layout_kenmerken_tab_inhoud",
+            "label": "Inhoud",
+            "name": "tab_inhoud",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_layout_kenmerken_items",
+            "label": "Kenmerken",
+            "name": "items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Op mobiel loopt de strook langzaam door, op desktop staat hij stil.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Kenmerk toevoegen",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_layout_kenmerken_items_tekst",
+                    "label": "Tekst",
+                    "name": "tekst",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_layout_kenmerken_tab_opmaak",
+            "label": "Opmaak",
+            "name": "tab_opmaak",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_layout_kenmerken_achtergrond",
+            "label": "Achtergrondkleur",
+            "name": "achtergrond",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Kleur van het vlak achter dit blok.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "rijstpapier": "Rijstpapier",
+                "wit": "Wit",
+                "gerst": "Gerst",
+                "mos": "Mos (donker)",
+                "bosgroen": "Bosgroen (donker)"
+            },
+            "default_value": "mos",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_layout_kenmerken_ruimte",
+            "label": "Ruimte boven en onder (desktop)",
+            "name": "ruimte",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Past de witruimte aan zonder de mobiele weergave te veranderen.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "80": "80 px",
+                "96": "96 px",
+                "128": "128 px",
+                "144": "144 px",
+                "160": "160 px",
+                "standaard": "Standaard van dit blok"
+            },
+            "default_value": "standaard",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_layout_kenmerken_anker",
+            "label": "Anker",
+            "name": "anker",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optioneel. Naam om naar dit blok te linken, bijvoorbeeld \"bereiden\" voor #bereiden.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            },
+            {
+                "param": "page_template",
+                "operator": "!=",
+                "value": "default"
+            }
+        ]
+    ],
+    "menu_order": 9999,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792422641
+}

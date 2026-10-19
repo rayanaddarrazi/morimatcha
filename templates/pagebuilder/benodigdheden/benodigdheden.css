@@ -1,0 +1,19 @@
+@layer components {
+  .benodigdheden { padding-block: 80px; }
+  @media (min-width: 1024px) { .benodigdheden { padding-block: 144px; } }
+  .benodigdheden__binnen { display: flex; flex-direction: column; gap: 32px; }
+  @media (min-width: 1024px) { .benodigdheden__binnen { gap: 48px; } }
+  .benodigdheden__kop { display: flex; flex-direction: column; gap: 24px; }
+  @media (min-width: 1024px) { .benodigdheden__kop { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
+  .benodigdheden__kop-tekst { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; max-width: 594px; }
+  @media (min-width: 1024px) { .benodigdheden__kop-tekst { gap: 16px; } }
+  .benodigdheden__lijst { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
+  @media (min-width: 1024px) { .benodigdheden__lijst { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; } }
+  .benodigd__link { display: flex; flex-direction: column; gap: 20px; }
+  .benodigd__foto { height: 240px; }
+  @media (min-width: 1024px) { .benodigd__foto { height: 360px; } }
+  .benodigd__info { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .benodigd__naam { display: flex; flex-direction: column; gap: 4px; }
+  .benodigd__link:hover .foto-vlak__foto { transform: translateX(-50%) scale(1.04); }
+  .benodigd__foto .foto-vlak__foto { transition: transform 700ms var(--ease); }
+}

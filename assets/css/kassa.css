@@ -1,0 +1,310 @@
+/**
+ * Kassa, bevestiging en Mijn account (Figma: Afrekenen, Bevestiging, Account)
+ */
+
+@layer components {
+
+  :root { --icoon-info-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.3' stroke-linecap='round'%3E%3Ccircle cx='8' cy='8' r='7'/%3E%3Cpath d='M8 7.2v3.6'/%3E%3Cpath d='M8 4.9v.1'/%3E%3C/svg%3E"); }
+
+  /* ---------- Kassa-header en -footer ---------- */
+  .kassa-header { height: 84px; border-bottom: 1px solid var(--kleur-lijn); background: var(--kleur-rijstpapier); }
+  .kassa-header__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; position: relative; }
+  .kassa-header__logo { display: block; width: 127px; flex: none; }
+  .kassa-header__logo img { display: block; width: 100%; height: auto; }
+
+  .kassa-stappen { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; position: absolute; left: 50%; transform: translateX(-50%); }
+  .kassa-stappen__stap { display: flex; align-items: center; gap: 8px; font-size: 14px; line-height: 20px; color: var(--kleur-steen); font-weight: 500; }
+  .kassa-stappen__stap + .kassa-stappen__stap::before { content: ''; width: 6px; height: 6px; border-right: 1.5px solid var(--kleur-lijn); border-top: 1.5px solid var(--kleur-lijn); transform: rotate(45deg); margin-right: 12px; }
+  .kassa-stappen__nr { width: 24px; height: 24px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; border: 1px solid var(--kleur-lijn); color: var(--kleur-steen); }
+  .kassa-stappen__nr svg { width: 14px; height: 14px; }
+  .kassa-stappen__stap.is-nu { color: var(--kleur-mos); }
+  .kassa-stappen__stap.is-nu .kassa-stappen__nr { background: var(--kleur-mos); border-color: var(--kleur-mos); color: var(--kleur-rijstpapier); }
+  .kassa-stappen__stap.is-klaar { color: var(--kleur-mos); }
+  .kassa-stappen__stap.is-klaar .kassa-stappen__nr { background: var(--kleur-jong-blad); border-color: var(--kleur-jong-blad); color: var(--kleur-mos); }
+
+  .kassa-header__veilig { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--kleur-steen); margin: 0; }
+  .kassa-header__veilig svg { width: 16px; height: 16px; color: var(--kleur-matcha); }
+
+  .kassa-footer { border-top: 1px solid var(--kleur-lijn); margin-top: 96px; }
+  .kassa-footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 28px 32px; flex-wrap: wrap; }
+  .kassa-footer__links, .kassa-footer__betalen { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; align-items: center; }
+  .kassa-footer__links a { font-size: 14px; color: var(--kleur-steen); }
+  .kassa-footer__links a:hover { color: var(--kleur-mos); }
+  .kassa-footer__betalen { gap: 8px; }
+  .kassa-footer__betalen img { display: block; height: 32px; width: auto; border-radius: 4px; }
+
+  @media (max-width: 767px) {
+    .kassa-header__logo { width: 96px; }
+    .kassa-stappen { position: static; transform: none; gap: 10px; }
+    .kassa-stappen__stap + .kassa-stappen__stap::before { margin-right: 2px; }
+    .kassa-stappen__naam { display: none; }
+    .kassa-stappen__stap.is-nu .kassa-stappen__naam { display: inline; }
+    .kassa-header__veilig span { display: none; }
+    .kassa__titel { font-size: 44px; line-height: 50px; }
+    .site-main--kassa { padding-top: 40px; }
+    .kassa-footer { margin-top: 56px; }
+    .kassa-footer__links { flex-wrap: wrap; gap: 8px 20px; }
+    .kassa-samenvatting__kaart, .kassa-abo { padding: 24px 20px; }
+  }
+
+  /* ---------- Kassa ---------- */
+  .site-main--kassa { padding-top: 64px; }
+  .kassa__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: start; }
+  @media (min-width: 1024px) {
+    .kassa__grid { grid-template-columns: repeat(12, 1fr); }
+    .kassa__links { grid-column: 1 / span 7; }
+    .kassa__rechts { grid-column: 8 / span 5; position: sticky; top: 24px; }
+  }
+  .kassa__links { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+  .kassa__titel { margin: 0 0 0; padding-top: 4px; }
+  .kassa__titel { font-weight: 300; font-size: 56px; line-height: 64px; letter-spacing: -0.02em; }
+
+  .kassa__enkel { max-width: 698px; display: flex; flex-direction: column; gap: 24px; margin-inline: auto; }
+  .kassa-kaart { background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 32px; }
+  @media (max-width: 639px) { .kassa-kaart { padding: 24px 20px; } }
+  .kassa-kaart__titel { display: flex; align-items: center; gap: 12px; font-family: var(--font-serif, 'Fraunces', serif); font-size: 22px; line-height: 28px; font-weight: 400; margin: 0 0 24px; }
+  .kassa-kaart__nr { width: 28px; height: 28px; border-radius: 14px; background: var(--kleur-jong-blad); font-family: 'Hanken Grotesk', sans-serif; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; }
+
+  .kassa-velden { display: flex; flex-wrap: wrap; gap: 24px 16px; }
+  .kassa-velden .veld { margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; width: 100%; }
+  @media (min-width: 640px) { .kassa-velden .veld--half { width: calc(50% - 8px); } }
+  .kassa-velden .veld label { font-size: 14px; line-height: 20px; font-weight: 500; color: var(--kleur-mos); }
+  .kassa-velden .woocommerce-input-wrapper { display: block; position: relative; }
+  .kassa-velden input[type="text"], .kassa-velden input[type="email"], .kassa-velden input[type="tel"] {
+    width: 100%; height: 52px; padding: 0 16px; border: 1px solid var(--kleur-lijn); border-radius: var(--afronding-klein);
+    background: var(--kleur-wit); color: var(--kleur-mos); font: inherit; font-size: 16px; transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease);
+  }
+  .kassa-velden input:focus { outline: none; border-color: var(--kleur-matcha); box-shadow: 0 0 0 3px rgba(122, 154, 63, 0.25); }
+  .kassa-velden .description { display: block !important; margin-top: 12px; font-size: 14px; line-height: 20px; color: var(--kleur-steen); }
+  .kassa-velden .veld--auto input { background: var(--kleur-gerst); border-color: transparent; color: var(--kleur-steen); }
+  .kassa-velden .veld--auto.is-auto input { cursor: default; }
+  .kassa-velden .woocommerce-invalid input, .kassa-velden .is-fout input { border-color: var(--kleur-fout); }
+  .veld__fout { display: block; margin-top: 12px; font-size: 14px; line-height: 20px; color: var(--kleur-fout); }
+  .is-fout .woocommerce-input-wrapper::after { content: ''; position: absolute; right: 16px; top: 18px; width: 16px; height: 16px; background: var(--kleur-fout); -webkit-mask: var(--icoon-info-mask) center / contain no-repeat; mask: var(--icoon-info-mask) center / contain no-repeat; }
+  .kassa-velden .description:empty { display: none !important; }
+  .kassa-hulp { margin: 12px 0 0; font-size: 14px; line-height: 20px; color: var(--kleur-steen); }
+  .kassa-hulp--intro { margin: -8px 0 24px; }
+
+  .kassa-melding { display: grid; grid-template-columns: 20px 1fr; column-gap: 12px; margin-top: 24px; padding: 16px; border-radius: var(--afronding-middel); background: var(--kleur-gerst); font-size: 14px; line-height: 20px; }
+  .kassa-melding svg { grid-row: 1 / span 2; width: 18px; height: 18px; margin-top: 1px; }
+  .kassa-melding__kop { margin: 0; font-weight: 500; }
+  .kassa-melding__tekst { margin: 0; color: var(--kleur-steen); }
+
+  /* Betaalmethodes */
+  .kassa-methodes { list-style: none; margin: 0; padding: 0; border: 1px solid var(--kleur-lijn); border-radius: var(--afronding-middel); overflow: hidden; }
+  .kassa-methode { position: relative; }
+  .kassa-methode + .kassa-methode { border-top: 1px solid var(--kleur-lijn); }
+  .kassa-methode__radio { position: absolute; opacity: 0; pointer-events: none; }
+  .kassa-methode__label { display: flex; align-items: center; gap: 16px; padding: 20px 20px; min-height: 80px; cursor: pointer; transition: background-color 200ms var(--ease); }
+  .kassa-methode__label:hover { background: var(--kleur-rijstpapier); }
+  .kassa-methode__radio:checked + .kassa-methode__label { background: var(--kleur-rijstpapier); }
+  .kassa-methode__radio:focus-visible + .kassa-methode__label { box-shadow: inset 0 0 0 2px var(--kleur-matcha); }
+  .kassa-methode__vink { flex: none; width: 24px; height: 24px; border-radius: 12px; border: 1.5px solid var(--kleur-mos); background: var(--kleur-wit); position: relative; }
+  .kassa-methode__radio:checked + .kassa-methode__label .kassa-methode__vink::after { content: ''; position: absolute; inset: 4px; border-radius: 50%; background: var(--kleur-mos); }
+  .kassa-methode__tekst { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; font-size: 14px; line-height: 20px; }
+  .kassa-methode__naam { font-weight: 500; color: var(--kleur-mos); }
+  .kassa-methode__uitleg { color: var(--kleur-steen); }
+  .kassa-methode__logos { display: flex; gap: 12px; align-items: center; flex: none; }
+  .kassa-methode__logos img { height: 24px; width: auto; display: block; }
+  .kassa-methode__logos svg { width: 18px; height: 18px; color: var(--kleur-steen); }
+  .kassa-methode__box { padding: 0 20px 20px 60px; font-size: 14px; color: var(--kleur-steen); }
+  .kassa-methode__box:empty { display: none; }
+
+  .kassa-toestemming { display: flex; gap: 12px; margin: 24px 0 0; padding: 16px; border-radius: var(--afronding-middel); background: var(--kleur-rijstpapier); font-size: 14px; line-height: 20px; }
+  .kassa-toestemming svg { flex: none; width: 18px; height: 18px; color: var(--kleur-matcha); margin-top: 1px; }
+
+  .kassa-betalen { display: flex; flex-direction: column; gap: 24px; }
+  .kassa-akkoord { display: flex; align-items: center; gap: 12px; font-size: 16px; cursor: pointer; }
+  .kassa-akkoord__vak { appearance: none; flex: none; width: 20px; height: 20px; border: 1.5px solid var(--kleur-mos); border-radius: 4px; background: var(--kleur-wit); display: inline-grid; place-content: center; margin: 0; cursor: pointer; }
+  .kassa-akkoord__vak:checked { background: var(--kleur-mos); }
+  .kassa-akkoord__vak:checked::after { content: ''; width: 10px; height: 6px; border-left: 2px solid var(--kleur-rijstpapier); border-bottom: 2px solid var(--kleur-rijstpapier); transform: rotate(-45deg) translate(1px, -1px); }
+  .kassa-akkoord__vak:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--kleur-wit), 0 0 0 5px var(--kleur-matcha); }
+  .kassa-betalen > .kassa-akkoord { margin-bottom: -8px; }
+  .kassa-knop { width: 100%; height: 52px; justify-content: space-between; }
+  .kassa-knop .kj-button__label { flex: 1; padding-left: 40px; text-align: center; }
+  .kassa-noot { margin: -8px 0 0; font-size: 14px; line-height: 20px; color: var(--kleur-steen); }
+
+  /* Samenvatting */
+  .kassa-samenvatting { display: flex; flex-direction: column; gap: 24px; }
+  .kassa-samenvatting__kaart { background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 32px; }
+  .kassa-samenvatting__kaart > h2 { margin: 0 0 24px; font-weight: 400; font-size: 22px; line-height: 28px; }
+  .kassa-regels { list-style: none; margin: 0 0 24px; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+  .kassa-regel { display: flex; align-items: center; gap: 16px; }
+  .kassa-regel__foto { flex: none; width: 72px; height: 72px; border-radius: var(--afronding-middel); overflow: hidden; background: var(--kleur-gerst); }
+  .kassa-regel__foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .kassa-regel__tekst { flex: 1; display: flex; flex-direction: column; gap: 4px; font-size: 14px; line-height: 20px; min-width: 0; }
+  .kassa-regel__naam { font-weight: 500; }
+  .kassa-regel__meta { display: flex; align-items: center; gap: 6px; color: var(--kleur-steen); }
+  .kassa-regel__meta svg { width: 14px; height: 14px; color: var(--kleur-matcha); }
+  .kassa-regel__prijs { font-size: 14px; font-weight: 500; white-space: nowrap; }
+
+  .kassa-korting { display: flex; gap: 8px; align-items: center; padding-bottom: 24px; border-bottom: 1px solid var(--kleur-lijn); }
+  .kassa-korting__veld { flex: 1; min-width: 0; height: 58px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--kleur-gerst); font: inherit; font-size: 16px; color: var(--kleur-mos); }
+  .kassa-korting__veld::placeholder { color: var(--kleur-steen); }
+  .kassa-korting__veld:focus { outline: none; box-shadow: 0 0 0 3px rgba(122, 154, 63, 0.35); }
+  .kassa-korting__knop { height: 52px; flex: none; }
+  .kassa-korting__knop .kj-button__label { padding: 0 28px; }
+  .kassa-korting__melding { margin: 12px 0 0; font-size: 14px; color: var(--kleur-steen); }
+  .kassa-korting__melding:empty { display: none; }
+  .kassa-korting__melding.is-fout { color: var(--kleur-fout); }
+
+  .kassa-totalen { margin: 0; }
+  .kassa-totalen > div { display: flex; justify-content: space-between; align-items: center; padding: 0; font-size: 16px; line-height: 24px; color: var(--kleur-steen); margin: 0; height: 38px; }
+  .kassa-totalen > div:first-child { margin-top: 16px; }
+  .kassa-totalen > div:last-child { border-bottom: 1px solid var(--kleur-lijn); padding-bottom: 0; height: 40px; }
+  .kassa-totalen dt, .kassa-totalen dd { margin: 0; }
+  .kassa-totalen dd { color: var(--kleur-mos); }
+  .kassa-totaal { padding-top: 16px; }
+  .kassa-totaal__rij { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 500; }
+  .kassa-totaal__bedrag { font-family: var(--font-serif, 'Fraunces', serif); font-size: 36px; line-height: 44px; font-weight: 400; }
+  .kassa-totaal__btw { margin: 8px 0 0; font-size: 14px; color: var(--kleur-steen); }
+
+  .kassa-abo { background: var(--kleur-mos); color: var(--kleur-rijstpapier); border-radius: var(--afronding-groot); padding: 32px; }
+  .kassa-abo__rijen { margin: 24px 0 0; }
+  .kassa-abo__rijen > div { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--kleur-bosgroen); font-size: 14px; line-height: 20px; }
+  .kassa-abo__rijen dt { color: var(--kleur-gerst); margin: 0; }
+  .kassa-abo__rijen dd { margin: 0; text-align: right; }
+
+  /* Meldingen van WooCommerce */
+  .woocommerce-NoticeGroup:empty { display: none; }
+  .woocommerce-error, .woocommerce-message, .woocommerce-info { list-style: none; margin: 0 0 8px; padding: 16px; border-radius: var(--afronding-middel); font-size: 14px; line-height: 20px; background: var(--kleur-gerst); }
+  .woocommerce-error { background: #f4ddd5; color: var(--kleur-fout); }
+  .woocommerce-error li { margin: 0; }
+
+  /* ---------- Bevestiging ---------- */
+  .site-main--kassa .bevestiging { margin-top: 32px; }
+  .bevestiging__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: start; }
+  @media (min-width: 1024px) {
+    .bevestiging__grid { grid-template-columns: repeat(12, 1fr); }
+    .bevestiging__links { grid-column: 1 / span 7; }
+    .bevestiging__rechts { grid-column: 8 / span 5; }
+  }
+  .bevestiging__links, .bevestiging__rechts { display: flex; flex-direction: column; gap: 24px; }
+  .bevestiging__vink { width: 64px; height: 64px; border-radius: 32px; background: var(--kleur-jong-blad); display: flex; align-items: center; justify-content: center; }
+  .bevestiging__vink svg { width: 24px; height: 24px; }
+  .bevestiging__titel { margin: 32px 0 0; font-weight: 300; font-size: 72px; line-height: 76px; letter-spacing: -0.02em; }
+  @media (max-width: 639px) { .bevestiging__titel { font-size: 44px; line-height: 48px; } }
+  .bevestiging__tekst { margin: 0; max-width: 600px; color: var(--kleur-steen); }
+
+  .bevestiging__bank { background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 24px 32px; font-size: 14px; }
+  .bevestiging__bank h2, .bevestiging__bank h3 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; margin: 0 0 12px; }
+  .bevestiging__bank ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .tijdlijn-kaart { background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 32px; }
+  .tijdlijn-kaart h2 { margin: 0 0 24px; font-size: 24px; line-height: 32px; font-weight: 400; }
+  .tijdlijn { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .tijdlijn__stap { position: relative; display: flex; flex-direction: column; gap: 8px; padding-right: 16px; font-size: 14px; line-height: 20px; }
+  .tijdlijn__punt { width: 20px; height: 20px; border-radius: 10px; border: 1.5px solid var(--kleur-lijn); background: var(--kleur-wit); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; position: relative; z-index: 1; }
+  .tijdlijn__stap::before { content: ''; position: absolute; top: 9px; left: 20px; right: 0; height: 2px; background: var(--kleur-lijn); }
+  .tijdlijn__stap:last-child::before { display: none; }
+  .tijdlijn__stap.is-klaar .tijdlijn__punt { background: var(--kleur-mos); border-color: var(--kleur-mos); color: var(--kleur-rijstpapier); }
+  .tijdlijn__stap.is-klaar .tijdlijn__punt svg { width: 12px; height: 12px; }
+  .tijdlijn__stap.is-klaar::before { background: var(--kleur-matcha); }
+  .tijdlijn__naam { font-weight: 500; }
+  .tijdlijn__tekst { color: var(--kleur-steen); }
+  @media (max-width: 639px) { .tijdlijn { grid-template-columns: 1fr; gap: 20px; } .tijdlijn__stap::before { display: none; } .tijdlijn__punt { margin-bottom: 0; } .tijdlijn__stap { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 4px 12px; } }
+
+  .bereid-kaart { display: grid; grid-template-columns: 160px 1fr; gap: 24px; background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 32px; align-items: start; }
+  .bereid-kaart__foto { width: 160px; height: 160px; border-radius: var(--afronding-middel); overflow: hidden; }
+  .bereid-kaart__foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bereid-kaart__label { margin: 0; font-size: 14px; color: var(--kleur-matcha); line-height: 20px; }
+  .bereid-kaart h3 { margin: 4px 0 12px; font-size: 32px; line-height: 38px; }
+  .bereid-kaart p.bereid-kaart__tekst { margin: 0 0 16px; color: var(--kleur-steen); }
+  @media (max-width: 639px) { .bereid-kaart { grid-template-columns: 1fr; padding: 24px 20px; } .bereid-kaart__foto { width: 100%; height: 200px; } }
+
+  .overzicht-kaart { background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 32px; }
+  .overzicht-kaart h2 { margin: 0 0 24px; font-weight: 400; font-size: 22px; line-height: 28px; }
+  .overzicht-kaart .kassa-regels { padding-bottom: 24px; border-bottom: 1px solid var(--kleur-lijn); margin-bottom: 0; }
+  .overzicht-rijen { margin: 16px 0 0; }
+  .overzicht-rijen > div { display: flex; justify-content: space-between; gap: 16px; height: 33px; align-items: center; font-size: 14px; }
+  .overzicht-rijen dt { color: var(--kleur-steen); margin: 0; }
+  .overzicht-rijen dd { margin: 0; text-align: right; }
+
+  .abo-donker { background: var(--kleur-mos); color: var(--kleur-rijstpapier); border-radius: var(--afronding-groot); padding: 32px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+  .abo-donker h2 { margin: 0; font-size: 32px; line-height: 39px; font-weight: 400; color: var(--kleur-rijstpapier); }
+  .abo-donker p { margin: 0; color: var(--kleur-gerst); }
+  .abo-donker .kj-button { --knop-bg: var(--kleur-rijstpapier); --knop-tekst: var(--kleur-mos); --icoon-bg: var(--kleur-mos); --icoon-kleur: var(--kleur-rijstpapier); margin-top: 8px; }
+
+  /* ---------- Mijn account ---------- */
+  .site-main--account { padding-top: 64px; }
+  .account__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: start; }
+  @media (min-width: 1024px) {
+    .account__grid { grid-template-columns: repeat(12, 1fr); }
+    .account__zij { grid-column: 1 / span 3; }
+    .account__inhoud { grid-column: 5 / span 8; }
+  }
+  .account__label { margin: 0; font-size: 14px; line-height: 20px; color: var(--kleur-steen); }
+  .account__groet { margin: 4px 0 0; font-size: 32px; line-height: 40px; font-weight: 400; }
+  .account__menu { margin-top: 32px; }
+  .account__menu ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+  .account__link { display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 16px; border-radius: var(--afronding-middel); font-size: 14px; line-height: 20px; color: var(--kleur-steen); transition: background-color 200ms var(--ease), color 200ms var(--ease); }
+  .account__link svg { width: 18px; height: 18px; flex: none; color: var(--kleur-mos); }
+  .account__link:hover { color: var(--kleur-mos); background: rgba(255, 255, 255, 0.6); }
+  .account__link.is-actief { background: var(--kleur-wit); color: var(--kleur-mos); font-weight: 500; }
+  .account__link.is-actief svg { color: var(--kleur-matcha); }
+  .account__uit { display: inline-block; margin-top: 28px; font-size: 14px; color: var(--kleur-steen); }
+  .account__uit:hover { color: var(--kleur-mos); text-decoration: underline; }
+  @media (max-width: 1023px) {
+    .account__menu ul { flex-direction: row; overflow-x: auto; gap: 8px; padding-bottom: 4px; }
+    .account__link { white-space: nowrap; }
+  }
+
+  .account__inhoud { min-width: 0; display: flex; flex-direction: column; gap: 32px; }
+  .account__inhoud > .woocommerce-notices-wrapper:empty, .account__inhoud > form[id^="form-"] { display: none; }
+  .account-kop { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .account-kop__titel { margin: 0; font-weight: 300; font-size: 52px; line-height: 56px; letter-spacing: -0.02em; }
+  @media (max-width: 639px) { .account-kop__titel { font-size: 44px; line-height: 50px; } }
+  .account-kop__sinds { margin: 0 0 10px; font-size: 14px; color: var(--kleur-steen); }
+  .account-melding { margin-top: 0; padding: 18px 24px; }
+  .account-melding--gelukt { background: var(--kleur-jong-blad); }
+  .account-leeg { background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 32px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+  .account-leeg p { margin: 0; }
+
+  .leveringen { background: var(--kleur-wit); border-radius: var(--afronding-groot); overflow: hidden; }
+  .leveringen__kop { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 32px; border-bottom: 1px solid var(--kleur-lijn); }
+  .leveringen__kop h2 { margin: 0; font-size: 22px; line-height: 28px; font-weight: 400; }
+  .leveringen__lijst { list-style: none; margin: 0; padding: 0; }
+  .leveringen__rij { display: flex; align-items: center; gap: 24px; padding: 20px 32px; min-height: 84px; }
+  .leveringen__rij + .leveringen__rij { border-top: 1px solid var(--kleur-lijn); }
+  .leveringen__tekst { flex: 1; min-width: 0; }
+  .leveringen__datum { font-size: 14px; line-height: 20px; font-weight: 500; }
+  .leveringen__datum:hover { text-decoration: underline; }
+  .leveringen__sub { margin: 4px 0 0; font-size: 14px; line-height: 20px; color: var(--kleur-steen); }
+  .leveringen__prijs { font-size: 14px; font-weight: 500; min-width: 64px; text-align: right; }
+  .leveringen__pagina { display: flex; justify-content: space-between; padding: 16px 32px; border-top: 1px solid var(--kleur-lijn); }
+  @media (max-width: 639px) { .leveringen__kop, .leveringen__rij { padding-inline: 20px; } .leveringen__rij { flex-wrap: wrap; gap: 8px 16px; } }
+
+  /* Vensters */
+  .dialoog { border: 0; padding: 0; background: var(--kleur-wit); border-radius: var(--afronding-groot); width: min(594px, calc(100vw - 32px)); max-height: calc(100vh - 32px); color: var(--kleur-mos); }
+  .dialoog::backdrop { background: rgba(31, 42, 27, 0.5); }
+  .dialoog__inhoud { padding: 48px; display: flex; flex-direction: column; gap: 24px; }
+  @media (max-width: 639px) { .dialoog__inhoud { padding: 28px 24px; } }
+  .dialoog__titel { margin: 0; font-size: 32px; line-height: 40px; font-weight: 400; }
+  .dialoog__tekst { margin: 0; color: var(--kleur-steen); }
+  .dialoog__kop { margin: 0; font-weight: 500; }
+  .dialoog__sub { margin: 4px 0 0; font-size: 14px; color: var(--kleur-steen); }
+  .dialoog__pauze { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px; background: var(--kleur-rijstpapier); border-radius: var(--afronding-middel); flex-wrap: wrap; }
+  .dialoog__redenen { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .dialoog__redenen legend { padding: 0; margin-bottom: 12px; }
+  .dialoog__knoppen { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .optie { display: flex; align-items: center; gap: 12px; cursor: pointer; font-size: 16px; }
+  .optie input { position: absolute; opacity: 0; pointer-events: none; }
+  .optie__vink { flex: none; width: 20px; height: 20px; border-radius: 10px; border: 1.5px solid var(--kleur-mos); position: relative; background: var(--kleur-wit); }
+  .optie input:checked + .optie__vink::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--kleur-mos); }
+  .optie input:focus-visible + .optie__vink { box-shadow: 0 0 0 2px var(--kleur-wit), 0 0 0 5px var(--kleur-matcha); }
+
+  /* WooCommerce-formulieren in het account (adressen, gegevens, inloggen) */
+  .account__inhoud form.woocommerce-EditAccountForm, .account__inhoud .woocommerce-address-fields, .account-login form { background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 32px; display: flex; flex-wrap: wrap; gap: 24px 16px; }
+  .account__inhoud .form-row, .account-login .form-row { width: 100%; display: flex; flex-direction: column; gap: 8px; margin: 0; }
+  .account__inhoud .form-row-first, .account__inhoud .form-row-last { width: calc(50% - 8px); }
+  .account__inhoud label, .account-login label { font-size: 14px; font-weight: 500; }
+  .account__inhoud .required { display: none; }
+  .account__inhoud input[type="text"], .account__inhoud input[type="email"], .account__inhoud input[type="password"], .account__inhoud input[type="tel"], .account__inhoud select, .account-login input[type="text"], .account-login input[type="password"], .account-login input[type="email"] {
+    width: 100%; height: 52px; padding: 0 16px; border: 1px solid var(--kleur-lijn); border-radius: var(--afronding-klein); background: var(--kleur-wit); font: inherit; font-size: 16px; color: var(--kleur-mos); }
+  .account__inhoud input:focus, .account-login input:focus, .account__inhoud select:focus { outline: none; border-color: var(--kleur-matcha); box-shadow: 0 0 0 3px rgba(122, 154, 63, 0.25); }
+  .account__inhoud button[type="submit"], .account-login button[type="submit"] { height: 52px; padding: 0 28px; border-radius: 999px; background: var(--kleur-mos); color: var(--kleur-rijstpapier); font-weight: 500; cursor: pointer; }
+  .account__inhoud button[type="submit"]:hover, .account-login button[type="submit"]:hover { background: var(--kleur-bosgroen); }
+  .account__inhoud form h2, .account__inhoud form h3, .account__inhoud > h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; margin: 0; }
+  .account__inhoud address { font-style: normal; background: var(--kleur-wit); padding: 24px; border-radius: var(--afronding-middel); }
+  .account-login { padding-top: 0; max-width: 480px; }
+  .account-login h2 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 44px; margin: 0 0 24px; }
+}

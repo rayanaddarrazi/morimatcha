@@ -1,0 +1,61 @@
+/**
+ * Foto's: afbeelding met afronding, fotovlak en etiket
+ */
+
+@layer components {
+
+  .foto-vlak { position: relative; overflow: hidden; background-color: var(--kleur-gerst); }
+
+  /* Foto gecentreerd: hoogte van het vlak, breedte volgt de verhouding van de foto */
+  .foto-vlak__foto {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: calc(100% * var(--zoom, 1));
+    margin-top: calc((1 - var(--zoom, 1)) * 50%);
+    transform: translateX(-50%);
+    container-type: inline-size;
+  }
+  .foto-vlak__img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  .etiket {
+    position: absolute;
+    inset: var(--e-top) var(--e-right) var(--e-bottom) var(--e-left);
+    mix-blend-mode: multiply;
+    color: var(--kleur-mos);
+    text-align: center;
+    container-type: inline-size;
+    pointer-events: none;
+  }
+  .etiket__teken {
+    position: absolute;
+    inset: 18% 0 52% 0;
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 500;
+    font-size: 20cqw;
+    line-height: 1;
+  }
+  .etiket__naam {
+    position: absolute;
+    inset: 54% 0 36% 0;
+    font-weight: 600;
+    font-size: 5.33cqw;
+    letter-spacing: 0.45em;
+    padding-left: 0.45em;
+  }
+  .etiket__lijn {
+    position: absolute;
+    inset: 70% 40.67% 29% 40.67%;
+    background-color: var(--kleur-matcha);
+  }
+  .etiket__regel {
+    position: absolute;
+    inset: 76% 0 16% 0;
+    font-weight: 500;
+    font-size: 3.67cqw;
+    letter-spacing: 0.4em;
+    color: var(--kleur-steen);
+    white-space: pre;
+  }
+
+}

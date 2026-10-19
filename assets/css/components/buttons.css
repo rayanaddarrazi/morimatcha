@@ -1,0 +1,191 @@
+/**
+ * Button component, Figma "Button": Primair, Secundair, Licht, Contour, Tekstlink
+ * Statussen: Standaard, Hover, Focus (groene ring), Uitgeschakeld.
+ */
+
+@layer components {
+
+  .kj-button {
+    --knop-bg: var(--kleur-mos);
+    --knop-tekst: var(--kleur-rijstpapier);
+    --knop-rand: transparent;
+    --icoon-bg: var(--kleur-rijstpapier);
+    --icoon-kleur: var(--kleur-mos);
+    @apply inline-flex items-center justify-center whitespace-nowrap font-sans text-button font-medium cursor-pointer;
+    height: 52px;
+    padding: 0 6px;
+    border-radius: var(--afronding-rond);
+    background-color: var(--knop-bg);
+    color: var(--knop-tekst);
+    box-shadow: inset 0 0 0 1px var(--knop-rand);
+    transition: background-color 200ms var(--ease), color 200ms var(--ease), box-shadow 200ms var(--ease);
+  }
+
+  .kj-button__label {
+    padding: 0 22px;
+  }
+
+  .kj-button__icoon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: var(--icoon-bg);
+    color: var(--icoon-kleur);
+    transition: background-color 200ms var(--ease);
+  }
+
+  .kj-button__icoon svg,
+  .kj-button__pijl {
+    width: 18px;
+    height: 18px;
+    transition: transform 300ms var(--ease);
+  }
+
+  .kj-button:hover .kj-button__icoon svg,
+  .kj-button:hover .kj-button__pijl {
+    transform: translateX(4px);
+  }
+
+  /* Focus: groene ring, alleen voor toetsenbordgebruik */
+  .kj-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--kleur-wit), 0 0 0 5px var(--kleur-matcha);
+  }
+
+  /* Primair */
+  .kj-button--primair:hover {
+    --knop-bg: var(--kleur-bosgroen);
+    --icoon-bg: var(--kleur-jong-blad);
+  }
+
+  /* Secundair */
+  .kj-button--secundair {
+    --knop-bg: transparent;
+    --knop-tekst: var(--kleur-mos);
+    --knop-rand: var(--kleur-mos);
+    --icoon-bg: var(--kleur-mos);
+    --icoon-kleur: var(--kleur-rijstpapier);
+  }
+  .kj-button--secundair:hover {
+    --knop-bg: var(--kleur-mos);
+    --knop-tekst: var(--kleur-rijstpapier);
+    --icoon-bg: var(--kleur-rijstpapier);
+    --icoon-kleur: var(--kleur-mos);
+  }
+  .kj-button--secundair:focus-visible {
+    background-color: var(--kleur-wit);
+  }
+
+  /* Licht (op donkere vlakken en foto's) */
+  .kj-button--licht {
+    --knop-bg: var(--kleur-rijstpapier);
+    --knop-tekst: var(--kleur-mos);
+    --icoon-bg: var(--kleur-mos);
+    --icoon-kleur: var(--kleur-jong-blad);
+  }
+  .kj-button--licht:hover {
+    --knop-bg: var(--kleur-jong-blad);
+  }
+
+  /* Contour (op donkere vlakken en foto's) */
+  .kj-button--contour {
+    --knop-bg: transparent;
+    --knop-tekst: var(--kleur-rijstpapier);
+    --knop-rand: rgba(244, 241, 232, 0.55);
+    --icoon-bg: var(--kleur-rijstpapier);
+    --icoon-kleur: var(--kleur-mos);
+  }
+  .kj-button--contour:hover {
+    --knop-bg: rgba(244, 241, 232, 0.14);
+  }
+  .kj-button--contour:focus-visible {
+    background-color: var(--kleur-mos);
+  }
+
+  /* Uitgeschakeld */
+  .kj-button:disabled,
+  .kj-button[aria-disabled='true'] {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .kj-button--primair:disabled {
+    --knop-bg: var(--kleur-gerst);
+    --knop-tekst: var(--kleur-steen);
+    --icoon-bg: var(--kleur-rijstpapier);
+    --icoon-kleur: var(--kleur-steen);
+  }
+  .kj-button--secundair:disabled {
+    --knop-rand: var(--kleur-lijn);
+    --knop-tekst: var(--kleur-steen);
+    --icoon-bg: var(--kleur-gerst);
+    --icoon-kleur: var(--kleur-steen);
+  }
+  .kj-button--licht:disabled {
+    --knop-bg: var(--kleur-bosgroen);
+    --knop-tekst: var(--kleur-steen);
+    --icoon-kleur: var(--kleur-steen);
+  }
+  .kj-button--contour:disabled {
+    --knop-rand: rgba(244, 241, 232, 0.3);
+    --knop-tekst: rgba(244, 241, 232, 0.5);
+    --icoon-kleur: var(--kleur-steen);
+  }
+
+  /* Tekstlink: 1px lijn onderaan die bij hover van links naar rechts groeit */
+  .kj-button--tekstlink {
+    --lijn-kleur: var(--kleur-mos);
+    height: auto;
+    gap: 8px;
+    padding: 4px 0 6px;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+    color: var(--kleur-mos);
+    background-image:
+      linear-gradient(var(--kleur-matcha), var(--kleur-matcha)),
+      linear-gradient(var(--lijn-kleur), var(--lijn-kleur));
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 0 1px, 100% 1px;
+    transition: background-size 400ms var(--ease), color 200ms var(--ease);
+  }
+  .kj-button--tekstlink .kj-button__label {
+    padding: 0;
+  }
+  .kj-button--tekstlink:hover {
+    color: var(--kleur-matcha);
+    background-size: 100% 1px, 100% 1px;
+  }
+  .kj-button--tekstlink:focus-visible {
+    background-color: var(--kleur-wit);
+    border-radius: 4px;
+    padding-inline: 4px;
+  }
+  .kj-button--tekstlink:disabled {
+    color: var(--kleur-steen);
+    --lijn-kleur: var(--kleur-steen);
+  }
+
+  /* Tekstlink op donkere achtergrond */
+  .sectie--mos .kj-button--tekstlink,
+  .sectie--bosgroen .kj-button--tekstlink,
+  .kj-button--tekstlink.is-licht {
+    --lijn-kleur: var(--kleur-rijstpapier);
+    color: var(--kleur-rijstpapier);
+  }
+
+  .kj-button--vol {
+    width: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kj-button,
+    .kj-button * {
+      transition: none !important;
+    }
+  }
+
+}

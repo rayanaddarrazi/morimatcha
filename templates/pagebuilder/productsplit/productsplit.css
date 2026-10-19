@@ -1,0 +1,44 @@
+/* Productsplit: twee helften van 720 (desktop), foto boven tekst op mobiel */
+@layer components {
+
+  .productsplit { display: flex; flex-direction: column; }
+  @media (min-width: 1024px) {
+    .productsplit { display: grid; grid-template-columns: 1fr 1fr; min-height: 880px; }
+    .productsplit--rechts .productsplit__foto { order: 2; }
+  }
+
+  .productsplit__foto { background-color: var(--kleur-gerst); }
+  .productsplit__vlak { height: 440px; }
+  @media (min-width: 1024px) { .productsplit__vlak { height: 100%; min-height: 880px; } }
+
+  .productsplit__tekst { display: flex; align-items: center; padding: 40px 16px 48px; }
+  @media (min-width: 1024px) {
+    .productsplit__tekst { padding: 96px 110px 96px 120px; }
+    .productsplit--rechts .productsplit__tekst { padding: 96px 120px 96px 110px; justify-content: flex-end; }
+  }
+  .productsplit__inhoud { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; width: 100%; max-width: 489.667px; }
+  @media (min-width: 1024px) { .productsplit__inhoud { gap: 28px; } }
+
+  .productsplit__kop { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+  @media (min-width: 1024px) { .productsplit__kop { gap: 16px; } }
+  .productsplit__smaak { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .productsplit__maten { width: 100%; border-top: 1px solid var(--kleur-lijn); }
+  .productsplit__maat {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding-block: 16px; border-bottom: 1px solid var(--kleur-lijn);
+  }
+  @media (min-width: 1024px) { .productsplit__maat { padding-block: 20px; } }
+  .productsplit__maat-naam { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+  .productsplit__maat-naam > .badge { order: 2; }
+  @media (min-width: 1024px) { .productsplit__maat-naam { gap: 4px 12px; } .productsplit__maat-naam > .badge { order: 0; } }
+  .productsplit__prijs { display: flex; flex-direction: column-reverse; align-items: flex-end; gap: 4px; white-space: nowrap; }
+  @media (min-width: 1024px) { .productsplit__prijs { flex-direction: row; align-items: baseline; gap: 12px; } }
+  @media (max-width: 1023px) {
+    .productsplit__koppen { flex-basis: 100%; order: 3; margin-top: -2px; }
+  }
+
+  .productsplit__knoppen { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; padding-top: 8px; }
+  @media (min-width: 1024px) { .productsplit__knoppen { flex-direction: row; gap: 24px; width: auto; padding-top: 0; } }
+
+}

@@ -1,0 +1,16 @@
+@layer components {
+  .keuzehulp { padding-block: 80px; }
+  @media (min-width: 1024px) { .keuzehulp { padding-block: 144px; } }
+  .keuzehulp__binnen { display: flex; flex-direction: column; gap: 40px; }
+  @media (min-width: 1024px) { .keuzehulp__binnen { gap: 64px; } }
+  .keuzehulp__kop { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; max-width: 698.333px; }
+  @media (min-width: 1024px) { .keuzehulp__kop { gap: 16px; } }
+  .keuzehulp__keuzes { display: grid; grid-template-columns: 1fr; gap: 32px; }
+  @media (min-width: 1024px) { .keuzehulp__keuzes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .keuze { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding-top: 32px; border-top: 1px solid var(--kleur-bosgroen); }
+  .keuze__icoon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 24px; background: var(--kleur-bosgroen); color: var(--kleur-jong-blad); }
+  .keuze__icoon svg { width: 20px; height: 20px; }
+  .keuze h3 { color: var(--kleur-rijstpapier); }
+  .keuze p { color: var(--kleur-gerst); max-width: 361.333px; }
+  .keuze__knop { padding-top: 8px; }
+}

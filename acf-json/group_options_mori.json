@@ -1,0 +1,1671 @@
+{
+    "key": "group_options_mori",
+    "title": "Instellingen -- Mori",
+    "fields": [
+        {
+            "key": "field_options_mori_tab_algemeen",
+            "label": "Algemeen",
+            "name": "tab_algemeen",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_options_mori_bedrijfsnaam",
+            "label": "Bedrijfsnaam",
+            "name": "bedrijfsnaam",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Wordt gebruikt als alt-tekst van het logo.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_logo_volledig_zwart",
+            "label": "Logo volledig, zwart",
+            "name": "logo_volledig_zwart",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Voor lichte achtergronden (header na scrollen, standaard header). Laat leeg voor het logo uit het ontwerp.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_options_mori_logo_volledig_wit",
+            "label": "Logo volledig, wit",
+            "name": "logo_volledig_wit",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Voor donkere achtergronden en foto's (header op foto, footer).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_options_mori_logo_woordmerk_zwart",
+            "label": "Woordmerk, zwart",
+            "name": "logo_woordmerk_zwart",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Korte versie (\"Mori\") voor de mobiele header.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_options_mori_logo_woordmerk_wit",
+            "label": "Woordmerk, wit",
+            "name": "logo_woordmerk_wit",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Korte versie voor de mobiele header op een foto.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_options_mori_etiket_teken",
+            "label": "Etiket: teken",
+            "name": "etiket_teken",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Het teken op het blik. Dit is tekst, geen afbeelding.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "森",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_etiket_naam",
+            "label": "Etiket: naam",
+            "name": "etiket_naam",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "MORI",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_etiket_regel",
+            "label": "Etiket: onderregel",
+            "name": "etiket_regel",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "{gram} wordt vervangen door de maat van het product.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "MATCHA  {gram} G",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_tab_mededeling",
+            "label": "Mededeling",
+            "name": "tab_mededeling",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_options_mori_mededeling_toon",
+            "label": "Mededelingsbalk tonen",
+            "name": "mededeling_toon",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Aan",
+            "ui_off_text": "Uit"
+        },
+        {
+            "key": "field_options_mori_mededeling_tekst",
+            "label": "Tekst in de balk bovenaan",
+            "name": "mededeling_tekst",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "De donkere balk boven de header.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_tab_footer",
+            "label": "Footer",
+            "name": "tab_footer",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_options_mori_footer_nieuwsbrief_kop",
+            "label": "Nieuwsbrief: kop",
+            "name": "footer_nieuwsbrief_kop",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_footer_nieuwsbrief_sub",
+            "label": "Nieuwsbrief: regel eronder",
+            "name": "footer_nieuwsbrief_sub",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_footer_nieuwsbrief_placeholder",
+            "label": "Nieuwsbrief: tekst in het veld",
+            "name": "footer_nieuwsbrief_placeholder",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_footer_nieuwsbrief_knop",
+            "label": "Nieuwsbrief: knoptekst",
+            "name": "footer_nieuwsbrief_knop",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_footer_nieuwsbrief_gelukt",
+            "label": "Nieuwsbrief: melding na aanmelden",
+            "name": "footer_nieuwsbrief_gelukt",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_footer_nieuwsbrief_fout",
+            "label": "Nieuwsbrief: melding bij een fout",
+            "name": "footer_nieuwsbrief_fout",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_footer_merk_tekst",
+            "label": "Tekst onder het logo",
+            "name": "footer_merk_tekst",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_options_mori_footer_kop_shop",
+            "label": "Kop kolom 1",
+            "name": "footer_kop_shop",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "De links onder deze kop beheer je via Weergave > Menu's (Footer: kolom Shop).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_footer_kop_hulp",
+            "label": "Kop kolom 2",
+            "name": "footer_kop_hulp",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Menu: Footer: kolom Hulp.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_footer_kop_mori",
+            "label": "Kop kolom 3",
+            "name": "footer_kop_mori",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Menu: Footer: kolom Mori.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_footer_copyright",
+            "label": "Naam in de copyrightregel",
+            "name": "footer_copyright",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Het jaartal wordt automatisch ervoor gezet.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_footer_juridisch",
+            "label": "Juridische links",
+            "name": "footer_juridisch",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Link toevoegen",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_options_mori_footer_juridisch_link",
+                    "label": "Link",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "60",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_options_mori_footer_juridisch_korte_tekst",
+                    "label": "Korte tekst op mobiel",
+                    "name": "korte_tekst",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Optioneel, bijvoorbeeld \"Privacy\".",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_options_mori_footer_betaalmethoden",
+            "label": "Betaalmethoden",
+            "name": "footer_betaalmethoden",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Betaalmethode toevoegen",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_options_mori_footer_betaalmethoden_naam",
+                    "label": "Naam",
+                    "name": "naam",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_options_mori_footer_betaalmethoden_logo",
+                    "label": "Logo",
+                    "name": "logo",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "preview_size": "medium"
+                }
+            ]
+        },
+        {
+            "key": "field_options_mori_tab_winkelwagen",
+            "label": "Winkelwagen",
+            "name": "tab_winkelwagen",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_options_mori_gratis_verzending_vanaf",
+            "label": "Gratis verzending vanaf (euro)",
+            "name": "gratis_verzending_vanaf",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Stuurt de voortgangsbalk in het winkelwagenpaneel.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 40,
+            "min": "",
+            "max": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_cart_titel",
+            "label": "Titel van het paneel",
+            "name": "cart_titel",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_cart_verzending_start",
+            "label": "Verzending: lege winkelwagen",
+            "name": "cart_verzending_start",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%s wordt het bedrag.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_cart_verzending_bijna",
+            "label": "Verzending: nog niet gratis",
+            "name": "cart_verzending_bijna",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%s wordt het bedrag dat nog ontbreekt.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_cart_verzending_gratis",
+            "label": "Verzending: gratis",
+            "name": "cart_verzending_gratis",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_cart_verzending_gratis_kort",
+            "label": "Verzending: regel in het totaal bij gratis",
+            "name": "cart_verzending_gratis_kort",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_cart_verzending_later",
+            "label": "Verzending: regel in het totaal als nog niet gratis",
+            "name": "cart_verzending_later",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_cart_leeg",
+            "label": "Tekst bij een lege winkelwagen",
+            "name": "cart_leeg",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_cart_verwijder",
+            "label": "Knoptekst verwijderen",
+            "name": "cart_verwijder",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_cart_afrekenen",
+            "label": "Knoptekst afrekenen",
+            "name": "cart_afrekenen",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_cart_noot",
+            "label": "Tekst onder de knop",
+            "name": "cart_noot",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Bijvoorbeeld hoe je een abonnement opzegt.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_options_mori_tab_producten",
+            "label": "Producten",
+            "name": "tab_producten",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_options_mori_gram_per_kop",
+            "label": "Gram matcha per kop",
+            "name": "gram_per_kop",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Voor de regel \"± 15 koppen\" bij elke maat.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 2,
+            "min": "",
+            "max": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_koppen_regel",
+            "label": "Regel aantal koppen",
+            "name": "koppen_regel",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%d wordt het aantal koppen.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "± %d koppen",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_per_gram_regel",
+            "label": "Regel prijs per gram",
+            "name": "per_gram_regel",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%s wordt het bedrag.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "€ %s per gram",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_badge_voordeligst",
+            "label": "Badge bij de voordeligste maat",
+            "name": "badge_voordeligst",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Voordeligst",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_badge_uitverkocht",
+            "label": "Badge uitverkocht",
+            "name": "badge_uitverkocht",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Uitverkocht",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_bespaar_regel",
+            "label": "Badge besparing bij een bundel",
+            "name": "bespaar_regel",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%s wordt het bedrag.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Je bespaart %s",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_tab_aankoop",
+            "label": "Aankoop",
+            "name": "tab_aankoop",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_options_mori_abonnement_korting",
+            "label": "Korting abonnement (procent)",
+            "name": "abonnement_korting",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Wordt van de prijs afgehaald voor elke maandelijkse levering.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 10,
+            "min": "",
+            "max": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_maat_label",
+            "label": "Label bij de maten",
+            "name": "maat_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Maat",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_maat_gekozen",
+            "label": "Tekst na het kiezen van een maat",
+            "name": "maat_gekozen",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%s wordt de gekozen maat.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "%s gekozen",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_eenmalig_titel",
+            "label": "Eenmalig: titel",
+            "name": "aankoop_eenmalig_titel",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_eenmalig_uitleg",
+            "label": "Eenmalig: uitleg",
+            "name": "aankoop_eenmalig_uitleg",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_eenmalig_eenheid",
+            "label": "Eenmalig: eenheid bij de prijs",
+            "name": "aankoop_eenmalig_eenheid",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_abo_titel",
+            "label": "Abonnement: titel",
+            "name": "aankoop_abo_titel",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_abo_badge",
+            "label": "Abonnement: badge",
+            "name": "aankoop_abo_badge",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%d wordt het kortingspercentage.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_abo_uitleg",
+            "label": "Abonnement: uitleg (altijd zichtbaar, hier staat hoe je opzegt)",
+            "name": "aankoop_abo_uitleg",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_abo_eenheid",
+            "label": "Abonnement: eenheid bij de prijs",
+            "name": "aankoop_abo_eenheid",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_abo_voordelen",
+            "label": "Abonnement: voordelen",
+            "name": "aankoop_abo_voordelen",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Zichtbaar zodra het abonnement gekozen is.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Voordeel toevoegen",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_options_mori_aankoop_abo_voordelen_tekst",
+                    "label": "Voordeel",
+                    "name": "tekst",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_options_mori_aankoop_abo_toelichting",
+            "label": "Abonnement: toelichting",
+            "name": "aankoop_abo_toelichting",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%s wordt de prijs per maand.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_abo_opzeglink",
+            "label": "Abonnement: link \"Zo werkt opzeggen\"",
+            "name": "aankoop_abo_opzeglink",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_options_mori_aankoop_prijs_eenmalig",
+            "label": "Prijsregel eenmalig",
+            "name": "aankoop_prijs_eenmalig",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%1$s = maat, %2$s = prijs per gram.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_prijs_maand",
+            "label": "Prijsregel abonnement",
+            "name": "aankoop_prijs_maand",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%1$s = maat, %2$s = losse prijs.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_knop",
+            "label": "Knoptekst in winkelwagen",
+            "name": "aankoop_knop",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_knop_abo",
+            "label": "Knoptekst abonnement",
+            "name": "aankoop_knop_abo",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%s = prijs per maand.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_hint_abo",
+            "label": "Hint bij abonnement",
+            "name": "aankoop_hint_abo",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_uitverkocht_regel",
+            "label": "Regel bij een uitverkochte maat",
+            "name": "uitverkocht_regel",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Tijdelijk op",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_bereiding_stap",
+            "label": "Label bij een bereidingsstap",
+            "name": "bereiding_stap",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%d wordt het stapnummer.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Stap %d",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_aankoop_hint",
+            "label": "Hint zolang er niets gekozen is",
+            "name": "aankoop_hint",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_zekerheden",
+            "label": "Zekerheden onder de knop",
+            "name": "zekerheden",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Regel toevoegen",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_options_mori_zekerheden_icoon",
+                    "label": "Icoon",
+                    "name": "icoon",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "verzending": "Verzending",
+                        "herhalen": "Herhalen",
+                        "info": "Info",
+                        "klok": "Klok",
+                        "pauze": "Pauze"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_options_mori_zekerheden_tekst",
+                    "label": "Tekst",
+                    "name": "tekst",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "75",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_options_mori_levering_label_eenmalig",
+            "label": "Winkelwagen: label eenmalig",
+            "name": "levering_label_eenmalig",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "eenmalig",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_levering_label_maand",
+            "label": "Winkelwagen: label abonnement",
+            "name": "levering_label_maand",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "elke maand",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_tab_contact",
+            "label": "Contact",
+            "name": "tab_contact",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_options_mori_contact_mail",
+            "label": "E-mailadres",
+            "name": "contact_mail",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_contact_telefoon",
+            "label": "Telefoonnummer",
+            "name": "contact_telefoon",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_contact_reactietijd",
+            "label": "Reactietijd",
+            "name": "contact_reactietijd",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Regel onder het e-mailadres.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "instellingen-mori"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792422641
+}

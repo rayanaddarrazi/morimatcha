@@ -1,0 +1,48 @@
+/**
+ * Eyebrow en Badge, Figma-componenten
+ */
+
+@layer components {
+
+  .eyebrow {
+    @apply flex items-center font-sans text-eyebrow font-semibold uppercase whitespace-nowrap;
+    width: fit-content;
+    gap: 12px;
+  }
+
+  .eyebrow__lijn {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    flex: none;
+  }
+
+  .eyebrow--donker { color: var(--kleur-mos); }
+  .eyebrow--donker .eyebrow__lijn { background-color: var(--kleur-matcha); }
+  .eyebrow--licht { color: var(--kleur-rijstpapier); }
+  .eyebrow--licht .eyebrow__lijn { background-color: var(--kleur-jong-blad); }
+
+  .badge {
+    @apply inline-flex items-center font-sans text-meta font-medium whitespace-nowrap;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: var(--afronding-rond);
+  }
+
+  .badge__punt {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+    flex: none;
+  }
+
+  .badge--blad { background-color: var(--kleur-jong-blad); color: var(--kleur-mos); }
+  .badge--mos { background-color: var(--kleur-mos); color: var(--kleur-rijstpapier); }
+  .badge--lijn { background-color: var(--kleur-wit); color: var(--kleur-mos); box-shadow: inset 0 0 0 1px var(--kleur-lijn); }
+  .badge--lijn .badge__punt { background-color: var(--kleur-steen); }
+  .badge--fout { background-color: rgba(164, 68, 44, 0.12); color: var(--kleur-fout); }
+  .badge--letop { background-color: rgba(176, 125, 36, 0.14); color: var(--kleur-letop); }
+
+}

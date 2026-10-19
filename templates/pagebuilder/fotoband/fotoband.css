@@ -1,0 +1,20 @@
+/* Fotoband: 760 hoog (desktop). Mobiel: foto 460 hoog, tekst op mos eronder. */
+@layer components {
+
+  .fotoband { position: relative; }
+  .fotoband__foto { position: relative; overflow: hidden; height: 460px; }
+  @media (min-width: 1024px) { .fotoband__foto { position: absolute; inset: 0; height: auto; } }
+  .fotoband__beeld { position: absolute; inset: 0; height: 100%; }
+  .fotoband__verloop { display: none; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(31, 42, 27, 0.78) 0%, rgba(31, 42, 27, 0.45) 40%, rgba(31, 42, 27, 0) 65%); }
+  @media (min-width: 1024px) { .fotoband__verloop { display: block; } }
+
+  .fotoband__inhoud { position: relative; padding-block: 40px; }
+  @media (min-width: 1024px) { .fotoband__inhoud { min-height: 760px; display: flex; align-items: center; padding-block: 96px; } .fotoband__inhoud .container { width: 100%; } }
+  .fotoband__tekst { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+  .fotoband__tekst h2 { max-width: 300px; }
+  @media (min-width: 1024px) { .fotoband__tekst h2 { max-width: 489.667px; } }
+  @media (min-width: 1024px) { .fotoband__tekst { gap: 28px; }  .fotoband__tekst p { max-width: 385.333px; } }
+  .fotoband__knop { width: 100%; padding-top: 8px; }
+  @media (min-width: 1024px) { .fotoband__knop { width: auto; } }
+
+}

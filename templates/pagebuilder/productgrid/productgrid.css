@@ -1,0 +1,57 @@
+/* Productgrid: filters en kaarten van 4 kolommen (3 per rij op desktop) */
+@layer components {
+
+  .productgrid { padding-block: 32px 64px; }
+  @media (min-width: 1024px) { .productgrid { padding-block: 48px 128px; } }
+  .productgrid__filters { display: flex; flex-direction: column; gap: 16px; padding-bottom: 24px; border-bottom: 1px solid var(--kleur-lijn); }
+  @media (min-width: 1024px) { .productgrid__filters { flex-direction: row; align-items: center; justify-content: space-between; } }
+  .productgrid__categorieen { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(var(--grid-marge) * -1); padding-inline: var(--grid-marge); }
+  .productgrid__categorieen::-webkit-scrollbar { display: none; }
+  @media (min-width: 1024px) { .productgrid__categorieen { overflow: visible; margin: 0; padding: 0; } }
+  .filterpil { display: inline-flex; padding: 10px 20px; border-radius: var(--afronding-rond); background: var(--kleur-wit); box-shadow: inset 0 0 0 1px var(--kleur-lijn); @apply text-label font-medium; white-space: nowrap; color: var(--kleur-mos); transition: background-color 200ms var(--ease), color 200ms var(--ease), box-shadow 200ms var(--ease); }
+  .filterpil:hover { box-shadow: inset 0 0 0 1px var(--kleur-mos); }
+  .filterpil.is-actief { background: var(--kleur-mos); color: var(--kleur-rijstpapier); box-shadow: none; }
+
+  .productgrid__sorteren { display: flex; align-items: center; gap: 8px; }
+  .productgrid__punt { color: var(--kleur-lijn); }
+  .productgrid__select { position: relative; display: inline-flex; align-items: center; }
+  .productgrid__select select { appearance: none; background: transparent; border: 0; padding: 4px 22px 4px 0; cursor: pointer; color: var(--kleur-mos); }
+  .productgrid__select svg { position: absolute; right: 0; width: 16px; height: 16px; pointer-events: none; }
+
+  .productgrid__lijst { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 16px; padding-top: 32px; }
+  @media (min-width: 768px) { .productgrid__lijst { gap: 48px 24px; } }
+  @media (min-width: 1024px) { .productgrid__lijst { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 64px 32px; padding-top: 48px; } }
+  @media (max-width: 479px) { .productgrid__lijst { grid-template-columns: 1fr; } }
+  .productgrid__leeg { padding-top: 48px; }
+
+  /* Productkaart */
+  .productkaart { display: flex; flex-direction: column; gap: 20px; }
+  .productkaart__beeld { position: relative; border-radius: var(--afronding-groot); overflow: hidden; background: var(--kleur-gerst); transition: background-color 400ms var(--ease); }
+  .productkaart__vlak { height: 340px; transition: transform 700ms var(--ease); }
+  @media (min-width: 1024px) { .productkaart__vlak { height: 462px; } }
+  .productkaart__link { display: block; }
+  .productkaart:hover .productkaart__beeld, .productkaart:focus-within .productkaart__beeld { background: var(--kleur-jong-blad); }
+  .productkaart .foto-vlak { background: transparent; }
+  .productkaart .foto-vlak__foto { transition: transform 700ms var(--ease); transform-origin: center; }
+  .productkaart:hover .foto-vlak__foto { transform: translateX(-50%) scale(1.06); }
+  .productkaart__badge { position: absolute; top: 20px; left: 20px; transition: opacity 200ms var(--ease); }
+  .productkaart:hover .productkaart__badge .badge--blad { background: var(--kleur-wit); }
+  .productkaart__snel { position: absolute; left: 20px; right: 20px; bottom: 20px; transform: translateY(calc(100% + 24px)); opacity: 0; transition: transform 450ms var(--ease), opacity 300ms var(--ease); filter: drop-shadow(0 12px 16px rgba(31, 41, 26, 0.06)) drop-shadow(0 2px 4px rgba(31, 41, 26, 0.06)); }
+  .productkaart:hover .productkaart__snel, .productkaart:focus-within .productkaart__snel { transform: translateY(0); opacity: 1; }
+  @media (hover: none) { .productkaart__snel { display: none; } }
+  .productkaart.is-uitverkocht .foto-vlak { opacity: 0.55; }
+
+  .productkaart__info { display: flex; flex-direction: column; gap: 12px; }
+  .productkaart__kop { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .productkaart__naam { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .productkaart__prijs { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; white-space: nowrap; }
+  .productkaart__onder { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; border-top: 1px solid var(--kleur-lijn); }
+  .productkaart__maten { display: flex; gap: 6px; }
+  .productkaart__maten li { padding: 4px 10px; border-radius: var(--afronding-rond); box-shadow: inset 0 0 0 1px var(--kleur-lijn); color: var(--kleur-steen); }
+  .productkaart__meta { display: inline-flex; align-items: center; gap: 6px; }
+  .productkaart__punt { width: 6px; height: 6px; border-radius: 50%; background: var(--kleur-steen); flex: none; }
+  .productkaart a:focus-visible { outline: 2px solid var(--kleur-matcha); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) { .productkaart *, .filterpil { transition: none !important; } }
+
+}

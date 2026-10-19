@@ -1,0 +1,39 @@
+/* Recepten: 3 kaarten van 4 kolommen (desktop); carrousel op mobiel */
+@layer components {
+
+  .recepten { padding-block: 80px; overflow: hidden; }
+  @media (min-width: 1024px) { .recepten { padding-block: 160px; } }
+  .recepten__binnen { display: flex; flex-direction: column; gap: 32px; }
+  @media (min-width: 1024px) { .recepten__binnen { gap: 64px; } }
+
+  .recepten__kop { display: flex; flex-direction: column; gap: 16px; }
+  @media (min-width: 1024px) { .recepten__kop { flex-direction: row; align-items: flex-end; justify-content: space-between; } .recepten__kop-tekst { max-width: 594px; } }
+  .recepten__kop-tekst { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  @media (min-width: 1024px) { .recepten__kop-tekst { gap: 16px; } }
+  .recepten__knop { display: none; }
+  @media (min-width: 1024px) { .recepten__knop { display: block; } }
+
+  .recepten__lijst {
+    display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+    margin-inline: calc(var(--grid-marge) * -1); padding-inline: var(--grid-marge);
+    scrollbar-width: none;
+  }
+  .recepten__lijst::-webkit-scrollbar { display: none; }
+  @media (min-width: 1024px) {
+    .recepten__lijst { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; overflow: visible; margin-inline: 0; padding-inline: 0; }
+  }
+
+  .recept { flex: 0 0 270px; scroll-snap-align: start; }
+  @media (min-width: 1024px) { .recept { flex: none; } }
+  .recept__foto { height: 340px; }
+  @media (min-width: 1024px) { .recept__foto { height: var(--foto-h, 500px); } }
+  .recept__tekst { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding-top: 20px; }
+  @media (min-width: 1024px) { .recept__tekst { gap: 12px; padding-top: 28px; } }
+  .recept__tijd { color: var(--kleur-matcha); }
+
+  .recepten__voortgang { display: flex; gap: 6px; }
+  .recepten__voortgang span { height: 3px; width: 8px; border-radius: 2px; background: var(--kleur-lijn); transition: width 300ms var(--ease), background-color 300ms var(--ease); }
+  .recepten__voortgang span.is-actief { width: 24px; background: var(--kleur-mos); }
+  @media (min-width: 1024px) { .recepten__voortgang { display: none; } }
+
+}

@@ -1,0 +1,25 @@
+/* Kenmerkenstrook: desktop stil (65 px hoog), mobiel een langzaam doorlopende marquee */
+@layer components {
+
+  .kenmerken { overflow: hidden; }
+  .kenmerken__spoor { display: flex; width: max-content; }
+  .kenmerken__lijst { display: flex; align-items: center; gap: 20px; padding-block: 17.5px; flex: none; width: auto; max-width: none; padding-inline: 16px 20px; }
+  .kenmerken__item { @apply text-eyebrow font-semibold uppercase whitespace-nowrap; color: var(--kleur-gerst); }
+  .kenmerken__teken { font-family: 'Shippori Mincho', serif; font-weight: 500; font-size: 12px; line-height: 1; color: var(--kleur-matcha); }
+
+  .kenmerken__lijst[aria-hidden='true'] { display: flex; }
+  .kenmerken__spoor { animation: kenmerken-marquee 40s linear infinite; }
+  @keyframes kenmerken-marquee { to { transform: translateX(-50%); } }
+
+  @media (min-width: 1024px) {
+    .kenmerken__spoor { width: 100%; animation: none; }
+    .kenmerken__lijst { width: 100%; max-width: 1440px; justify-content: space-between; padding-block: 24px; padding-inline: var(--grid-marge); gap: 0; }
+    .kenmerken__lijst[aria-hidden='true'] { display: none; }
+    .kenmerken__teken { font-size: 14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kenmerken__spoor { animation: none; width: 100%; overflow-x: auto; }
+  }
+
+}

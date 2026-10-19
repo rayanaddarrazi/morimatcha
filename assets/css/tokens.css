@@ -1,0 +1,62 @@
+/**
+ * Design tokens uit Figma ("Components / Variables"). Nooit hex in templates.
+ */
+:root {
+    /* Kleuren */
+    --kleur-mos: #1f2a1b;
+    --kleur-bosgroen: #34472b;
+    --kleur-matcha: #7a9a3f;
+    --kleur-jong-blad: #cfd9a8;
+    --kleur-gerst: #e4dccb;
+    --kleur-rijstpapier: #f4f1e8;
+    --kleur-wit: #ffffff;
+    --kleur-steen: #6a6e61;
+    --kleur-lijn: #d9d4c6;
+    --kleur-fout: #a4442c;
+    --kleur-letop: #b07d24;
+    --kleur-gelukt: #4f7a3a;
+
+    /* Afstand */
+    --afstand-4: 4px;
+    --afstand-8: 8px;
+    --afstand-12: 12px;
+    --afstand-16: 16px;
+    --afstand-24: 24px;
+    --afstand-32: 32px;
+    --afstand-48: 48px;
+    --afstand-64: 64px;
+    --afstand-96: 96px;
+    --afstand-128: 128px;
+
+    /* Afronding */
+    --afronding-klein: 6px;
+    --afronding-middel: 12px;
+    --afronding-groot: 20px;
+    --afronding-rond: 999px;
+
+    /* Grid: desktop 12 kolommen, content 1220 binnen 1440, marge 110, gutter 32. Mobiel 4 kolommen, marge 16. */
+    --grid-marge: 16px;
+    --grid-gutter: 16px;
+    --grid-kolommen: 4;
+    --grid-content: 1220px;
+
+    /* Beweging */
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* Hoogte van de vaste header, voor ankers */
+    --header-hoogte: 84px;
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --grid-gutter: 32px;
+        --grid-kolommen: 12;
+        --grid-marge: clamp(32px, calc((100vw - 1220px) / 2), 110px);
+    }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+    :root {
+        --grid-marge: 32px;
+    }
+}

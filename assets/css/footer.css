@@ -1,0 +1,90 @@
+/**
+ * Footer, Figma "Footer" (desktop) en "Footer mobiel"
+ */
+
+@layer components {
+
+  .site-footer { padding-block: 64px 24px; }
+  @media (min-width: 1024px) { .site-footer { padding-top: 96px; padding-bottom: 32px; } }
+
+  .site-footer__inner { display: flex; flex-direction: column; gap: 40px; }
+  @media (min-width: 1024px) { .site-footer__inner { gap: 64px; } }
+
+  /* Mobiel: volgorde nieuwsbrief, links, logo, betaalmethoden, onderbalk */
+  @media (max-width: 1023px) {
+    .site-footer__kolommen, .site-footer__onder, .site-footer__legal, .site-footer__merk { display: contents; }
+    .site-footer__nieuwsbrief { order: 1; }
+    .site-footer__links { order: 2; }
+    .site-footer__merk .logo--footer { order: 3; }
+    .site-footer__betalen { order: 4; }
+    .site-footer__legal-blok { order: 5; }
+    .site-footer__copyright { order: 5; padding-top: 20px; border-top: 1px solid var(--kleur-bosgroen); margin-bottom: -32px; }
+    .site-footer__juridisch { order: 6; }
+  }
+
+  .site-footer__nieuwsbrief { display: flex; flex-direction: column; gap: 16px; }
+  @media (min-width: 1024px) {
+    .site-footer__nieuwsbrief { flex-direction: row; align-items: flex-end; justify-content: space-between; padding-bottom: 64px; border-bottom: 1px solid var(--kleur-bosgroen); gap: 32px; }
+    .site-footer__nieuwsbrief-tekst { width: 594px; max-width: 100%; }
+  }
+  .site-footer__nieuwsbrief-tekst { display: flex; flex-direction: column; gap: 16px; }
+  .site-footer__nieuwsbrief-kop { @apply font-serif text-h4 font-normal; color: var(--kleur-rijstpapier); }
+  @media (min-width: 1024px) { .site-footer__nieuwsbrief-kop { font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; } }
+  .site-footer__nieuwsbrief-sub { @apply text-klein; color: var(--kleur-gerst); }
+  @media (max-width: 1023px) { .site-footer__nieuwsbrief-sub { display: none; } }
+  .site-footer__melding { @apply text-klein font-medium; color: var(--kleur-jong-blad); }
+  .site-footer__melding--fout { color: #e8b4a6; }
+
+  .site-footer__formulier {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 6px 6px 20px;
+    border-radius: var(--afronding-rond);
+    background-color: var(--kleur-bosgroen);
+    width: 100%;
+  }
+  @media (min-width: 1024px) { .site-footer__formulier { padding: 8px 8px 8px 24px; width: 489.667px; flex: none; } }
+  .site-footer__formulier input {
+    flex: 1; min-width: 0; background: transparent; border: 0; outline: none;
+    @apply text-body; color: var(--kleur-gerst);
+  }
+  .site-footer__formulier input::placeholder { color: var(--kleur-gerst); opacity: 1; }
+  .site-footer__formulier:focus-within { box-shadow: 0 0 0 2px var(--kleur-matcha); }
+
+  .site-footer__kolommen { display: flex; flex-direction: column; gap: 40px; }
+  @media (min-width: 1024px) { .site-footer__kolommen { display: flex; flex-direction: row; justify-content: space-between; } }
+
+  .site-footer__merk { display: flex; flex-direction: column; gap: 24px; }
+  @media (min-width: 1024px) { .site-footer__merk { display: flex; width: 385.333px; } }
+  .site-footer__merk .logo--footer { display: block; width: 127.127px; height: 40.864px; }
+  .site-footer__merk .logo--footer img { width: 100%; height: 100%; object-fit: contain; }
+  .site-footer__merk p { @apply text-klein; color: var(--kleur-gerst); max-width: 300px; }
+
+  .site-footer__links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
+  @media (min-width: 1024px) { .site-footer__links { display: flex; gap: 32px; } .site-footer__kolom { width: 176.667px; } }
+  .site-footer__kolom ul { display: flex; flex-direction: column; gap: 12px; }
+  @media (min-width: 1024px) { .site-footer__kolom ul { gap: 16px; } }
+  .site-footer__kolom li { @apply text-klein; }
+  .site-footer__kop { @apply text-eyebrow font-semibold uppercase; color: var(--kleur-jong-blad); margin-bottom: 12px; }
+  @media (min-width: 1024px) { .site-footer__kop { margin-bottom: 16px; } }
+  .site-footer__link { @apply text-klein; color: var(--kleur-rijstpapier); position: relative; }
+  .site-footer__link:hover { color: var(--kleur-jong-blad); }
+  .site-footer a:focus-visible { outline: 2px solid var(--kleur-matcha); outline-offset: 3px; border-radius: 4px; }
+
+  .site-footer__onder { display: flex; flex-direction: column; gap: 24px; }
+  @media (min-width: 1024px) {
+    .site-footer__onder { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; align-items: center; padding-top: 24px; border-top: 1px solid var(--kleur-bosgroen); }
+    .site-footer__legal { display: contents; }
+    .site-footer__betalen { justify-content: flex-end; grid-column: 3; grid-row: 1; }
+    .site-footer__copyright { grid-column: 1; }
+    .site-footer__juridisch { grid-column: 2; }
+  }
+  .site-footer__copyright { @apply text-meta font-medium; color: var(--kleur-gerst); }
+  .site-footer__juridisch { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0; }
+  .site-footer__juridisch li { @apply text-meta font-medium; }
+  .site-footer__juridisch li + li::before { content: '\00B7'; margin-inline: 8px; color: var(--kleur-gerst); }
+  @media (min-width: 1024px) { .site-footer__juridisch { gap: 8px 24px; } .site-footer__juridisch li + li::before { content: none; } }
+  .site-footer__juridisch .site-footer__link { @apply text-meta font-medium; color: var(--kleur-gerst); }
+  .site-footer__betalen { display: flex; gap: 8px; }
+  .site-footer__betalen img { width: 56px; height: 35px; object-fit: contain; border-radius: 4px; }
+
+}

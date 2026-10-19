@@ -1,0 +1,4 @@
+@layer components {
+  .beeldband__beeld { height: 240px; }
+  @media (min-width: 1024px) { .beeldband__beeld { height: var(--hoogte, 520px); } }
+}

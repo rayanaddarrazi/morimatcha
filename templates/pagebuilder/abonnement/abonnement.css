@@ -1,0 +1,33 @@
+/* Abonnement: tekst en foto elk 720 breed (desktop); foto boven tekst op mobiel */
+@layer components {
+
+  .abonnement { display: flex; flex-direction: column-reverse; }
+  @media (min-width: 1024px) {
+    .abonnement { display: grid; grid-template-columns: 1fr 1fr; min-height: 860px; }
+    .abonnement--links .abonnement__foto { order: -1; }
+  }
+
+  .abonnement__vlak { height: 400px; }
+  @media (min-width: 1024px) { .abonnement__vlak { height: 100%; min-height: 860px; } }
+  .abonnement__foto { background: var(--kleur-bosgroen); }
+
+  .abonnement__tekst { padding: 48px 16px; display: flex; align-items: center; }
+  @media (min-width: 1024px) { .abonnement__tekst { padding: 110px 110px 110px var(--grid-marge); justify-content: flex-end; } .abonnement--links .abonnement__tekst { padding: 110px var(--grid-marge) 110px 110px; } }
+  .abonnement__inhoud { width: 100%; max-width: 489.667px; display: flex; flex-direction: column; gap: 24px; }
+  @media (min-width: 1024px) { .abonnement__inhoud { gap: 32px; } }
+  .abonnement__kop { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  @media (min-width: 1024px) { .abonnement__kop { gap: 32px; } }
+  .abonnement__intro, .abonnement__uitleg { color: var(--kleur-gerst); }
+  .sectie--rijstpapier .abonnement__intro, .sectie--wit .abonnement__intro, .sectie--gerst .abonnement__intro,
+  .sectie--rijstpapier .abonnement__uitleg, .sectie--wit .abonnement__uitleg, .sectie--gerst .abonnement__uitleg { color: var(--kleur-steen); }
+
+  .abonnement__stappen { border-bottom: 1px solid var(--kleur-bosgroen); }
+  .abonnement__stap { display: grid; grid-template-columns: 16px 1fr; column-gap: 20px; align-items: center; padding-block: 16.5px; border-top: 1px solid var(--kleur-bosgroen); }
+  @media (min-width: 1024px) { .abonnement__stap { column-gap: 24px; padding-block: 18px; } }
+  .abonnement__nummer { color: var(--kleur-jong-blad); }
+  .abonnement__uitleg { margin-top: 2px; }
+
+  .abonnement__knoppen { display: flex; flex-direction: column; gap: 10px; padding-top: 8px; }
+  @media (min-width: 1024px) { .abonnement__knoppen { flex-direction: row; gap: 12px; padding-top: 0; } }
+
+}

@@ -1,0 +1,21 @@
+@layer components {
+  .fouten { padding-block: 80px; }
+  @media (min-width: 1024px) { .fouten { padding-block: 144px; } }
+  .fouten__rij { row-gap: 40px; align-items: start; }
+  .fouten__links { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 32px; }
+  .fouten__lijst { grid-column: 1 / -1; }
+  @media (min-width: 1024px) { .fouten__links { grid-column: 1 / span 5; gap: 40px; } .fouten__lijst { grid-column: 7 / span 6; } }
+  .fouten__kop { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  @media (min-width: 1024px) { .fouten__kop { gap: 16px; } }
+  .fouten__foto { height: 280px; }
+  @media (min-width: 1024px) { .fouten__foto { height: 440px; } }
+  .fouten__lijst { border-top: 1px solid var(--kleur-lijn); }
+  .fout { display: flex; flex-direction: column; gap: 20px; padding-block: 28px; border-bottom: 1px solid var(--kleur-lijn); }
+  @media (min-width: 1024px) { .fout { padding-block: 36px; } }
+  .fout__kop { display: flex; align-items: baseline; gap: 20px; }
+  .fout__nummer { color: var(--kleur-matcha); }
+  .fout__uitleg { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 640px) { .fout__uitleg { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  .fout__label { color: var(--kleur-steen); margin-bottom: 6px; }
+  .fout__label--oplossing { color: var(--kleur-matcha); }
+}

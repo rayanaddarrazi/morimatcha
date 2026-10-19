@@ -1,0 +1,45 @@
+/* Hero: 1440 x 900 (desktop), 390 x 780 (mobiel) */
+@layer components {
+
+  .hero { position: relative; overflow: hidden; min-height: 780px; display: flex; align-items: flex-end; }
+  @media (min-width: 1024px) { .hero { min-height: 0; height: var(--hero-h, 900px); } }
+
+  .hero__foto { position: absolute; inset: 0; }
+  .hero__foto picture, .hero__foto img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: var(--foto-focus, 50% 50%); }
+  .hero__foto img { transform-origin: var(--foto-focus, 50% 50%); }
+  .hero--vol .hero__foto picture { transform: scale(var(--foto-zoom, 1)); transform-origin: var(--foto-focus, 50% 50%); }
+
+  .hero__verloop { position: absolute; inset: 0; pointer-events: none; }
+  .hero__verloop--zijkant { display: none; background: linear-gradient(90deg, rgba(31, 42, 27, 0.8) 0%, rgba(31, 42, 27, 0.35) 45%, rgba(31, 42, 27, 0) 75%); }
+  .hero__verloop--boven { background: linear-gradient(180deg, rgba(31, 42, 27, 0.5) 0%, rgba(31, 42, 27, 0) 18%, rgba(31, 42, 27, 0) 40%, rgba(31, 42, 27, 0.7) 72%, rgba(31, 42, 27, 0.92) 100%); }
+  @media (min-width: 1024px) {
+    .hero__verloop--zijkant { display: block; }
+    .hero__verloop--boven { background: linear-gradient(180deg, rgba(31, 42, 27, 0.45) 0%, rgba(31, 42, 27, 0) 22%, rgba(31, 42, 27, 0) 80%, rgba(31, 42, 27, 0.4) 100%); }
+  }
+
+  /* Stijl "Rechts": donker vlak links, foto rechts uitgesneden (Figma: Abonnement > Hero) */
+  .hero--rechts .hero__foto { overflow: hidden; }
+  .hero--rechts .hero__foto picture { display: none; }
+  .hero__foto-rechts { position: absolute; left: 0; top: 0; width: 160%; height: 118%; transform: translate(-6%, -8%); }
+  @media (min-width: 1024px) { .hero__foto-rechts { left: 20.83%; top: -10.58%; width: 112%; height: 125.8%; transform: none; } }
+  .hero__foto-rechts img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .hero__verloop--donker { display: block; background: linear-gradient(180deg, rgba(31, 42, 27, 0.5) 0%, rgba(31, 42, 27, 0) 20%); }
+  .hero--rechts .hero__verloop--zijkant { background: linear-gradient(90deg, rgb(31, 42, 27) 0%, rgba(31, 42, 27, 0.96) 26%, rgba(31, 42, 27, 0.6) 44%, rgba(31, 42, 27, 0) 62%); }
+  .hero--rechts .hero__verloop--boven { display: none; }
+  @media (max-width: 1023px) { .hero--rechts .hero__verloop--zijkant { display: block; background: linear-gradient(180deg, rgba(31, 42, 27, 0.5) 0%, rgba(31, 42, 27, 0.2) 40%, rgba(31, 42, 27, 0.92) 100%); } }
+  .hero__noot { padding-top: 0; }
+
+  .hero__inhoud { position: relative; padding-top: 349px; padding-bottom: 40px; }
+  @media (min-width: 1024px) { .hero__inhoud { padding-top: 160px; padding-bottom: 120px; } }
+
+  .hero__tekst { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; width: 100%; }
+  @media (min-width: 1024px) {
+    .hero__tekst { gap: 28px; }
+    .hero__titel { max-width: 594px; }
+    .hero__intro { max-width: 385.333px; }
+  }
+
+  .hero__knoppen { display: flex; flex-direction: column; gap: 10px; width: 100%; padding-top: 8px; }
+  @media (min-width: 1024px) { .hero__knoppen { flex-direction: row; gap: 12px; width: auto; } }
+
+}

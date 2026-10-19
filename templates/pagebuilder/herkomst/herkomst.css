@@ -1,0 +1,49 @@
+/* Herkomst: tekst 4 kolommen, 1 leeg, beelden 7 kolommen (desktop) */
+@layer components {
+
+  .herkomst { padding-block: 80px; }
+  @media (min-width: 1024px) { .herkomst { padding-block: 160px; } }
+
+  .herkomst__rij { row-gap: 32px; align-items: start; }
+  .herkomst__tekst { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 32px; }
+  .herkomst__beelden { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 16px; order: -1; }
+  @media (min-width: 1024px) {
+    .herkomst__tekst { grid-column: 1 / span 4; gap: 40px; }
+    .herkomst__beelden { grid-column: 6 / span 7; gap: 32px; order: 0; }
+  }
+  /* Mobiel: eerst de kop, dan het theeveld, dan de stappen, dan de kleine foto's (zoals in Figma) */
+  @media (max-width: 1023px) {
+    .herkomst__rij.grid-mori { display: flex; flex-direction: column; align-items: stretch; }
+    .herkomst__tekst, .herkomst__beelden { display: contents; }
+    .herkomst__kop { order: 1; }
+    .herkomst__groot { order: 2; }
+    .herkomst__stappen { order: 3; }
+    .herkomst__fotos { order: 4; }
+  }
+
+  .herkomst__kop { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  @media (min-width: 1024px) { .herkomst__kop { gap: 20px; } }
+  .herkomst__intro, .herkomst__uitleg { color: var(--kleur-gerst); }
+  .sectie--rijstpapier .herkomst__intro, .sectie--wit .herkomst__intro, .sectie--gerst .herkomst__intro,
+  .sectie--rijstpapier .herkomst__uitleg, .sectie--wit .herkomst__uitleg, .sectie--gerst .herkomst__uitleg { color: var(--kleur-steen); }
+
+  .herkomst__stap {
+    display: grid; grid-template-columns: 16px 1fr; column-gap: 20px; padding-block: 21px;
+    border-top: 1px solid var(--kleur-bosgroen);
+  }
+  .sectie--rijstpapier .herkomst__stap, .sectie--wit .herkomst__stap, .sectie--gerst .herkomst__stap { border-color: var(--kleur-lijn); }
+  @media (min-width: 1024px) { .herkomst__stap { column-gap: 24px; padding-block: 24px; grid-template-columns: 16px 1fr; } }
+  .herkomst__nummer { color: var(--kleur-jong-blad); padding-top: 6px; }
+  .herkomst__uitleg { margin-top: 6px; }
+
+  .herkomst__theeveld { height: 240px; }
+  @media (min-width: 1024px) { .herkomst__theeveld { height: 460px; } }
+
+  .herkomst__fotos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  @media (min-width: 1024px) { .herkomst__fotos { gap: 32px; } }
+  .herkomst__foto { height: 220px; }
+  @media (min-width: 1024px) { .herkomst__foto { height: 420px; } }
+  .herkomst__bijschrift { margin-top: 10px; color: var(--kleur-gerst); }
+  @media (min-width: 1024px) { .herkomst__bijschrift { margin-top: 14px; } }
+
+}

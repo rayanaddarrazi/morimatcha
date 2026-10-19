@@ -1,0 +1,15 @@
+@layer components {
+  .opzeggen { padding-block: 80px; }
+  @media (min-width: 1024px) { .opzeggen { padding-block: 128px; } }
+  .opzeggen__rij { row-gap: 40px; align-items: center; }
+  .opzeggen__tekst { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 28px; }
+  .opzeggen__kaart { grid-column: 1 / -1; }
+  @media (min-width: 1024px) { .opzeggen__tekst { grid-column: 1 / span 4; } .opzeggen__kaart { grid-column: 5 / span 8; } }
+  .opzeggen__kop { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  @media (min-width: 1024px) { .opzeggen__kop { gap: 16px; } }
+  .opzeggen__intro { color: var(--kleur-gerst); }
+  .opzeggen__stappen { display: flex; flex-direction: column; gap: 16px; }
+  .opzeggen__stappen li { display: flex; align-items: center; gap: 14px; color: var(--kleur-rijstpapier); }
+  .opzeggen__nummer { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; flex: none; border-radius: 16px; background: var(--kleur-bosgroen); color: var(--kleur-jong-blad); }
+  .opzeggen__kaart .abonnement-kaart { color: var(--kleur-mos); }
+}

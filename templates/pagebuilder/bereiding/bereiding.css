@@ -1,0 +1,40 @@
+/* Bereiding: brede kaart over 12 kolommen, vier stappen */
+@layer components {
+
+  .bereiding { padding-block: 80px; }
+  @media (min-width: 1024px) { .bereiding { padding-block: 160px; } }
+  .bereiding__stapel { display: flex; flex-direction: column; gap: 32px; }
+  .bereiding--gestapeld { padding-block: 80px; }
+  @media (min-width: 1024px) { .bereiding--gestapeld { padding-block: 144px; } }
+  .bereiding__kaart { display: flex; flex-direction: column; gap: 32px; padding: 24px; border-radius: var(--afronding-groot); }
+  @media (min-width: 1024px) { .bereiding__kaart { gap: 48px; padding: 64px; } }
+
+  .bereiding__kop { display: flex; flex-direction: column; gap: 24px; }
+  @media (min-width: 1024px) { .bereiding__kop { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
+  .bereiding__titel { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .bereiding__label { color: var(--kleur-jong-blad); }
+  .bereiding__intro { color: var(--kleur-gerst); max-width: 489.667px; }
+  .bereiding__titel .text-h2 { color: var(--kleur-rijstpapier); }
+
+  .bereiding__wissel { display: inline-flex; padding: 4px; gap: 4px; border-radius: var(--afronding-rond); background: var(--kleur-bosgroen); align-self: flex-start; }
+  .bereiding__tab { padding: 12px 24px; border-radius: var(--afronding-rond); @apply text-label font-medium; color: var(--kleur-gerst); transition: background-color 200ms var(--ease), color 200ms var(--ease); }
+  .bereiding__tab:hover { color: var(--kleur-rijstpapier); }
+  .bereiding__tab.is-actief { background: var(--kleur-rijstpapier); color: var(--kleur-mos); }
+
+  .bereiding__stappen { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .bereiding__stappen[hidden] { display: none; }
+  @media (min-width: 768px) { .bereiding__stappen { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) { .bereiding__stappen { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .bereiding__stap { display: flex; flex-direction: column; gap: 24px; padding: 24px; border-radius: var(--afronding-groot); background: var(--kleur-bosgroen); }
+  @media (min-width: 1024px) { .bereiding__stap { padding: 32px; } }
+  .bereiding__stap-kop { display: flex; align-items: center; justify-content: space-between; }
+  .bereiding__icoon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 24px; background: var(--kleur-mos); color: var(--kleur-jong-blad); }
+  .bereiding__icoon svg { width: 22px; height: 22px; }
+  .bereiding__nummer { color: var(--kleur-gerst); }
+  .bereiding__waarde { color: var(--kleur-rijstpapier); white-space: nowrap; }
+  .bereiding__stap-tekst { display: flex; flex-direction: column; gap: 8px; padding-top: 20px; border-top: 1px solid var(--kleur-mos); color: var(--kleur-gerst); }
+  .bereiding__stap-label { color: var(--kleur-jong-blad); }
+  .bereiding__tip { display: flex; align-items: center; gap: 12px; padding: 16px 24px; border-radius: var(--afronding-middel); background: var(--kleur-bosgroen); color: var(--kleur-rijstpapier); }
+  .bereiding__tip svg { width: 18px; height: 18px; flex: none; color: var(--kleur-jong-blad); }
+
+}

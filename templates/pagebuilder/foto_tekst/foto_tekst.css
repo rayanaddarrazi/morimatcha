@@ -1,0 +1,10 @@
+@layer components {
+  .foto-tekst { display: flex; flex-direction: column; }
+  @media (min-width: 1024px) { .foto-tekst { display: grid; grid-template-columns: 1fr 1fr; min-height: 720px; } .foto-tekst--rechts .foto-tekst__foto { order: 2; } }
+  .foto-tekst__beeld { height: 320px; }
+  @media (min-width: 1024px) { .foto-tekst__beeld { height: 100%; min-height: 720px; } }
+  .foto-tekst__tekst { display: flex; align-items: center; padding: 48px 16px; }
+  @media (min-width: 1024px) { .foto-tekst__tekst { padding: 153px 110px 153px 120px; } .foto-tekst--rechts .foto-tekst__tekst { padding: 153px 120px 153px 110px; justify-content: flex-end; } }
+  .foto-tekst__inhoud { width: 100%; max-width: 489.667px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+  @media (min-width: 1024px) { .foto-tekst__inhoud { gap: 28px; } }
+}

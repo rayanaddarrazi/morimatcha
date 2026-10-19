@@ -1,0 +1,91 @@
+/**
+ * Winkelwagenpaneel, Figma "Winkelwagen paneel" (schuift van rechts in, 450 ms)
+ */
+
+@layer components {
+
+  .cart-drawer { position: fixed; inset: 0; z-index: 80; visibility: hidden; overflow: hidden; }
+  .cart-drawer.is-open { visibility: visible; }
+
+  .cart-drawer__overlay {
+    position: absolute; inset: 0;
+    background: rgba(31, 42, 27, 0.5);
+    opacity: 0;
+    transition: opacity 450ms var(--ease);
+  }
+  .cart-drawer.is-open .cart-drawer__overlay { opacity: 1; }
+
+  .cart-drawer__paneel {
+    position: absolute; top: 0; right: 0; bottom: 0;
+    width: min(100vw, 495.333px);
+    display: flex; flex-direction: column; gap: 24px;
+    padding: 32px;
+    background-color: var(--kleur-wit);
+    box-shadow: -24px 0 64px rgba(31, 41, 26, 0.16);
+    transform: translateX(100%);
+    transition: transform 450ms var(--ease);
+  }
+  .cart-drawer.is-open .cart-drawer__paneel { transform: translateX(0); }
+
+  .cart-drawer__kop { display: flex; align-items: center; justify-content: space-between; }
+  .cart-drawer__titel { @apply font-serif text-h3 font-normal; }
+  .cart-drawer__sluiten { display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; margin-right: -10px; }
+  .cart-drawer__sluiten svg { width: 24px; height: 24px; }
+
+  .cart-drawer__verzending {
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 16px; border-radius: var(--afronding-middel);
+    background-color: var(--kleur-rijstpapier);
+    @apply text-klein;
+  }
+  .cart-drawer__voortgang { height: 4px; border-radius: 2px; background-color: var(--kleur-jong-blad); overflow: hidden; }
+  .cart-drawer__voortgang span {
+    display: block; height: 100%; width: var(--voortgang, 0%);
+    border-radius: 2px; background-color: var(--kleur-matcha);
+    transition: width 700ms var(--ease);
+  }
+
+  .cart-drawer__producten { flex: 1; min-height: 0; overflow-y: auto; }
+  .cart-drawer__leeg { @apply text-klein; color: var(--kleur-steen); padding-block: 24px; }
+
+  .cart-regel {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding-block: 24px; border-bottom: 1px solid var(--kleur-lijn);
+  }
+  .cart-regel__beeld { width: 88px; height: 88px; flex: none; border-radius: var(--afronding-middel); overflow: hidden; background: var(--kleur-gerst); }
+  .cart-regel__beeld img { width: 100%; height: 100%; object-fit: cover; }
+  .cart-regel__midden { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+  .cart-regel__naam { @apply text-label font-medium; }
+  .cart-regel__meta { display: flex; align-items: center; gap: 6px; @apply text-klein; color: var(--kleur-steen); }
+  .cart-regel__meta svg { width: 14px; height: 14px; color: var(--kleur-matcha); }
+  .cart-regel__rechts { align-self: stretch; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 8px; @apply text-label; }
+  .cart-regel__prijs { font-weight: 500; }
+  .cart-regel__verwijder { @apply text-klein; color: var(--kleur-steen); text-decoration: underline; }
+  .cart-regel__verwijder:hover { color: var(--kleur-mos); }
+
+  .aantal {
+    display: inline-flex; align-items: center; align-self: flex-start;
+    border-radius: var(--afronding-rond);
+    background: var(--kleur-wit);
+    box-shadow: inset 0 0 0 1px var(--kleur-lijn);
+  }
+  .aantal button { display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; }
+  .aantal button svg { width: 15px; height: 15px; }
+  .aantal button:disabled { color: var(--kleur-lijn); cursor: not-allowed; }
+  .aantal__waarde { width: 23px; text-align: center; @apply text-meta font-medium; }
+
+  .cart-drawer__totaal { display: flex; flex-direction: column; gap: 12px; }
+  .cart-drawer__rij { display: flex; justify-content: space-between; @apply text-klein; }
+  .cart-drawer__rij span:first-child { color: var(--kleur-steen); }
+  .cart-drawer__rij--totaal { padding-top: 12px; border-top: 1px solid var(--kleur-lijn); align-items: center; }
+  .cart-drawer__rij--totaal span:first-child { color: var(--kleur-mos); @apply text-label font-medium; }
+  .cart-drawer__rij--totaal span:last-child { @apply text-prijs font-semibold; }
+  .cart-drawer__noot { @apply text-klein text-center; color: var(--kleur-steen); }
+
+  html.cart-open { overflow: hidden; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cart-drawer *, .cart-drawer { transition: none !important; }
+  }
+
+}
