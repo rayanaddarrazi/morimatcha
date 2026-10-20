@@ -327,6 +327,42 @@
   .account-adres--leeg { color: var(--kleur-steen); }
   .account__inhoud .woocommerce-error, .account__inhoud .woocommerce-message { list-style: none; margin: 0 0 8px; padding: 16px 20px; border-radius: var(--afronding-middel); background: var(--kleur-jong-blad); }
   .account__inhoud .woocommerce-error { background: #f6dcd6; }
-  .account-login { padding-top: 0; max-width: 480px; }
-  .account-login h2 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 44px; margin: 0 0 24px; }
+  /* Inloggen */
+  .inlog { padding-block: 8px 0; }
+  .inlog__kaart { display: grid; grid-template-columns: minmax(0, 1fr); background: var(--kleur-wit); border-radius: var(--afronding-groot); box-shadow: inset 0 0 0 1px var(--kleur-lijn); overflow: hidden; max-width: 1080px; margin-inline: auto; }
+  @media (min-width: 900px) { .inlog__kaart { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 640px; } }
+  .inlog__kaart--enkel { max-width: 560px; grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .inlog__beeld { position: relative; min-height: 240px; background: var(--kleur-bosgroen); color: var(--kleur-rijstpapier); display: flex; align-items: flex-end; }
+  .inlog .inlog__foto { position: absolute; inset: 0; border-radius: 0; }
+  .inlog .inlog__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .inlog__beeld::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(31, 42, 27, 0.05) 30%, rgba(31, 42, 27, 0.82) 100%); }
+  .inlog__beeld-tekst { position: relative; z-index: 1; padding: 32px; display: flex; flex-direction: column; gap: 20px; }
+  .inlog__beeld-kop { margin: 0; font-size: 32px; line-height: 40px; font-weight: 400; max-width: 16ch; }
+  .inlog__beeld-tekst ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .inlog__beeld-tekst li { display: flex; align-items: center; gap: 10px; font-size: 15px; line-height: 22px; }
+  .inlog__beeld-tekst li svg { width: 18px; height: 18px; flex: none; color: var(--kleur-jong-blad); }
+  @media (max-width: 899px) { .inlog__beeld { min-height: 0; } .inlog__beeld-tekst { padding: 24px; } .inlog__beeld-kop { font-size: 26px; line-height: 32px; } .inlog__foto { display: none; } .inlog__beeld::after { display: none; } .inlog__beeld { background: var(--kleur-mos); } }
+  .inlog__formulier { padding: 56px 56px 48px; display: flex; flex-direction: column; justify-content: center; gap: 0; }
+  @media (max-width: 899px) { .inlog__formulier { padding: 32px 24px 28px; } }
+  .inlog__titel { margin: 0; font-size: 44px; line-height: 50px; font-weight: 300; letter-spacing: -0.02em; }
+  .inlog__sub { margin: 8px 0 32px; color: var(--kleur-steen); }
+  .inlog form { display: flex; flex-direction: column; gap: 20px; }
+  .inlog__veld { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .inlog__veld label { font-size: 14px; font-weight: 500; line-height: 20px; }
+  .inlog__label-rij { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .inlog__vergeten { font-size: 14px; color: var(--kleur-steen); text-decoration: underline; text-underline-offset: 3px; }
+  .inlog__vergeten:hover { color: var(--kleur-mos); }
+  .inlog input[type="text"], .inlog input[type="password"], .inlog input[type="email"] { width: 100%; height: 52px; padding: 0 16px; border: 1px solid var(--kleur-lijn); border-radius: var(--afronding-klein); background: var(--kleur-wit); font: inherit; font-size: 16px; color: var(--kleur-mos); }
+  .inlog input:focus { outline: none; border-color: var(--kleur-matcha); box-shadow: 0 0 0 3px rgba(122, 154, 63, 0.25); }
+  .inlog__wachtwoord { position: relative; display: block; height: 52px; }
+  .inlog__wachtwoord br { display: none; }
+  .inlog__wachtwoord input { display: block; padding-right: 76px; }
+  .inlog__oog { position: absolute; right: 8px; top: 8px; height: 36px; padding: 0 12px; border: 0; background: transparent; color: var(--kleur-steen); font: inherit; font-size: 14px; font-weight: 500; cursor: pointer; border-radius: 18px; }
+  .inlog__oog:hover { color: var(--kleur-mos); background: var(--kleur-rijstpapier); }
+  .inlog__knop { height: 56px; border: 0; border-radius: 999px; background: var(--kleur-mos); color: var(--kleur-rijstpapier); font: inherit; font-weight: 500; font-size: 16px; cursor: pointer; transition: background-color 200ms var(--ease); margin-top: 4px; }
+  .inlog__knop:hover { background: var(--kleur-bosgroen); }
+  .inlog__nieuw { margin: 28px 0 0; padding-top: 24px; border-top: 1px solid var(--kleur-lijn); color: var(--kleur-steen); font-size: 15px; }
+  .inlog__nieuw a { color: var(--kleur-mos); text-decoration: underline; text-underline-offset: 3px; }
+  .site-main--account:has(.inlog) { min-height: 0; padding-block: 56px 120px; }
+  .inlog .woocommerce-notices-wrapper, .site-main--account .woocommerce-error { max-width: 1080px; margin: 0 auto 16px; }
 }

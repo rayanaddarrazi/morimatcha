@@ -33,3 +33,15 @@
         }
     });
 })();
+
+/* Inloggen: wachtwoord tonen of verbergen */
+document.querySelectorAll('[data-toon-wachtwoord]').forEach((knop) => {
+    const veld = knop.parentElement.querySelector('input');
+    const toon = knop.textContent;
+    knop.addEventListener('click', () => {
+        const zichtbaar = veld.type === 'text';
+        veld.type = zichtbaar ? 'password' : 'text';
+        knop.setAttribute('aria-pressed', zichtbaar ? 'false' : 'true');
+        knop.textContent = zichtbaar ? toon : (knop.dataset.verberg || 'Verberg');
+    });
+});
