@@ -71,7 +71,7 @@ $cart_count   = function_exists( 'kj_cart_count' ) ? kj_cart_count() : 0;
 				</a>
 
 				<div class="site-header__acties">
-					<a href="<?php echo esc_url( $shop_url . '?zoeken=1' ); ?>" class="site-header__actie site-header__zoeken" aria-label="<?php esc_attr_e( 'Zoeken', 'morimatcha' ); ?>"><?php echo kj_svg( 'zoeken' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a>
+					<button type="button" class="site-header__actie site-header__zoeken" data-zoek-open aria-expanded="false" aria-controls="zoek-paneel" aria-label="<?php echo esc_attr( (string) kj_option( 'zoek_label', 'Zoeken' ) ); ?>"><?php echo kj_svg( 'zoeken' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
 					<a href="<?php echo esc_url( $account_url ); ?>" class="site-header__actie site-header__account" aria-label="<?php esc_attr_e( 'Mijn account', 'morimatcha' ); ?>"><?php echo kj_svg( 'account' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a>
 					<a href="<?php echo esc_url( $cart_url ); ?>" class="site-header__winkelwagen" data-cart-open aria-haspopup="dialog" aria-controls="cart-drawer" data-cart-label="<?php esc_attr_e( 'Winkelwagen openen, %d artikelen', 'morimatcha' ); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Winkelwagen openen, %d artikelen', 'morimatcha' ), (int) $cart_count ) ); ?>">
 						<?php echo kj_svg( 'tas' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
@@ -82,6 +82,32 @@ $cart_count   = function_exists( 'kj_cart_count' ) ? kj_cart_count() : 0;
 			</div>
 		</div>
 	</header>
+
+	<div id="zoek-paneel" class="zoekvenster" role="dialog" aria-modal="true" aria-label="<?php echo esc_attr( (string) kj_option( 'zoek_label', 'Zoeken' ) ); ?>" hidden>
+		<div class="zoekvenster__achter" data-zoek-sluit></div>
+		<div class="zoekvenster__kaart">
+			<form class="zoekvenster__form" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<label class="screen-reader-text" for="zoek-veld"><?php echo esc_html( (string) kj_option( 'zoek_label', 'Zoeken' ) ); ?></label>
+				<?php echo kj_svg( 'zoeken' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<input type="search" id="zoek-veld" name="s" placeholder="<?php echo esc_attr( (string) kj_option( 'zoek_placeholder', 'Zoek in de winkel' ) ); ?>" autocomplete="off" required>
+				<input type="hidden" name="post_type" value="product">
+				<button type="button" class="zoekvenster__sluiten" data-zoek-sluit aria-label="<?php esc_attr_e( 'Sluiten', 'morimatcha' ); ?>"><?php echo kj_svg( 'sluiten' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
+			</form>
+			<?php
+			$zoek_cats = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => true, 'exclude' => array( (int) get_option( 'default_product_cat' ) ) ) );
+			if ( ! is_wp_error( $zoek_cats ) && $zoek_cats ) :
+				?>
+				<div class="zoekvenster__snel">
+					<p class="text-eyebrow font-semibold uppercase"><?php echo esc_html( (string) kj_option( 'zoek_snel', 'Of kijk direct in' ) ); ?></p>
+					<ul>
+						<?php foreach ( $zoek_cats as $cat ) : ?>
+							<li><a class="filterpil" href="<?php echo esc_url( add_query_arg( 'categorie', $cat->slug, $shop_url ) ); ?>"><?php echo esc_html( $cat->name ); ?></a></li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			<?php endif; ?>
+		</div>
+	</div>
 
 	<?php if ( ! $over_foto ) : ?>
 		<div class="site-header__spacer" aria-hidden="true"></div>
@@ -94,6 +120,12 @@ $cart_count   = function_exists( 'kj_cart_count' ) ? kj_cart_count() : 0;
 				<span class="logo logo--woordmerk-vast"><?php echo kj_logo( 'zwart', 'woordmerk' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 				<button type="button" class="mobile-menu__sluiten" aria-label="<?php esc_attr_e( 'Menu sluiten', 'morimatcha' ); ?>" data-menu-close><?php echo kj_svg( 'sluiten' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
 			</div>
+			<div class="mobile-menu__zoek"><form class="zoekform" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+	<label class="screen-reader-text" for="zoek-veld-mobiel"><?php echo esc_html( (string) kj_option( 'zoek_label', 'Zoeken' ) ); ?></label>
+	<input type="search" id="zoek-veld-mobiel" name="s" class="zoekform__veld" placeholder="<?php echo esc_attr( (string) kj_option( 'zoek_placeholder', 'Zoek in de winkel' ) ); ?>" autocomplete="off" required>
+	<input type="hidden" name="post_type" value="product">
+	<button type="submit" class="zoekform__knop"><?php echo kj_svg( 'zoeken' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php echo esc_html( (string) kj_option( 'zoek_knop', 'Zoeken' ) ); ?></span></button>
+</form></div>
 			<nav aria-label="<?php esc_attr_e( 'Hoofdmenu', 'morimatcha' ); ?>">
 				<ul>
 					<?php foreach ( $menu as $i => $item ) : ?>

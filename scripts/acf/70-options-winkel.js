@@ -135,6 +135,15 @@ module.exports = ({ f, defineGroup }) => {
         f.text('acc_dialog_ja', 'Opzeggen: bevestigen'),
         f.text('acc_dialog_nee', 'Opzeggen: annuleren'),
         f.text('acc_pauze_maanden', 'Pauzeren: keuze (maanden)', { instructions: '%d = aantal maanden.' }),
+        f.tab('Zoeken'),
+        f.text('zoek_label', 'Zoeken: label van het veld'),
+        f.text('zoek_placeholder', 'Zoeken: tekst in het veld'),
+        f.text('zoek_snel', 'Zoeken: tekst boven de categorieën'),
+        f.text('zoek_knop', 'Zoeken: knoptekst'),
+        f.text('zoek_titel', 'Zoekresultaten: titel', { instructions: '%s = het zoekwoord.' }),
+        f.text('zoek_aantal', 'Zoekresultaten: aantal', { instructions: '%d = aantal gevonden producten.' }),
+        f.text('zoek_leeg', 'Zoekresultaten: niets gevonden'),
+        f.text('zoek_alles', 'Zoekresultaten: link naar de shop'),
     ], [[{ param: 'options_page', operator: '==', value: 'instellingen-mori' }]], { menu_order: 1 });
     defineGroup('seo_pagina', 'Zoekmachines', [
         f.textarea('seo_beschrijving', 'Beschrijving voor zoekmachines', { instructions: 'Eén tot twee zinnen die onder de titel in Google staan. Leeg laten gebruikt de standaardtekst.', rows: 3 }),

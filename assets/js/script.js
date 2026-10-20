@@ -122,6 +122,35 @@
         });
     }
 
+    /* ---------- Zoeken ---------- */
+    const zoekKnop = document.querySelector('[data-zoek-open]');
+    const zoekPaneel = document.getElementById('zoek-paneel');
+    if (zoekKnop && zoekPaneel) {
+        const setZoek = function(open) {
+            zoekPaneel.hidden = !open;
+            root.classList.toggle('menu-open', open);
+            zoekKnop.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (open) {
+                zoekPaneel.querySelector('input[type="search"]').focus();
+            } else {
+                zoekKnop.focus({ preventScroll: true });
+            }
+        };
+        zoekKnop.addEventListener('click', function() {
+            setZoek(zoekPaneel.hidden);
+        });
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && !zoekPaneel.hidden) {
+                setZoek(false);
+            }
+        });
+        zoekPaneel.addEventListener('click', function(event) {
+            if (event.target.closest('[data-zoek-sluit]')) {
+                setZoek(false);
+            }
+        });
+    }
+
     /* ---------- Winkelwagenpaneel ---------- */
     const drawer = document.getElementById('cart-drawer');
     let drawerOpener = null;

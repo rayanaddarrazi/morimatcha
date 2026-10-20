@@ -214,8 +214,8 @@ function kj_seed_menu( $naam, $items ) {
 
 $locations = array(
     'hoofdmenu'   => kj_seed_menu( 'Hoofdmenu', array(
+        array( 'Shop', $shop_url ),
         array( 'Matcha', $product_url ),
-        array( 'Startersets', add_query_arg( 'categorie', 'startersets', $shop_url ) ),
         array( 'Abonnement', home_url( '/abonnement/' ) ),
         array( 'Bereiden', home_url( '/bereiden/' ) ),
     ) ),

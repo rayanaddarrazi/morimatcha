@@ -263,4 +263,34 @@
     .site-header, .site-header *, .mobile-menu * { transition: none !important; }
   }
 
+
+  /* Zoeken */
+  .zoekvenster { position: fixed; inset: 0; z-index: 60; display: flex; justify-content: center; align-items: flex-start; padding: 12vh 16px 16px; }
+  .zoekvenster[hidden] { display: none; }
+  .zoekvenster__achter { position: absolute; inset: 0; background: rgba(31, 42, 27, 0.55); backdrop-filter: blur(4px); animation: zoek-in 200ms var(--ease); }
+  .zoekvenster__kaart { position: relative; width: 100%; max-width: 640px; background: var(--kleur-rijstpapier); color: var(--kleur-mos); border-radius: var(--afronding-groot); padding: 24px 28px 28px; box-shadow: 0 32px 64px -24px rgba(31, 42, 27, 0.5); animation: zoek-op 260ms var(--ease); }
+  .zoekvenster__form { display: flex; align-items: center; gap: 14px; padding-bottom: 16px; border-bottom: 1px solid var(--kleur-lijn); }
+  .zoekvenster__form > svg { width: 24px; height: 24px; flex: none; }
+  .zoekvenster__form input[type="search"] { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--kleur-mos); font-family: var(--font-serif, 'Shippori Mincho', serif); font-size: 28px; line-height: 1.2; padding: 4px 0; outline: none; -webkit-appearance: none; }
+  .zoekvenster__form input[type="search"]::placeholder { color: var(--kleur-steen); }
+  .zoekvenster__form input[type="search"]::-webkit-search-cancel-button { display: none; }
+  .zoekvenster__sluiten { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; flex: none; border: 0; border-radius: 20px; background: transparent; color: inherit; cursor: pointer; transition: background-color 200ms var(--ease); }
+  .zoekvenster__sluiten:hover { background: var(--kleur-gerst); }
+  .zoekvenster__sluiten svg { width: 20px; height: 20px; }
+  .zoekvenster__snel { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+  .zoekvenster__snel ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  @keyframes zoek-in { from { opacity: 0; } }
+  @keyframes zoek-op { from { opacity: 0; transform: translateY(12px); } }
+  @media (prefers-reduced-motion: reduce) { .zoekvenster__achter, .zoekvenster__kaart { animation: none; } }
+  @media (max-width: 767px) { .zoekvenster { padding-top: 72px; } .zoekvenster__form input[type="search"] { font-size: 22px; } }
+  .zoekform { display: flex; align-items: center; gap: 8px; max-width: 640px; margin-inline: auto; }
+  .zoekform__veld { flex: 1; min-width: 0; height: 48px; padding: 0 20px; border-radius: var(--afronding-rond); background: var(--kleur-wit); box-shadow: inset 0 0 0 1px var(--kleur-lijn); color: var(--kleur-mos); font: inherit; border: 0; }
+  .zoekform__veld::placeholder { color: var(--kleur-steen); }
+  .zoekform__veld:focus-visible { outline: 2px solid var(--kleur-mos); outline-offset: 2px; }
+  .zoekform__knop { display: inline-flex; align-items: center; gap: 8px; height: 48px; padding: 0 20px; border-radius: var(--afronding-rond); background: var(--kleur-mos); color: var(--kleur-rijstpapier); font-weight: 600; border: 0; cursor: pointer; }
+  .zoekform__knop svg { width: 18px; height: 18px; }
+  .mobile-menu__zoek { padding: 0 24px 16px; }
+  .mobile-menu__zoek .zoekform__knop span { display: none; }
+  .mobile-menu__zoek .zoekform__knop { width: 48px; padding: 0; justify-content: center; }
+  .zoekresultaten__kop { display: flex; flex-direction: column; gap: 12px; padding-block: 48px 32px; }
 }
