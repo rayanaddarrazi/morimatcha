@@ -20,6 +20,30 @@
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* ---------- Header: vast na 80 px ---------- */
+    // mededelingenbalk: teksten wisselen om de 4 seconden, niet bij hover/focus of bij verminderde beweging
+    const balk = document.querySelector('[data-aankondiging]');
+    if (balk) {
+        const items = [...balk.querySelectorAll('li')];
+        if (items.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            let nu = 0;
+            let pauze = false;
+            balk.addEventListener('mouseenter', () => { pauze = true; });
+            balk.addEventListener('mouseleave', () => { pauze = false; });
+            setInterval(() => {
+                if (pauze || document.hidden) return;
+                const oud = items[nu];
+                nu = (nu + 1) % items.length;
+                oud.classList.remove('is-actief');
+                oud.classList.add('is-weg');
+                oud.setAttribute('aria-hidden', 'true');
+                items[nu].classList.remove('is-weg');
+                items[nu].classList.add('is-actief');
+                items[nu].removeAttribute('aria-hidden');
+                setTimeout(() => oud.classList.remove('is-weg'), 450);
+            }, 4000);
+        }
+    }
+
     const header = document.querySelector('[data-header]');
     if (header) {
         const onScroll = function() {

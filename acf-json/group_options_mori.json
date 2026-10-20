@@ -237,12 +237,12 @@
             "ui_off_text": "Uit"
         },
         {
-            "key": "field_options_mori_mededeling_tekst",
-            "label": "Tekst in de balk bovenaan",
-            "name": "mededeling_tekst",
+            "key": "field_options_mori_mededelingen",
+            "label": "Teksten in de balk bovenaan",
+            "name": "mededelingen",
             "aria-label": "",
-            "type": "text",
-            "instructions": "De donkere balk boven de header.",
+            "type": "repeater",
+            "instructions": "De donkere balk boven de header. Bij meer dan een tekst wisselen ze om de paar seconden, de eerste staat als eerste.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -250,11 +250,61 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Tekst toevoegen",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_options_mori_mededelingen_tekst",
+                    "label": "Tekst",
+                    "name": "tekst",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_options_mori_mededelingen_icoon",
+                    "label": "Icoon",
+                    "name": "icoon",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "verzending": "Pakketje",
+                        "vinkje": "Vinkje"
+                    },
+                    "default_value": "vinkje",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                }
+            ]
         },
         {
             "key": "field_options_mori_tab_footer",
@@ -1667,5 +1717,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1792422641
+    "modified": 1792503884
 }

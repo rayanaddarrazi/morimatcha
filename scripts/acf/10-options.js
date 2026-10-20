@@ -15,7 +15,10 @@ module.exports = ({ f, defineGroup }) => {
 
         f.tab('Mededeling'),
         f.bool('mededeling_toon', 'Mededelingsbalk tonen', { default: true }),
-        f.text('mededeling_tekst', 'Tekst in de balk bovenaan', { instructions: 'De donkere balk boven de header.' }),
+        f.repeater('mededelingen', 'Teksten in de balk bovenaan', [
+            f.text('tekst', 'Tekst'),
+            f.select('icoon', 'Icoon', { verzending: 'Pakketje', vinkje: 'Vinkje' }, { default: 'vinkje' }),
+        ], { layout: 'table', button: 'Tekst toevoegen', instructions: 'De donkere balk boven de header. Bij meer dan een tekst wisselen ze om de paar seconden, de eerste staat als eerste.' }),
 
         f.tab('Footer'),
         f.text('footer_nieuwsbrief_kop', 'Nieuwsbrief: kop'),

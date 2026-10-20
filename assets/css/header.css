@@ -70,6 +70,11 @@
     overflow: hidden;
     transition: max-height 300ms var(--ease), padding 300ms var(--ease), opacity 300ms var(--ease);
   }
+  .site-header__aankondiging ul { display: grid; margin: 0; padding: 0; list-style: none; }
+  .site-header__aankondiging li { grid-area: 1 / 1; display: flex; align-items: center; justify-content: center; gap: 8px; opacity: 0; transform: translateY(10px); visibility: hidden; transition: opacity 400ms var(--ease), transform 400ms var(--ease), visibility 0s linear 400ms; }
+  .site-header__aankondiging li.is-actief { opacity: 1; transform: none; visibility: visible; transition-delay: 0s; }
+  .site-header__aankondiging li.is-weg { transform: translateY(-10px); }
+  @media (prefers-reduced-motion: reduce) { .site-header__aankondiging li { transition: none; transform: none; } }
   .site-header__aankondiging svg { width: 16px; height: 16px; color: var(--kleur-jong-blad); flex: none; }
   .site-header.is-vast .site-header__aankondiging { max-height: 0; padding-block: 0; opacity: 0; }
 

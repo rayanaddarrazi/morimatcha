@@ -16,7 +16,11 @@ $opties = array(
     'etiket_regel'          => 'MATCHA  {gram} G',
 
     'mededeling_toon'       => 1,
-    'mededeling_tekst'      => 'Gratis verzending vanaf € 40',
+    'mededelingen'          => array(
+        array( 'tekst' => 'Gratis verzending vanaf € 40', 'icoon' => 'verzending' ),
+        array( 'tekst' => 'In 1 tot 2 werkdagen verstuurd', 'icoon' => 'vinkje' ),
+        array( 'tekst' => 'Alleen matcha, verder niets', 'icoon' => 'vinkje' ),
+    ),
 
     'footer_nieuwsbrief_kop'         => 'Eén mail per maand. Over nieuwe oogsten en hoe je betere matcha zet.',
     'footer_nieuwsbrief_sub'         => 'Afmelden kan met één klik onderaan elke mail.',

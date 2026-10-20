@@ -10,8 +10,8 @@ defined( 'ABSPATH' ) || exit;
 
 $menu         = kj_menu_items( 'hoofdmenu' );
 $over_foto    = kj_header_over_photo();
-$mededeling   = (string) kj_option( 'mededeling_tekst' );
-$toon_balk    = $mededeling && kj_option( 'mededeling_toon', true );
+$mededelingen = array_values( array_filter( (array) kj_option( 'mededelingen', array() ), fn( $r ) => ! empty( $r['tekst'] ) ) );
+$toon_balk    = $mededelingen && kj_option( 'mededeling_toon', true );
 $account_url  = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'myaccount' ) : home_url( '/' );
 $shop_url     = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
 $cart_url     = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/' );
@@ -32,9 +32,15 @@ $cart_count   = function_exists( 'kj_cart_count' ) ? kj_cart_count() : 0;
 	<header id="masthead" class="site-header <?php echo $over_foto ? 'site-header--foto' : 'site-header--standaard'; ?>" data-header>
 
 		<?php if ( $toon_balk ) : ?>
-			<div class="site-header__aankondiging">
-				<?php echo kj_svg( 'verzending' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-				<p><?php echo esc_html( $mededeling ); ?></p>
+			<div class="site-header__aankondiging" data-aankondiging>
+				<ul>
+					<?php foreach ( $mededelingen as $i => $rij ) : ?>
+						<li<?php echo 0 === $i ? ' class="is-actief"' : ' aria-hidden="true"'; ?>>
+							<?php echo kj_svg( 'verzending' === $rij['icoon'] ? 'verzending' : 'vinkje' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+							<p><?php echo esc_html( $rij['tekst'] ); ?></p>
+						</li>
+					<?php endforeach; ?>
+				</ul>
 			</div>
 		<?php endif; ?>
 
