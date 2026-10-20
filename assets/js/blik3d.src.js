@@ -103,35 +103,61 @@ export async function start(houder, opties) {
 
     const el = renderer.domElement;
     el.style.touchAction = 'pan-y';
-    el.addEventListener('pointerdown', function(e) { sleept = true; laatsteX = e.clientX; rust = false; el.setPointerCapture(e.pointerId); houder.classList.add('is-sleept'); });
-    el.addEventListener('pointermove', function(e) { if (sleept) { doel += (e.clientX - laatsteX) * 0.012; laatsteX = e.clientX; } });
-    const los = function() { sleept = false; houder.classList.remove('is-sleept'); };
+    el.addEventListener('pointerdown', function(e) {
+        sleept = true; laatsteX = e.clientX; rust = false; el.setPointerCapture(e.pointerId); houder.classList.add('is-sleept'); 
+    });
+    el.addEventListener('pointermove', function(e) {
+        if (sleept) {
+            doel += (e.clientX - laatsteX) * 0.012; laatsteX = e.clientX; 
+        } 
+    });
+    const los = function() {
+        sleept = false; houder.classList.remove('is-sleept'); 
+    };
     el.addEventListener('pointerup', los);
     el.addEventListener('pointercancel', los);
     houder.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') { doel -= 0.3; rust = false; e.preventDefault(); }
-        if (e.key === 'ArrowRight') { doel += 0.3; rust = false; e.preventDefault(); }
+        if (e.key === 'ArrowLeft') {
+            doel -= 0.3; rust = false; e.preventDefault(); 
+        }
+        if (e.key === 'ArrowRight') {
+            doel += 0.3; rust = false; e.preventDefault(); 
+        }
     });
 
     let zichtbaar = true;
-    const waarnemer = new IntersectionObserver(function(items) { zichtbaar = items[0].isIntersecting; if (zichtbaar) { lus(); } });
+    const waarnemer = new IntersectionObserver(function(items) {
+        zichtbaar = items[0].isIntersecting; if (zichtbaar) {
+            lus(); 
+        } 
+    });
     waarnemer.observe(houder);
 
     let bezig = false;
     let vorige = performance.now();
     function lus(nu) {
-        if (bezig && nu === undefined) { return; }
+        if (bezig && nu === undefined) {
+            return; 
+        }
         bezig = true;
-        if (!zichtbaar || document.hidden) { bezig = false; return; }
+        if (!zichtbaar || document.hidden) {
+            bezig = false; return; 
+        }
         const dt = Math.min(0.05, ((nu || performance.now()) - vorige) / 1000);
         vorige = nu || performance.now();
-        if (rust) { doel += dt * 0.35; }
+        if (rust) {
+            doel += dt * 0.35; 
+        }
         hoek += (doel - hoek) * Math.min(1, dt * 8);
         blik.rotation.y = hoek;
         renderer.render(scene, camera);
         requestAnimationFrame(lus);
     }
-    document.addEventListener('visibilitychange', function() { if (!document.hidden) { bezig = false; lus(); } });
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+            bezig = false; lus(); 
+        } 
+    });
     lus();
 
     const resize = new ResizeObserver(function() {

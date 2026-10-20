@@ -6,19 +6,25 @@
     'use strict';
 
     document.addEventListener('click', function (e) {
-        var open = e.target.closest('[data-dialoog-open]');
+        const open = e.target.closest('[data-dialoog-open]');
         if (open) {
-            var dlg = document.getElementById(open.getAttribute('data-dialoog-open'));
+            const dlg = document.getElementById(open.getAttribute('data-dialoog-open'));
             if (dlg && typeof dlg.showModal === 'function') {
                 // een venster in een venster: sluit het eerste
-                document.querySelectorAll('dialog[open]').forEach(function (d) { if (d !== dlg) { d.close(); } });
+                document.querySelectorAll('dialog[open]').forEach(function (d) {
+                    if (d !== dlg) {
+                        d.close(); 
+                    } 
+                });
                 dlg.showModal();
             }
             return;
         }
         if (e.target.closest('[data-dialoog-sluit]')) {
-            var d = e.target.closest('dialog');
-            if (d) { d.close(); }
+            const d = e.target.closest('dialog');
+            if (d) {
+                d.close(); 
+            }
             return;
         }
         // klik op de achtergrond sluit

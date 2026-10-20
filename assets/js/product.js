@@ -60,7 +60,9 @@
     state.sizeId = checked ? parseInt(checked.value, 10) : null;
 
     const sizeById = function(id) {
-        return config.sizes.find(function(s) { return s.id === id; });
+        return config.sizes.find(function(s) {
+            return s.id === id; 
+        });
     };
 
     // Korte crossfade bij prijswissel
@@ -228,9 +230,13 @@
         }
 
         const sluiten = function() {
-            if (opruimen) { opruimen(); opruimen = null; }
+            if (opruimen) {
+                opruimen(); opruimen = null; 
+            }
             podium.hidden = true;
-            if (hint) { hint.hidden = true; }
+            if (hint) {
+                hint.hidden = true; 
+            }
             hoofd.classList.remove('is-3d');
             knop.setAttribute('aria-pressed', 'false');
             knop.querySelector('span').textContent = knop.getAttribute('data-label-open');
@@ -241,7 +247,9 @@
                 sluiten();
                 return;
             }
-            if (laden) { return; }
+            if (laden) {
+                return; 
+            }
             laden = true;
             const t0 = performance.now();
             const regelEl = document.querySelector('.product__hoofdbeeld .etiket__regel');
@@ -258,20 +266,28 @@
                 opruimen = stop;
                 knop.setAttribute('aria-pressed', 'true');
                 knop.querySelector('span').textContent = knop.getAttribute('data-label-dicht');
-                if (hint) { hint.hidden = false; }
+                if (hint) {
+                    hint.hidden = false; 
+                }
                 podium.focus({ preventScroll: true });
                 const ms = Math.round(performance.now() - t0);
                 hoofd.setAttribute('data-laadtijd', String(ms));
-                if (window.console && console.info) { console.info('Blik 3D geladen in ' + ms + ' ms'); }
+                if (window.console && console.info) {
+                    console.info('Blik 3D geladen in ' + ms + ' ms'); 
+                }
             }).catch(function() {
                 // terugval: de foto blijft staan
                 sluiten();
                 knop.hidden = true;
-            }).finally(function() { laden = false; });
+            }).finally(function() {
+                laden = false; 
+            });
         });
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && hoofd.classList.contains('is-3d')) { sluiten(); knop.focus(); }
+            if (e.key === 'Escape' && hoofd.classList.contains('is-3d')) {
+                sluiten(); knop.focus(); 
+            }
         });
     }
 })();

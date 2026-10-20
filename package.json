@@ -9,7 +9,7 @@
     "dev": "npm run dev:css",
     "dev:css": "postcss assets/css/input.css -o assets/css/style.css --watch",
     "lint": "npm run lint:js && npm run lint:php",
-    "lint:js": "eslint . --ignore-pattern '*.min.js'",
+    "lint:js": "eslint . --ignore-pattern '*.min.js' --ignore-pattern 'assets/js/blik3d.js'",
     "lint:js:fix": "eslint . --fix --ignore-pattern '*.min.js'",
     "lint:php": "find . -name '*.php' -not -path './node_modules/*' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l"
   },

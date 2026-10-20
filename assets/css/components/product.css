@@ -73,7 +73,7 @@
   .maatoptie__tekst { display: flex; flex-direction: column; gap: 4px; padding-inline: 8px; }
   .maatoptie__maat { display: flex; align-items: baseline; gap: 4px; }
   .maatoptie__prijs { display: flex; flex-direction: column; gap: 2px; padding: 12px 8px 0; border-top: 1px solid var(--kleur-lijn); }
-  .maatoptie__prijs .text-meta { color: var(--kleur-matcha); }
+  .maatoptie__prijs .text-meta { color: var(--kleur-gelukt); }
   .maatoptie.is-uitverkocht { cursor: not-allowed; }
   .maatoptie.is-uitverkocht .blik { opacity: 0.35; }
   .maatoptie.is-uitverkocht .maatoptie__radio { box-shadow: inset 0 0 0 1.25px var(--kleur-lijn); }
