@@ -67,7 +67,7 @@ $uid     = 'sv-' . wp_unique_id();
 			<?php if ( $vragen ) : ?>
 				<div class="smaakprofiel__vragen accordeon" data-reveal style="--i: 1">
 					<?php foreach ( $vragen as $i => $item ) :
-						$open = 0 === $i;
+						$open = false;
 						$id   = $uid . '-' . $i;
 						?>
 						<div class="accordeon__item<?php echo $open ? ' is-open' : ''; ?>">
