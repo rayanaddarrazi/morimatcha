@@ -143,3 +143,61 @@ add_action( 'woocommerce_account_abonnement_endpoint', function () {
 } );
 
 add_action( 'woocommerce_account_dashboard', function () {}, 99 );
+
+/** Titel van een account-tab uit het menu van Instellingen Mori. */
+function kj_account_tabnaam( $sleutel ) {
+    foreach ( (array) kj_option( 'acc_menu', array() ) as $rij ) {
+        if ( $rij['sleutel'] === $sleutel ) {
+            return $rij['naam'];
+        }
+    }
+    return '';
+}
+
+/** Kop bovenaan elke tab: titel links, "Klant sinds" rechts. */
+function kj_account_kop( $titel ) {
+    $user  = wp_get_current_user();
+    $abo   = kj_abo_van_klant( $user->ID );
+    $sinds = $abo && $abo['sinds'] ? ucfirst( wp_date( 'F Y', strtotime( $abo['sinds'] ) ) ) : wp_date( 'F Y', strtotime( $user->user_registered ) );
+    echo '<div class="account-kop"><h1 class="account-kop__titel font-serif">' . esc_html( $titel ) . '</h1><p class="account-kop__sinds">' . esc_html( sprintf( (string) kj_option( 'acc_abo_sinds', '%s' ), strtolower( $sinds ) ) ) . '</p></div>';
+}
+
+/* ---------- Gegevens en adressen ---------- */
+
+/** Weergavenaam vragen we niet, die volgt de voor- en achternaam. */
+add_filter( 'woocommerce_save_account_details_required_fields', function ( $velden ) {
+    unset( $velden['account_display_name'] );
+    return $velden;
+} );
+add_action( 'woocommerce_save_account_details', function ( $user_id ) {
+    $user = get_userdata( $user_id );
+    wp_update_user( array( 'ID' => $user_id, 'display_name' => trim( $user->first_name . ' ' . $user->last_name ) ) );
+} );
+
+/** Adres in het account: dezelfde velden als in de kassa, in Nederland. */
+add_filter( 'woocommerce_billing_fields', function ( $velden ) {
+    if ( ! function_exists( 'is_account_page' ) || ! is_account_page() ) {
+        return $velden;
+    }
+    $t = fn( $k, $d ) => (string) kj_option( $k, $d );
+    return array(
+        'billing_first_name' => array( 'label' => $t( 'afr_voornaam', 'Voornaam' ), 'required' => true, 'class' => array( 'form-row-first' ), 'autocomplete' => 'given-name', 'priority' => 10 ),
+        'billing_last_name'  => array( 'label' => $t( 'afr_achternaam', 'Achternaam' ), 'required' => true, 'class' => array( 'form-row-last' ), 'autocomplete' => 'family-name', 'priority' => 20 ),
+        'billing_postcode'   => array( 'label' => $t( 'afr_postcode', 'Postcode' ), 'required' => true, 'class' => array( 'form-row-first' ), 'autocomplete' => 'postal-code', 'validate' => array( 'postcode' ), 'priority' => 30 ),
+        'billing_city'       => array( 'label' => $t( 'afr_plaats', 'Plaats' ), 'required' => true, 'class' => array( 'form-row-last' ), 'autocomplete' => 'address-level2', 'priority' => 40 ),
+        'billing_address_1'  => array( 'label' => $t( 'acc_adres_straat', 'Straat en huisnummer' ), 'required' => true, 'class' => array( 'form-row-wide' ), 'autocomplete' => 'street-address', 'priority' => 50 ),
+        'billing_country'    => array( 'type' => 'hidden', 'default' => 'NL', 'required' => false, 'priority' => 60 ),
+    );
+}, 30 );
+
+/** Adressen: zonder keuze het overzicht, met "billing" het formulier (alleen factuuradres, geen verzendadres). */
+add_action( 'init', function () {
+    remove_action( 'woocommerce_account_edit-address_endpoint', 'woocommerce_account_edit_address' );
+    add_action( 'woocommerce_account_edit-address_endpoint', function ( $type ) {
+        if ( 'billing' === wc_edit_address_i18n( sanitize_title( (string) $type ), true ) ) {
+            WC_Shortcode_My_Account::edit_address( 'billing' );
+        } else {
+            wc_get_template( 'myaccount/my-address.php' );
+        }
+    } );
+}, 20 );

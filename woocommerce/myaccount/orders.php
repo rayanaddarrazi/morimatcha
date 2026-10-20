@@ -17,7 +17,7 @@ foreach ( (array) kj_option( 'acc_menu', array() ) as $rij ) {
 	}
 }
 ?>
-<div class="account-kop"><h1 class="account-kop__titel font-serif"><?php echo esc_html( $naam ); ?></h1></div>
+<?php kj_account_kop( $naam ); ?>
 
 <section class="leveringen">
 	<ul class="leveringen__lijst leveringen__lijst--los">

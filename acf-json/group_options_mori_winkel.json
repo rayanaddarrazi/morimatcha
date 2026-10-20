@@ -2563,6 +2563,286 @@
             "append": ""
         },
         {
+            "key": "field_options_mori_winkel_acc_gegevens_persoon",
+            "label": "Gegevens: kop persoonlijk",
+            "name": "acc_gegevens_persoon",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_gegevens_wachtwoord",
+            "label": "Gegevens: kop wachtwoord",
+            "name": "acc_gegevens_wachtwoord",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_gegevens_wachtwoord_hulp",
+            "label": "Gegevens: uitleg wachtwoord",
+            "name": "acc_gegevens_wachtwoord_hulp",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_wachtwoord_huidig",
+            "label": "Gegevens: huidig wachtwoord",
+            "name": "acc_wachtwoord_huidig",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_wachtwoord_nieuw",
+            "label": "Gegevens: nieuw wachtwoord",
+            "name": "acc_wachtwoord_nieuw",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_wachtwoord_herhaal",
+            "label": "Gegevens: herhaal wachtwoord",
+            "name": "acc_wachtwoord_herhaal",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_opslaan",
+            "label": "Formulier: opslaan",
+            "name": "acc_opslaan",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_annuleren",
+            "label": "Formulier: annuleren",
+            "name": "acc_annuleren",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_adres_kop",
+            "label": "Adressen: kop",
+            "name": "acc_adres_kop",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_adres_hulp",
+            "label": "Adressen: uitleg",
+            "name": "acc_adres_hulp",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_adres_leeg",
+            "label": "Adressen: nog geen adres",
+            "name": "acc_adres_leeg",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_adres_bewerken",
+            "label": "Adressen: knop wijzigen",
+            "name": "acc_adres_bewerken",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_adres_toevoegen",
+            "label": "Adressen: knop toevoegen",
+            "name": "acc_adres_toevoegen",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_adres_straat",
+            "label": "Adressen: label straat en huisnummer",
+            "name": "acc_adres_straat",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_options_mori_winkel_acc_pauze_maanden",
             "label": "Pauzeren: keuze (maanden)",
             "name": "acc_pauze_maanden",
@@ -2778,5 +3058,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1792504771
+    "modified": 1792505114
 }

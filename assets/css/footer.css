@@ -18,7 +18,7 @@
     .site-footer__merk .logo--footer { order: 3; }
     .site-footer__betalen { order: 4; }
     .site-footer__legal-blok { order: 5; }
-    .site-footer__copyright { order: 5; padding-top: 20px; border-top: 1px solid var(--kleur-bosgroen); margin-bottom: -32px; }
+    .site-footer__copyright { order: 5; padding-top: 20px; border-top: 1px solid var(--kleur-bosgroen); margin-bottom: -24px; }
     .site-footer__juridisch { order: 6; }
   }
 

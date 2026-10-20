@@ -32,7 +32,7 @@
   .abonnement-kaart__voortgang { height: 6px; border-radius: 3px; background: var(--kleur-gerst); overflow: hidden; }
   .abonnement-kaart__voortgang span { display: block; height: 100%; border-radius: 3px; background: var(--kleur-matcha); transition: width 700ms var(--ease); }
 
-  .abonnement-kaart__acties { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 20px 32px; background: var(--kleur-rijstpapier); }
+  .abonnement-kaart__acties { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 20px 32px; background: var(--kleur-wit); border-top: 1px solid var(--kleur-lijn); }
   @media (max-width: 767px) { .abonnement-kaart__acties { padding: 20px 24px; } }
   .abonnement-kaart__knoppen { display: flex; gap: 12px; flex-wrap: wrap; }
 
