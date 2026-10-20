@@ -59,7 +59,7 @@
     background-color: var(--kleur-rijstpapier); transition: background-color 200ms var(--ease);
   }
   .maatoptie.is-geselecteerd .maatoptie__beeld { background-color: var(--kleur-jong-blad); }
-  .maatoptie__beeld .blik { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); transition: height 200ms var(--ease); }
+  .maatoptie__beeld .blik { position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); transition: height 200ms var(--ease); }
   .maatoptie__radio {
     position: absolute; top: 12px; right: 12px; width: 20px; height: 20px; border-radius: 10px;
     background: var(--kleur-wit); box-shadow: inset 0 0 0 1.25px var(--kleur-steen);
@@ -80,19 +80,14 @@
   .maatoptie.is-uitverkocht .maatoptie__tekst, .maatoptie.is-uitverkocht .maatoptie__prijs, .maatoptie.is-uitverkocht .maatoptie__prijs .text-meta { color: var(--kleur-steen); }
   @media (max-width: 767px) { .maatoptie__tekst .text-h3 { font-size: 26px; } .maatoptie { padding: 8px; gap: 12px; } .maatoptie__beeld { height: 120px; } }
 
-  /* Blik (Figma: Blik) */
-  .blik { position: relative; display: block; height: var(--blik-h, 68px); width: calc(var(--blik-h, 68px) * 0.75); container-type: size; }
-  .blik > span { position: absolute; display: block; }
-  .blik__schaduw { inset: 92.5% 6.67% 1.25% 6.67%; background: radial-gradient(ellipse at center, rgba(31, 42, 27, 0.32) 0%, rgba(31, 42, 27, 0) 70%); transform: scale(1.3, 2.2); }
-  .blik__romp { inset: 18.75% 10% 3.75% 10%; background: var(--kleur-mos); border-radius: 8px; }
-  .blik__etiket { inset: 41.25% 10% 22.5% 10%; background: var(--kleur-rijstpapier); }
-  .blik__lijn { inset: 71.25% 10% 27.5% 10%; background: var(--kleur-matcha); }
-  .blik__teken { inset: 46.25% 10% 38.75% 10%; font-family: 'Shippori Mincho', serif; font-weight: 500; font-size: 15cqh; line-height: 1; text-align: center; color: var(--kleur-mos); }
-  .blik__naam { inset: 63.75% 10% 30.63% 10%; font-weight: 600; font-size: 4.4cqh; letter-spacing: 0.4em; padding-left: 0.4em; text-align: center; color: var(--kleur-mos); }
-  .blik__deksel { inset: 8.75% 6.67% 77.5% 6.67%; background: var(--kleur-bosgroen); border-radius: 6px; }
-  .blik__deksel-rand { inset: 20.63% 6.67% 77.5% 6.67%; background: var(--kleur-mos); }
-  .blik__glans { inset: 22.5% 74.17% 7.5% 20%; background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
-  .blik__glans-deksel { inset: 10.63% 74.17% 80.63% 20%; background: rgba(255, 255, 255, 0.12); border-radius: 3px; }
+  /* Blik: uitgesneden productfoto in drie maten */
+  .blik { position: relative; display: block; height: var(--blik-h, 106px); aspect-ratio: auto; }
+  .blik img { display: block; height: 100%; width: auto; }
+  .blik__etiket { position: absolute; left: 10%; right: 10%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 3%; text-align: center; color: var(--kleur-mos); white-space: nowrap; }
+  .blik__teken { font-family: 'Shippori Mincho', serif; font-weight: 500; font-size: calc(var(--blik-h) * 0.12); line-height: 1; }
+  .blik__naam { font-weight: 600; font-size: calc(var(--blik-h) * 0.05); letter-spacing: 0.4em; padding-left: 0.4em; line-height: 1.6; }
+  .blik__regel { font-weight: 500; font-size: calc(var(--blik-h) * 0.04); letter-spacing: 0.2em; padding-left: 0.2em; line-height: 1.6; color: var(--kleur-steen); }
+  @media (max-width: 767px) { .maatoptie__beeld .blik { height: calc(var(--blik-h) * 0.7); } }
 
   /* Aankoopkeuze: niet voorgeselecteerd, hoe je opzegt staat er altijd bij */
   .aankoopkeuze { display: flex; flex-direction: column; border: 0; padding: 0; margin: 0; min-width: 0; background: var(--kleur-wit); border-radius: var(--afronding-groot); box-shadow: inset 0 0 0 1px var(--kleur-lijn); overflow: hidden; }
@@ -147,7 +142,7 @@
 
   /* Blik in 3D */
   .product__hoofd { position: relative; }
-  .blik3d { position: absolute; inset: 0; z-index: 2; border-radius: var(--afronding-groot); background: var(--kleur-gerst); cursor: grab; overflow: hidden; }
+  .blik3d { position: absolute; inset: 0; z-index: 2; border-radius: var(--afronding-groot); background-color: var(--kleur-gerst); background-size: cover; background-position: center; cursor: grab; overflow: hidden; }
   .blik3d[hidden] { display: none; }
   .blik3d.is-sleept { cursor: grabbing; }
   .blik3d:focus-visible { outline: none; box-shadow: inset 0 0 0 3px var(--kleur-matcha); }
@@ -156,6 +151,6 @@
   .blik3d__knop:hover { background: var(--kleur-wit); }
   .blik3d__knop:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--kleur-wit), 0 0 0 5px var(--kleur-matcha); }
   .blik3d__knop svg { width: 16px; height: 16px; color: var(--kleur-matcha); }
-  .blik3d__hint { position: absolute; z-index: 3; right: 16px; bottom: 24px; margin: 0; font-size: 14px; color: var(--kleur-steen); pointer-events: none; }
+  .blik3d__hint { position: absolute; z-index: 3; right: 16px; top: 16px; margin: 0; font-size: 14px; color: var(--kleur-steen); pointer-events: none; }
   .blik3d__hint[hidden] { display: none; }
 }

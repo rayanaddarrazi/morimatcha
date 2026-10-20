@@ -260,6 +260,8 @@
                     teken: hoofd.getAttribute('data-teken'),
                     naam: hoofd.getAttribute('data-naam'),
                     regel: regelEl ? regelEl.textContent : '',
+                    textuur: hoofd.getAttribute('data-textuur'),
+                    glans: hoofd.getAttribute('data-glans'),
                     reduceMotion: reduceMotion,
                 });
             }).then(function(stop) {

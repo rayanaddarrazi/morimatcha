@@ -25,10 +25,10 @@ Toegankelijkheid 94 tot 100, best practices 100. De gesimuleerde score is lager 
 ## 3D-blik, voor en na
 | | Voor de klik | Na de klik |
 |---|---|---|
-| Overdracht | 665 kB | +541 kB (ongecomprimeerd, 132 kB gzip) |
-| Tijd tot het blik draait | n.v.t. | ca. 370 tot 440 ms (lokaal, software-rendering) |
+| Overdracht | 555 kB | +82 kB extra gemeten (het script komt uit de cache van de browser terug), in totaal ca. 190 kB gzip: script 134, glanslaag 54, textuur 1 |
+| Tijd tot het blik draait | n.v.t. | ca. 320 ms (lokaal, software-rendering zonder videokaart) |
 
-De pagina zelf wordt dus niet trager. Alleen wie het blik opent betaalt de extra 132 kB.
+De pagina zelf wordt dus niet trager. Alleen wie het blik opent betaalt de extra 135 kB. De achtergrond is de productfoto zelf, dus er hoeft geen tweede achtergrond mee.
 
 ## Instellingen voor de server
 Zet `mod_deflate` en `mod_expires` aan (in MAMP staan ze uitgeschakeld in `httpd.conf`). Voorbeeld voor `.htaccess`:

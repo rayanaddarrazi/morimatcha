@@ -41,6 +41,8 @@ $args = wp_parse_args( $args ?? array(), array(
 $stijlen = array( 'actief' => 'blad', 'gepauzeerd' => 'letop', 'opgezegd' => 'lijn', 'betaling' => 'fout' );
 $stijl   = $stijlen[ $args['status'] ] ?? 'blad';
 $blik_h  = 64;
+$gram    = (int) $args['gram'];
+$blik_m  = $gram >= 80 ? 'groot' : ( $gram >= 45 ? 'middel' : 'klein' );
 ?>
 <article class="abonnement-kaart abonnement-kaart--<?php echo esc_attr( $args['status'] ); ?> <?php echo esc_attr( $args['class'] ); ?>">
     <?php if ( $args['melding'] ) : ?>
@@ -48,7 +50,7 @@ $blik_h  = 64;
     <?php endif; ?>
     <div class="abonnement-kaart__kop">
         <div class="abonnement-kaart__beeld">
-            <?php kj_component( 'blik', array( 'hoogte' => $blik_h ) ); ?>
+            <?php kj_component( 'blik', array( 'maat' => $blik_m, 'hoogte' => $blik_h, 'gram' => $gram ) ); ?>
         </div>
         <div class="abonnement-kaart__titel">
             <p class="text-eyebrow font-semibold uppercase"><?php echo esc_html( $args['label'] ); ?></p>

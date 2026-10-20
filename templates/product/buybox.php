@@ -67,8 +67,13 @@ $config = array(
 	<div class="product__rij grid-mori">
 
 		<div class="product__galerij">
-			<?php $blik3d = $is_variable && kj_option( 'blik3d_aan', true ); ?>
-			<div class="product__hoofd"<?php echo $blik3d ? ' data-blik3d data-module="' . esc_url( get_template_directory_uri() . '/assets/js/blik3d.js?v=' . filemtime( get_template_directory() . '/assets/js/blik3d.js' ) ) . '" data-teken="' . esc_attr( (string) kj_option( 'etiket_teken', '森' ) ) . '" data-naam="' . esc_attr( (string) kj_option( 'etiket_naam', 'MORI' ) ) . '"' : ''; ?>>
+			<?php
+			// Het 3D-blik is gemaakt van deze ene productfoto. Is de foto vervangen, dan blijft alleen de foto staan.
+			$foto_sleutel = $hoofd_id ? get_post_meta( $hoofd_id, '_kj_seed_key', true ) : '';
+			$blik3d       = $is_variable && kj_option( 'blik3d_aan', true ) && 'product-mori-matcha' === $foto_sleutel && file_exists( get_template_directory() . '/assets/images/blik-textuur.webp' );
+			$foto_url     = $blik3d ? wp_get_attachment_image_url( $hoofd_id, 'mori-1440' ) : '';
+			?>
+			<div class="product__hoofd"<?php echo $blik3d ? ' data-blik3d data-module="' . esc_url( get_template_directory_uri() . '/assets/js/blik3d.js?v=' . filemtime( get_template_directory() . '/assets/js/blik3d.js' ) ) . '" data-textuur="' . esc_url( get_template_directory_uri() . '/assets/images/blik-textuur.webp' ) . '" data-glans="' . esc_url( get_template_directory_uri() . '/assets/images/blik-glans.webp' ) . '" data-teken="' . esc_attr( (string) kj_option( 'etiket_teken', '森' ) ) . '" data-naam="' . esc_attr( (string) kj_option( 'etiket_naam', 'MORI' ) ) . '"' : ''; ?>>
 			<?php
 			kj_component( 'foto-vlak', array(
 				'image'  => $hoofd_id,
@@ -80,7 +85,7 @@ $config = array(
 			) );
 			?>
 			<?php if ( $blik3d ) : ?>
-				<div class="blik3d" data-blik3d-stage tabindex="0" role="group" aria-label="<?php echo esc_attr( (string) kj_option( 'blik3d_hint', '' ) ); ?>" hidden></div>
+				<div class="blik3d" data-blik3d-stage style="background-image: url('<?php echo esc_url( $foto_url ); ?>')" tabindex="0" role="group" aria-label="<?php echo esc_attr( (string) kj_option( 'blik3d_hint', '' ) ); ?>" hidden></div>
 				<button type="button" class="blik3d__knop" data-blik3d-knop data-label-open="<?php echo esc_attr( (string) kj_option( 'blik3d_knop', '' ) ); ?>" data-label-dicht="<?php echo esc_attr( (string) kj_option( 'blik3d_terug', '' ) ); ?>" aria-pressed="false">
 					<?php echo kj_svg( 'herhalen' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					<span><?php echo esc_html( (string) kj_option( 'blik3d_knop', '' ) ); ?></span>
@@ -129,14 +134,17 @@ $config = array(
 					</div>
 					<div class="maatkiezer__maten">
 						<?php foreach ( $sizes as $i => $size ) :
-							$blik_h  = 54 + ( $size['gram'] - 30 ) * ( 28 / 60 );
+							$aantal  = count( $sizes );
+							$rang    = $aantal > 1 ? $i / ( $aantal - 1 ) : 0.5;
+							$maat    = $rang < 0.34 ? 'klein' : ( $rang > 0.66 ? 'groot' : 'middel' );
+							$blik_h  = array( 'klein' => 70, 'middel' => 88, 'groot' => 100 )[ $maat ];
 							$actief  = $i === $default_idx;
 							$op      = ! $size['in_stock'];
 							?>
 							<label class="maatoptie<?php echo $actief ? ' is-geselecteerd' : ''; ?><?php echo $op ? ' is-uitverkocht' : ''; ?>">
 								<input type="radio" name="variation_id" value="<?php echo (int) $size['id']; ?>" data-maat="<?php echo (int) $size['id']; ?>"<?php echo $actief ? ' checked' : ''; ?><?php echo $op ? ' disabled' : ''; ?> required>
 								<span class="maatoptie__beeld">
-									<?php kj_component( 'blik', array( 'hoogte' => $blik_h ) ); ?>
+									<?php kj_component( 'blik', array( 'maat' => $maat, 'hoogte' => $blik_h, 'gram' => (int) $size['gram'] ) ); ?>
 									<span class="maatoptie__radio" aria-hidden="true"><?php echo kj_svg( 'vinkje' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 									<?php if ( $op ) : ?>
 										<span class="maatoptie__badge"><?php kj_component( 'badge', array( 'text' => (string) kj_option( 'badge_uitverkocht', 'Uitverkocht' ), 'stijl' => 'lijn' ) ); ?></span>
