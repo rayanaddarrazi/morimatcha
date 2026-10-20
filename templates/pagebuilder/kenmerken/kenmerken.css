@@ -1,25 +1,46 @@
-/* Kenmerkenstrook: desktop stil (65 px hoog), mobiel een langzaam doorlopende marquee */
+/* Kenmerkenstrook onder de hero: een rustige, doorlopende marquee van links naar rechts (naadloze lus) */
 @layer components {
 
-  .kenmerken { overflow: hidden; }
-  .kenmerken__spoor { display: flex; width: max-content; }
-  .kenmerken__lijst { display: flex; align-items: center; gap: 20px; padding-block: 17.5px; flex: none; width: auto; max-width: none; padding-inline: 16px 20px; }
+  .kenmerken { overflow: hidden; --kenmerken-duur: 60s; }
+  .kenmerken__spoor {
+    display: flex;
+    width: max-content;
+    animation: kenmerken-marquee var(--kenmerken-duur) linear infinite;
+    will-change: transform;
+  }
+  .kenmerken__lijst { display: flex; align-items: center; flex: none; gap: 40px; padding-block: 17.5px; padding-right: 40px; margin: 0; list-style: none; }
   .kenmerken__item { @apply text-eyebrow font-semibold uppercase whitespace-nowrap; color: var(--kleur-gerst); }
   .kenmerken__teken { font-family: 'Shippori Mincho', serif; font-weight: 500; font-size: 12px; line-height: 1; color: var(--kleur-matcha); }
 
-  .kenmerken__lijst[aria-hidden='true'] { display: flex; }
-  .kenmerken__spoor { animation: kenmerken-marquee 40s linear infinite; }
-  @keyframes kenmerken-marquee { to { transform: translateX(-50%); } }
-
-  @media (min-width: 1024px) {
-    .kenmerken__spoor { width: 100%; animation: none; }
-    .kenmerken__lijst { width: 100%; max-width: 1440px; justify-content: space-between; padding-block: 24px; padding-inline: var(--grid-marge); gap: 0; }
-    .kenmerken__lijst[aria-hidden='true'] { display: none; }
-    .kenmerken__teken { font-size: 14px; }
+  /* Beweegt naar rechts: begin op -50% en schuif naar 0 */
+  @keyframes kenmerken-marquee {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
   }
 
+  /* Zachte randen links en rechts (in de kleur van de strook) */
+  .kenmerken { position: relative; --fade: var(--kleur-mos); }
+  .kenmerken.sectie--bosgroen { --fade: var(--kleur-bosgroen); }
+  .kenmerken::before, .kenmerken::after { content: ''; position: absolute; top: 0; bottom: 0; width: 8%; z-index: 1; pointer-events: none; }
+  .kenmerken::before { left: 0; background: linear-gradient(to right, var(--fade), transparent); }
+  .kenmerken::after { right: 0; background: linear-gradient(to left, var(--fade), transparent); }
+
+  /* Pauzeren bij aanwijzen of focus */
+  .kenmerken:hover .kenmerken__spoor,
+  .kenmerken:focus-within .kenmerken__spoor { animation-play-state: paused; }
+
+  @media (min-width: 1024px) {
+    .kenmerken__lijst { padding-block: 24px; gap: 56px; padding-right: 56px; }
+    .kenmerken__teken { font-size: 14px; }
+    .kenmerken { --kenmerken-duur: 70s; }
+  }
+
+  /* Wie minder beweging wil, ziet een stilstaande strook */
   @media (prefers-reduced-motion: reduce) {
-    .kenmerken__spoor { animation: none; width: 100%; overflow-x: auto; }
+    .kenmerken__spoor { animation: none; transform: none; width: 100%; justify-content: center; }
+    .kenmerken__lijst[aria-hidden='true'] { display: none; }
+    .kenmerken__lijst { flex-wrap: wrap; justify-content: center; row-gap: 8px; padding-inline: var(--grid-marge); }
+    .kenmerken::before, .kenmerken::after { display: none; }
   }
 
 }

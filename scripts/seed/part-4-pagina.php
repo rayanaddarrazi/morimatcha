@@ -38,7 +38,7 @@ $home_id = kj_seed_page( 'home', 'Home' );
 update_option( 'show_on_front', 'page' );
 update_option( 'page_on_front', $home_id );
 
-$kenmerken = array( 'Schaduwgekweekt', 'Steengemalen', 'Alleen matcha, verder niets', 'Gratis verzending vanaf € 40', 'Stoppen wanneer je wilt' );
+$kenmerken = array( 'Schaduwgekweekt', 'Steengemalen', 'Alleen matcha, verder niets', 'Gratis verzending vanaf € 40', 'Stoppen wanneer je wilt', 'In 1 tot 2 werkdagen verstuurd' );
 
 $home = array(
     array(
