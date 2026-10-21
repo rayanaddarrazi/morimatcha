@@ -3389,9 +3389,109 @@
             "append": ""
         },
         {
-            "key": "field_options_mori_winkel_toegang_fout_naam",
-            "label": "Foutmelding: naam ontbreekt",
-            "name": "toegang_fout_naam",
+            "key": "field_options_mori_winkel_toegang_fout_voornaam_leeg",
+            "label": "Melding: voornaam leeg",
+            "name": "toegang_fout_voornaam_leeg",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_voornaam_hoofdletter",
+            "label": "Melding: voornaam zonder hoofdletter",
+            "name": "toegang_fout_voornaam_hoofdletter",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_achternaam_leeg",
+            "label": "Melding: achternaam leeg",
+            "name": "toegang_fout_achternaam_leeg",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_achternaam_hoofdletter",
+            "label": "Melding: achternaam zonder hoofdletter",
+            "name": "toegang_fout_achternaam_hoofdletter",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_naam_tekens",
+            "label": "Melding: ongeldige tekens in naam",
+            "name": "toegang_fout_naam_tekens",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_email_leeg",
+            "label": "Melding: e-mailadres leeg",
+            "name": "toegang_fout_email_leeg",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -3410,7 +3510,7 @@
         },
         {
             "key": "field_options_mori_winkel_toegang_fout_email",
-            "label": "Foutmelding: e-mailadres klopt niet",
+            "label": "Melding: e-mailadres ongeldig",
             "name": "toegang_fout_email",
             "aria-label": "",
             "type": "text",
@@ -3429,8 +3529,28 @@
             "append": ""
         },
         {
+            "key": "field_options_mori_winkel_toegang_fout_wachtwoord_leeg",
+            "label": "Melding: wachtwoord leeg",
+            "name": "toegang_fout_wachtwoord_leeg",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_options_mori_winkel_toegang_fout_wachtwoord",
-            "label": "Foutmelding: wachtwoord te kort",
+            "label": "Melding: wachtwoord te kort",
             "name": "toegang_fout_wachtwoord",
             "aria-label": "",
             "type": "text",
@@ -3449,8 +3569,48 @@
             "append": ""
         },
         {
+            "key": "field_options_mori_winkel_toegang_fout_wachtwoord_hoofdletter",
+            "label": "Melding: wachtwoord zonder hoofdletter",
+            "name": "toegang_fout_wachtwoord_hoofdletter",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_wachtwoord_cijfer",
+            "label": "Melding: wachtwoord zonder cijfer",
+            "name": "toegang_fout_wachtwoord_cijfer",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_options_mori_winkel_toegang_fout_wachtwoord_email",
-            "label": "Foutmelding: wachtwoord is e-mailadres",
+            "label": "Melding: wachtwoord is e-mailadres",
             "name": "toegang_fout_wachtwoord_email",
             "aria-label": "",
             "type": "text",
@@ -3864,5 +4024,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1792569455
+    "modified": 1792570806
 }

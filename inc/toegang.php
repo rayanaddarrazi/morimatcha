@@ -20,6 +20,65 @@ function kj_toegang_tekst( $sleutel, $standaard = '' ) {
     return (string) kj_option( $sleutel, $standaard );
 }
 
+/** Alle meldingen bij de velden, uit Instellingen Mori. De pagina geeft ze ook door aan het script. */
+function kj_toegang_meldingen() {
+    $min = KJ_WACHTWOORD_MIN;
+    return array(
+        'voornaam_leeg'        => kj_toegang_tekst( 'toegang_fout_voornaam_leeg', 'Vul je voornaam in.' ),
+        'voornaam_hoofdletter' => kj_toegang_tekst( 'toegang_fout_voornaam_hoofdletter', 'Begin je voornaam met een hoofdletter, bijvoorbeeld Sanne.' ),
+        'achternaam_leeg'        => kj_toegang_tekst( 'toegang_fout_achternaam_leeg', 'Vul je achternaam in.' ),
+        'achternaam_hoofdletter' => kj_toegang_tekst( 'toegang_fout_achternaam_hoofdletter', 'Je achternaam heeft een hoofdletter nodig, bijvoorbeeld De Vries of de Vries.' ),
+        'naam_tekens'          => kj_toegang_tekst( 'toegang_fout_naam_tekens', 'Gebruik alleen letters, spaties en streepjes.' ),
+        'email_leeg'           => kj_toegang_tekst( 'toegang_fout_email_leeg', 'Vul je e-mailadres in.' ),
+        'email'                => kj_toegang_tekst( 'toegang_fout_email', 'Dit is geen geldig e-mailadres, bijvoorbeeld naam@voorbeeld.nl.' ),
+        'wachtwoord_leeg'      => kj_toegang_tekst( 'toegang_fout_wachtwoord_leeg', 'Vul je wachtwoord in.' ),
+        'wachtwoord_kort'      => sprintf( kj_toegang_tekst( 'toegang_fout_wachtwoord', 'Minimaal %d tekens.' ), $min ),
+        'wachtwoord_hoofdletter' => kj_toegang_tekst( 'toegang_fout_wachtwoord_hoofdletter', 'Gebruik minimaal één hoofdletter.' ),
+        'wachtwoord_cijfer'    => kj_toegang_tekst( 'toegang_fout_wachtwoord_cijfer', 'Gebruik minimaal één cijfer.' ),
+        'wachtwoord_email'     => kj_toegang_tekst( 'toegang_fout_wachtwoord_email', 'Je wachtwoord mag niet je e-mailadres zijn.' ),
+        'voorwaarden'          => kj_toegang_tekst( 'toegang_fout_voorwaarden', 'Ga akkoord met de algemene voorwaarden om een account te maken.' ),
+    );
+}
+
+/** Controleert voornaam, achternaam, e-mailadres en wachtwoord. De sleutel is het veld, de waarde de melding. */
+function kj_toegang_controleer( $voornaam, $achternaam, $email, $wachtwoord ) {
+    $m    = kj_toegang_meldingen();
+    $fout = array();
+    $naam = '/^[\p{L}][\p{L}\' \-]*$/u';
+
+    if ( '' === $voornaam ) {
+        $fout['voornaam'] = $m['voornaam_leeg'];
+    } elseif ( ! preg_match( $naam, $voornaam ) ) {
+        $fout['voornaam'] = $m['naam_tekens'];
+    } elseif ( ! preg_match( '/^\p{Lu}/u', $voornaam ) ) {
+        $fout['voornaam'] = $m['voornaam_hoofdletter'];
+    }
+    if ( '' === $achternaam ) {
+        $fout['achternaam'] = $m['achternaam_leeg'];
+    } elseif ( ! preg_match( $naam, $achternaam ) ) {
+        $fout['achternaam'] = $m['naam_tekens'];
+    } elseif ( ! preg_match( '/\p{Lu}/u', $achternaam ) ) {
+        $fout['achternaam'] = $m['achternaam_hoofdletter'];
+    }
+    if ( '' === $email ) {
+        $fout['email'] = $m['email_leeg'];
+    } elseif ( ! is_email( $email ) ) {
+        $fout['email'] = $m['email'];
+    }
+    if ( '' === $wachtwoord ) {
+        $fout['wachtwoord'] = $m['wachtwoord_leeg'];
+    } elseif ( mb_strlen( $wachtwoord ) < KJ_WACHTWOORD_MIN ) {
+        $fout['wachtwoord'] = $m['wachtwoord_kort'];
+    } elseif ( ! preg_match( '/\p{Lu}/u', $wachtwoord ) ) {
+        $fout['wachtwoord'] = $m['wachtwoord_hoofdletter'];
+    } elseif ( ! preg_match( '/\d/', $wachtwoord ) ) {
+        $fout['wachtwoord'] = $m['wachtwoord_cijfer'];
+    } elseif ( 0 === strcasecmp( $wachtwoord, $email ) ) {
+        $fout['wachtwoord'] = $m['wachtwoord_email'];
+    }
+    return $fout;
+}
+
 /** Het IP-adres van de bezoeker, alleen voor het tellen van pogingen. */
 function kj_toegang_ip() {
     return isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'onbekend'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
@@ -52,30 +111,19 @@ add_filter( 'woocommerce_process_registration_errors', function ( $errors, $gebr
         return $errors;
     }
 
-    // Maximaal 5 accounts per uur per apparaat.
-    $sleutel = 'kj_reg_' . md5( kj_toegang_ip() );
-    $aantal  = (int) get_transient( $sleutel );
-    if ( $aantal >= 5 ) {
+    // Maximaal 5 accounts per uur per apparaat. Alleen gelukte registraties tellen mee (zie hieronder).
+    if ( (int) get_transient( 'kj_reg_' . md5( kj_toegang_ip() ) ) >= 5 ) {
         $errors->add( 'te-vaak', kj_toegang_tekst( 'toegang_fout_te_vaak', 'Je hebt het te vaak geprobeerd. Wacht een poosje en probeer het opnieuw.' ) );
         return $errors;
     }
-    set_transient( $sleutel, $aantal + 1, HOUR_IN_SECONDS );
 
-    $voornaam = isset( $_POST['voornaam'] ) ? trim( wc_clean( wp_unslash( $_POST['voornaam'] ) ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+    $voornaam   = isset( $_POST['voornaam'] ) ? trim( wc_clean( wp_unslash( $_POST['voornaam'] ) ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
     $achternaam = isset( $_POST['achternaam'] ) ? trim( wc_clean( wp_unslash( $_POST['achternaam'] ) ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-    if ( '' === $voornaam || '' === $achternaam ) {
-        $errors->add( 'naam', kj_toegang_tekst( 'toegang_fout_naam', 'Vul je voor- en achternaam in.' ) );
-    }
-    if ( ! is_email( $email ) ) {
-        $errors->add( 'email', kj_toegang_tekst( 'toegang_fout_email', 'Vul een geldig e-mailadres in.' ) );
-    }
-    if ( mb_strlen( (string) $wachtwoord ) < KJ_WACHTWOORD_MIN ) {
-        $errors->add( 'wachtwoord', sprintf( kj_toegang_tekst( 'toegang_fout_wachtwoord', 'Kies een wachtwoord van minimaal %d tekens.' ), KJ_WACHTWOORD_MIN ) );
-    } elseif ( 0 === strcasecmp( (string) $wachtwoord, (string) $email ) ) {
-        $errors->add( 'wachtwoord-email', kj_toegang_tekst( 'toegang_fout_wachtwoord_email', 'Je wachtwoord mag niet je e-mailadres zijn.' ) );
+    foreach ( kj_toegang_controleer( $voornaam, $achternaam, trim( (string) $email ), (string) $wachtwoord ) as $melding ) {
+        $errors->add( 'veld', $melding );
     }
     if ( empty( $_POST['voorwaarden'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-        $errors->add( 'voorwaarden', kj_toegang_tekst( 'toegang_fout_voorwaarden', 'Ga akkoord met de algemene voorwaarden om een account te maken.' ) );
+        $errors->add( 'voorwaarden', kj_toegang_meldingen()['voorwaarden'] );
     }
     return $errors;
 }, 10, 4 );
@@ -92,6 +140,11 @@ add_filter( 'woocommerce_new_customer_data', function ( $data ) {
     return $data;
 } );
 add_action( 'woocommerce_created_customer', function ( $klant_id ) {
+    if ( empty( $_POST['register'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+        return;
+    }
+    $sleutel = 'kj_reg_' . md5( kj_toegang_ip() );
+    set_transient( $sleutel, (int) get_transient( $sleutel ) + 1, HOUR_IN_SECONDS );
     $voornaam   = isset( $_POST['voornaam'] ) ? wc_clean( wp_unslash( $_POST['voornaam'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
     $achternaam = isset( $_POST['achternaam'] ) ? wc_clean( wp_unslash( $_POST['achternaam'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
     if ( $voornaam ) {

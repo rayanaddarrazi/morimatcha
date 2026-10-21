@@ -28,7 +28,7 @@ do_action( 'woocommerce_before_customer_login_form' );
 			</div>
 		</div>
 
-		<div class="inlog__formulier" data-inlog>
+		<div class="inlog__formulier" data-inlog data-meldingen="<?php echo esc_attr( wp_json_encode( kj_toegang_meldingen() ) ); ?>" data-min="<?php echo (int) KJ_WACHTWOORD_MIN; ?>">
 			<div class="inlog__tabs" role="tablist" aria-label="<?php echo esc_attr( $t( 'acc_login_titel', 'Inloggen' ) ); ?>">
 				<button type="button" role="tab" id="tab-inloggen" aria-controls="paneel-inloggen" aria-selected="<?php echo $registreren ? 'false' : 'true'; ?>" data-inlog-tab="inloggen"><?php echo esc_html( $t( 'acc_login_tab_inloggen', 'Inloggen' ) ); ?></button>
 				<button type="button" role="tab" id="tab-registreren" aria-controls="paneel-registreren" aria-selected="<?php echo $registreren ? 'true' : 'false'; ?>" data-inlog-tab="registreren"><?php echo esc_html( $t( 'acc_login_tab_registreren', 'Account maken' ) ); ?></button>
@@ -42,7 +42,8 @@ do_action( 'woocommerce_before_customer_login_form' );
 					<?php do_action( 'woocommerce_login_form_start' ); ?>
 					<p class="inlog__veld">
 						<label for="username"><?php echo esc_html( $t( 'afr_email_label', 'E-mailadres' ) ); ?></label>
-						<input type="text" name="username" id="username" autocomplete="username" inputmode="email" value="<?php echo ! empty( $_POST['username'] ) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; // phpcs:ignore WordPress.Security ?>" required>
+						<input type="text" name="username" id="username" autocomplete="username" inputmode="email" data-regel="email" aria-describedby="username-fout" value="<?php echo ! empty( $_POST['username'] ) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; // phpcs:ignore WordPress.Security ?>" required>
+						<span class="inlog__fout" id="username-fout" data-fout role="alert" hidden></span>
 					</p>
 					<p class="inlog__veld">
 						<span class="inlog__label-rij">
@@ -50,9 +51,10 @@ do_action( 'woocommerce_before_customer_login_form' );
 							<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" class="inlog__vergeten"><?php echo esc_html( $t( 'acc_login_vergeten', 'Wachtwoord vergeten?' ) ); ?></a>
 						</span>
 						<span class="inlog__wachtwoord">
-							<input type="password" name="password" id="password" autocomplete="current-password" required>
+							<input type="password" name="password" id="password" autocomplete="current-password" data-regel="wachtwoord-leeg" aria-describedby="password-fout" required>
 							<button type="button" class="inlog__oog" data-toon-wachtwoord aria-pressed="false" data-verberg="<?php echo esc_attr( $t( 'acc_login_verberg', 'Verberg' ) ); ?>"><?php echo esc_html( $t( 'acc_login_toon', 'Toon' ) ); ?></button>
 						</span>
+						<span class="inlog__fout" id="password-fout" data-fout role="alert" hidden></span>
 					</p>
 					<label class="inlog__vink"><input type="checkbox" name="rememberme" value="forever"><span><?php echo esc_html( $t( 'acc_login_onthoud', 'Houd me ingelogd' ) ); ?></span></label>
 					<input type="hidden" name="redirect" value="<?php echo esc_url( $terug ); ?>">
@@ -73,27 +75,32 @@ do_action( 'woocommerce_before_customer_login_form' );
 					<div class="inlog__rij">
 						<p class="inlog__veld">
 							<label for="reg_voornaam"><?php echo esc_html( $t( 'afr_voornaam', 'Voornaam' ) ); ?></label>
-							<input type="text" name="voornaam" id="reg_voornaam" autocomplete="given-name" value="<?php echo ! empty( $_POST['voornaam'] ) ? esc_attr( wp_unslash( $_POST['voornaam'] ) ) : ''; // phpcs:ignore WordPress.Security ?>" required>
+							<input type="text" name="voornaam" id="reg_voornaam" autocomplete="given-name" data-regel="voornaam" aria-describedby="reg_voornaam-fout" value="<?php echo ! empty( $_POST['voornaam'] ) ? esc_attr( wp_unslash( $_POST['voornaam'] ) ) : ''; // phpcs:ignore WordPress.Security ?>" required>
+							<span class="inlog__fout" id="reg_voornaam-fout" data-fout role="alert" hidden></span>
 						</p>
 						<p class="inlog__veld">
 							<label for="reg_achternaam"><?php echo esc_html( $t( 'afr_achternaam', 'Achternaam' ) ); ?></label>
-							<input type="text" name="achternaam" id="reg_achternaam" autocomplete="family-name" value="<?php echo ! empty( $_POST['achternaam'] ) ? esc_attr( wp_unslash( $_POST['achternaam'] ) ) : ''; // phpcs:ignore WordPress.Security ?>" required>
+							<input type="text" name="achternaam" id="reg_achternaam" autocomplete="family-name" data-regel="achternaam" aria-describedby="reg_achternaam-fout" value="<?php echo ! empty( $_POST['achternaam'] ) ? esc_attr( wp_unslash( $_POST['achternaam'] ) ) : ''; // phpcs:ignore WordPress.Security ?>" required>
+							<span class="inlog__fout" id="reg_achternaam-fout" data-fout role="alert" hidden></span>
 						</p>
 					</div>
 					<p class="inlog__veld">
 						<label for="reg_email"><?php echo esc_html( $t( 'afr_email_label', 'E-mailadres' ) ); ?></label>
-						<input type="email" name="email" id="reg_email" autocomplete="email" value="<?php echo ! empty( $_POST['email'] ) ? esc_attr( wp_unslash( $_POST['email'] ) ) : ''; // phpcs:ignore WordPress.Security ?>" required>
+						<input type="email" name="email" id="reg_email" autocomplete="email" data-regel="email-streng" aria-describedby="reg_email-fout" value="<?php echo ! empty( $_POST['email'] ) ? esc_attr( wp_unslash( $_POST['email'] ) ) : ''; // phpcs:ignore WordPress.Security ?>" required>
+						<span class="inlog__fout" id="reg_email-fout" data-fout role="alert" hidden></span>
 					</p>
 					<p class="inlog__veld">
 						<label for="reg_wachtwoord"><?php echo esc_html( $t( 'acc_login_wachtwoord', 'Wachtwoord' ) ); ?></label>
 						<span class="inlog__wachtwoord">
-							<input type="password" name="password" id="reg_wachtwoord" autocomplete="new-password" minlength="<?php echo (int) KJ_WACHTWOORD_MIN; ?>" aria-describedby="reg_hulp" required>
+							<input type="password" name="password" id="reg_wachtwoord" autocomplete="new-password" data-regel="wachtwoord" aria-describedby="reg_hulp reg_wachtwoord-fout" required>
 							<button type="button" class="inlog__oog" data-toon-wachtwoord aria-pressed="false" data-verberg="<?php echo esc_attr( $t( 'acc_login_verberg', 'Verberg' ) ); ?>"><?php echo esc_html( $t( 'acc_login_toon', 'Toon' ) ); ?></button>
 						</span>
-						<span class="inlog__hulp" id="reg_hulp"><?php echo esc_html( sprintf( $t( 'acc_reg_wachtwoord_hulp', 'Minimaal %d tekens.' ), KJ_WACHTWOORD_MIN ) ); ?></span>
+						<span class="inlog__fout" id="reg_wachtwoord-fout" data-fout role="alert" hidden></span>
+						<span class="inlog__hulp" id="reg_hulp"><?php echo esc_html( sprintf( $t( 'acc_reg_wachtwoord_hulp', 'Minimaal %d tekens, met een hoofdletter en een cijfer.' ), KJ_WACHTWOORD_MIN ) ); ?></span>
 					</p>
 					<p class="inlog__bot" aria-hidden="true"><label>Website<input type="text" name="kj_website" tabindex="-1" autocomplete="off"></label></p>
-					<label class="inlog__vink"><input type="checkbox" name="voorwaarden" value="1" required><span><?php echo esc_html( $t( 'afr_voorwaarden', 'Ik ga akkoord met de algemene voorwaarden' ) ); ?></span></label>
+					<label class="inlog__vink"><input type="checkbox" name="voorwaarden" id="reg_voorwaarden" value="1" data-regel="akkoord" aria-describedby="reg_voorwaarden-fout" required><span><?php echo esc_html( $t( 'afr_voorwaarden', 'Ik ga akkoord met de algemene voorwaarden' ) ); ?></span></label>
+					<span class="inlog__fout" id="reg_voorwaarden-fout" data-fout role="alert" hidden></span>
 					<?php do_action( 'woocommerce_register_form' ); ?>
 					<?php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); ?>
 					<button type="submit" class="inlog__knop" name="register" value="<?php echo esc_attr( $t( 'acc_reg_knop', 'Account maken' ) ); ?>"><?php echo esc_html( $t( 'acc_reg_knop', 'Account maken' ) ); ?></button>
