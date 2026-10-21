@@ -3109,6 +3109,426 @@
             ]
         },
         {
+            "key": "field_options_mori_winkel_acc_login_tab_inloggen",
+            "label": "Inloggen: tabblad inloggen",
+            "name": "acc_login_tab_inloggen",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_login_tab_registreren",
+            "label": "Inloggen: tabblad account maken",
+            "name": "acc_login_tab_registreren",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_login_onthoud",
+            "label": "Inloggen: houd me ingelogd",
+            "name": "acc_login_onthoud",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_login_verberg",
+            "label": "Inloggen: wachtwoord verbergen",
+            "name": "acc_login_verberg",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_login_nieuw_link",
+            "label": "Inloggen: link naar account maken",
+            "name": "acc_login_nieuw_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_reg_titel",
+            "label": "Account maken: titel",
+            "name": "acc_reg_titel",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_reg_sub",
+            "label": "Account maken: uitleg",
+            "name": "acc_reg_sub",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_reg_knop",
+            "label": "Account maken: knop",
+            "name": "acc_reg_knop",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_reg_heb_account",
+            "label": "Account maken: tekst voor wie al een account heeft",
+            "name": "acc_reg_heb_account",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_acc_reg_wachtwoord_hulp",
+            "label": "Account maken: uitleg wachtwoord",
+            "name": "acc_reg_wachtwoord_hulp",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%d = minimaal aantal tekens.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_login",
+            "label": "Foutmelding: inloggen mislukt",
+            "name": "toegang_fout_login",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_login_te_vaak",
+            "label": "Foutmelding: te vaak geprobeerd (inloggen)",
+            "name": "toegang_fout_login_te_vaak",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%d = aantal minuten.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_te_vaak",
+            "label": "Foutmelding: te vaak geprobeerd (account maken)",
+            "name": "toegang_fout_te_vaak",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_algemeen",
+            "label": "Foutmelding: algemeen",
+            "name": "toegang_fout_algemeen",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_naam",
+            "label": "Foutmelding: naam ontbreekt",
+            "name": "toegang_fout_naam",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_email",
+            "label": "Foutmelding: e-mailadres klopt niet",
+            "name": "toegang_fout_email",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_wachtwoord",
+            "label": "Foutmelding: wachtwoord te kort",
+            "name": "toegang_fout_wachtwoord",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "%d = minimaal aantal tekens.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_wachtwoord_email",
+            "label": "Foutmelding: wachtwoord is e-mailadres",
+            "name": "toegang_fout_wachtwoord_email",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_toegang_fout_voorwaarden",
+            "label": "Foutmelding: voorwaarden",
+            "name": "toegang_fout_voorwaarden",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_afr_login_link",
+            "label": "Kassa: link voor wie al een account heeft",
+            "name": "afr_login_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_mori_winkel_afr_login_link_knop",
+            "label": "Kassa: linktekst inloggen",
+            "name": "afr_login_link_knop",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_options_mori_winkel_acc_vergeten_titel",
             "label": "Wachtwoord vergeten: titel",
             "name": "acc_vergeten_titel",
@@ -3444,5 +3864,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1792505405
+    "modified": 1792569455
 }

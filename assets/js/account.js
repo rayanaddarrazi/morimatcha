@@ -45,3 +45,23 @@ document.querySelectorAll('[data-toon-wachtwoord]').forEach((knop) => {
         knop.textContent = zichtbaar ? toon : (knop.dataset.verberg || 'Verberg');
     });
 });
+
+/* Inloggen en account maken: twee tabbladen in dezelfde kaart. Zonder JavaScript staan ze onder elkaar. */
+document.querySelectorAll('[data-inlog]').forEach((blok) => {
+    const tabs = blok.querySelectorAll('.inlog__tabs [role="tab"]');
+    const panelen = blok.querySelectorAll('[data-inlog-paneel]');
+    const toon = (naam, focus) => {
+        panelen.forEach((p) => { p.hidden = p.dataset.inlogPaneel !== naam; });
+        tabs.forEach((t) => t.setAttribute('aria-selected', t.dataset.inlogTab === naam ? 'true' : 'false'));
+        if (focus) {
+            const eerste = blok.querySelector('[data-inlog-paneel="' + naam + '"] input:not([type="hidden"])');
+            if (eerste) { eerste.focus(); }
+        }
+    };
+    const start = blok.querySelector('.inlog__tabs [aria-selected="true"]');
+    toon(start ? start.dataset.inlogTab : 'inloggen', false);
+    blok.addEventListener('click', (e) => {
+        const knop = e.target.closest('[data-inlog-tab]');
+        if (knop) { toon(knop.dataset.inlogTab, true); }
+    });
+});

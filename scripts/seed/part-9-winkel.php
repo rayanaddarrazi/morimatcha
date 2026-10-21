@@ -35,8 +35,8 @@ $opties = array(
     'afr_contact_titel'  => 'Contact',
     'afr_email_label'    => 'E-mailadres',
     'afr_email_hulp'     => 'We sturen je bestelbevestiging naar dit adres.',
-    'afr_account_kop'    => 'Je abonnement krijgt een account',
-    'afr_account_tekst'  => 'Zo kun je het zelf pauzeren of opzeggen. Je kiest straks alleen een wachtwoord.',
+    'afr_account_kop'    => 'Je krijgt automatisch een account',
+    'afr_account_tekst'  => 'Je e-mailadres is je inlognaam. Je ontvangt een mail waarmee je zelf een wachtwoord kiest. Daarna volg je je bestelling en beheer je een abonnement in je account.',
     'afr_adres_titel'    => 'Bezorgadres',
     'afr_voornaam'       => 'Voornaam',
     'afr_achternaam'     => 'Achternaam',
@@ -129,7 +129,28 @@ $opties = array(
     'acc_login_vergeten' => 'Wachtwoord vergeten?',
     'acc_login_toon'     => 'Toon',
     'acc_login_knop'     => 'Inloggen',
-    'acc_login_nieuw'    => 'Nog geen account? Je krijgt er een bij je eerste bestelling.',
+    'acc_login_nieuw'    => 'Nog geen account?',
+    'acc_login_nieuw_link' => 'Account maken',
+    'acc_login_tab_inloggen' => 'Inloggen',
+    'acc_login_tab_registreren' => 'Account maken',
+    'acc_login_onthoud'  => 'Houd me ingelogd',
+    'acc_login_verberg'  => 'Verberg',
+    'acc_reg_titel'      => 'Account maken',
+    'acc_reg_sub'        => 'Met een account volg je je bestellingen en beheer je je abonnement zelf.',
+    'acc_reg_knop'       => 'Account maken',
+    'acc_reg_heb_account' => 'Heb je al een account?',
+    'acc_reg_wachtwoord_hulp' => 'Minimaal %d tekens.',
+    'toegang_fout_login' => 'Het e-mailadres of wachtwoord klopt niet.',
+    'toegang_fout_login_te_vaak' => 'Je hebt te vaak een verkeerd wachtwoord ingevuld. Probeer het over %d minuten opnieuw of kies een nieuw wachtwoord.',
+    'toegang_fout_te_vaak' => 'Je hebt het te vaak geprobeerd. Wacht een poosje en probeer het opnieuw.',
+    'toegang_fout_algemeen' => 'Het lukt niet om je account te maken. Probeer het later opnieuw.',
+    'toegang_fout_naam'  => 'Vul je voor- en achternaam in.',
+    'toegang_fout_email' => 'Vul een geldig e-mailadres in.',
+    'toegang_fout_wachtwoord' => 'Kies een wachtwoord van minimaal %d tekens.',
+    'toegang_fout_wachtwoord_email' => 'Je wachtwoord mag niet je e-mailadres zijn.',
+    'toegang_fout_voorwaarden' => 'Ga akkoord met de algemene voorwaarden om een account te maken.',
+    'afr_login_link'     => 'Heb je al een account?',
+    'afr_login_link_knop' => 'Inloggen',
     'acc_login_beeld_kop' => 'Je abonnement regel je zelf',
     'acc_login_punten'   => array(
         array( 'tekst' => 'Pauzeren of opzeggen wanneer je wilt' ),
@@ -239,3 +260,12 @@ update_option( 'woocommerce_myaccount_lost_password_endpoint', 'wachtwoord-verge
 update_option( 'woocommerce_logout_endpoint', 'uitloggen' );
 
 update_field( 'seo_beschrijving_standaard', 'Mori Matcha: matcha voor thuis, met duidelijke smaakinfo en een abonnement dat je zelf beheert.', 'option' );
+
+
+// Account en registratie: bij elke bestelling wordt een account gemaakt, en klanten kunnen zich ook los registreren.
+update_option( 'woocommerce_enable_guest_checkout', 'no' );
+update_option( 'woocommerce_enable_signup_and_login_from_checkout', 'yes' );
+update_option( 'woocommerce_enable_myaccount_registration', 'yes' );
+update_option( 'woocommerce_registration_generate_username', 'yes' );
+update_option( 'woocommerce_enable_checkout_login_reminder', 'no' );
+update_option( 'users_can_register', 0 );

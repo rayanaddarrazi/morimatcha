@@ -13,7 +13,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 }
 
 $velden   = $checkout->get_checkout_fields( 'billing' );
-$toon_abo = kj_cart_has_abo() && ! is_user_logged_in();
+$toon_abo = ! is_user_logged_in();
 
 $veld = function ( $sleutel ) use ( $velden, $checkout ) {
 	if ( isset( $velden[ $sleutel ] ) ) {
@@ -35,6 +35,9 @@ $veld = function ( $sleutel ) use ( $velden, $checkout ) {
 				<div class="kassa-velden">
 					<?php $veld( 'billing_email' ); ?>
 				</div>
+				<?php if ( ! is_user_logged_in() ) : ?>
+					<p class="kassa-hulp kassa-inlog"><?php echo esc_html( (string) kj_option( 'afr_login_link', '' ) ); ?> <a href="<?php echo esc_url( add_query_arg( 'terug', rawurlencode( wc_get_checkout_url() ), wc_get_page_permalink( 'myaccount' ) ) ); ?>"><?php echo esc_html( (string) kj_option( 'afr_login_link_knop', '' ) ); ?></a></p>
+				<?php endif; ?>
 				<?php if ( $toon_abo ) : ?>
 					<div class="kassa-melding">
 						<?php echo kj_svg( 'info' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
