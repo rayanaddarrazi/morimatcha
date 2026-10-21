@@ -37,12 +37,16 @@ uniform sampler2D uRadius;
 uniform sampler2D uLak;
 uniform sampler2D uPapier;
 uniform sampler2D uGlans;
+uniform sampler2D uMerk;
+uniform vec3 uNaadX;
+uniform float uMerkSterkte;
 uniform vec4 uGlansRect;
 uniform vec2 uStage;
 uniform float uScale;
 uniform float uRot;
 uniform float uXc, uA0, uK, uH0, uY0, uN, uHTop, uHBot, uHL0, uHL1;
 const float PI = 3.14159265;
+const float NAAD_R = 168.1;
 
 void main() {
     vec2 p = vec2(vUv.x, 1.0 - vUv.y) * uStage;                 // vlak in css-px, y naar beneden
@@ -67,10 +71,42 @@ void main() {
     float sx = s * 0.5 + 0.5;
     vec3 licht = (h >= uHL0 && h <= uHL1) ? texture2D(uPapier, vec2(sx, 0.5)).rgb : texture2D(uLak, vec2(sx, 0.5)).rgb;
     vec3 kleur = albedo * licht * 3.0;
+    // Merk in het lak (alleen buiten het etiket): komt tevoorschijn zodra het blik draait, zodat het hele blik meedraait
+    if (h < uHL0 || h > uHL1) {
+        float e = texture2D(uMerk, vec2(u, 1.0 - v)).r - 0.5;
+        kleur += e * 0.8 * uMerkSterkte;
+    }
     // Glans en randlicht: vast op het scherm, het draait niet mee met het blik
     vec2 g = (f - uGlansRect.xy) / uGlansRect.zw;
     if (g.x >= 0.0 && g.x <= 1.0 && g.y >= 0.0 && g.y <= 1.0) {
         kleur += (texture2D(uGlans, vec2(g.x, 1.0 - g.y)).rgb - 0.5) * 2.0;
+    }
+    kleur = clamp(kleur, 0.0, 1.0);
+    // De naad: twee dunne zilveren lijntjes met een donker randje ertussen, links op het lak (boven en onder het etiket).
+    // Ze zijn getekend met een vaste dikte op het scherm, zoals op de foto, en schuiven met het blik mee.
+    if ((h >= 322.0 && h <= uHL0 - 1.0) || (h >= uHL1 + 1.0 && h <= 826.0)) {
+        bool boven = h < uHL0;
+        float s1 = (uNaadX.x - uXc) / NAAD_R;
+        float s2 = (uNaadX.y - uXc) / NAAD_R;
+        float sg = (uNaadX.z - uXc) / NAAD_R;
+        float t1 = asin(s1) - uRot;
+        float t2 = asin(s2) - uRot;
+        float tg = asin(sg) - uRot;
+        float x1 = uXc + NAAD_R * sin(t1);
+        float x2 = uXc + NAAD_R * sin(t2);
+        float xg = uXc + NAAD_R * sin(tg);
+        float v1 = smoothstep(0.03, 0.2, cos(t1));
+        float v2 = smoothstep(0.03, 0.2, cos(t2));
+        float vg = smoothstep(0.03, 0.2, cos(tg));
+        float c1 = clamp(0.5 + (1.6 - abs(f.x - x1)) * uScale, 0.0, 1.0) * v1;
+        float c2 = clamp(0.5 + (1.5 - abs(f.x - x2)) * uScale, 0.0, 1.0) * v2;
+        float cg = clamp(0.5 + (0.8 - abs(f.x - xg)) * uScale, 0.0, 1.0) * vg;
+        vec3 zilver1 = boven ? vec3(0.57, 0.57, 0.56) : vec3(0.65, 0.65, 0.64);
+        vec3 zilver2 = boven ? vec3(0.50, 0.50, 0.50) : vec3(0.71, 0.71, 0.70);
+        vec3 donker = boven ? vec3(0.29, 0.30, 0.30) : vec3(0.37, 0.38, 0.38);
+        kleur = mix(kleur, zilver1, c1);
+        kleur = mix(kleur, zilver2, c2);
+        kleur = mix(kleur, donker, cg);
     }
     gl_FragColor = vec4(clamp(kleur, 0.0, 1.0) * alpha, alpha);
 }`;
@@ -151,6 +187,47 @@ function spatie(g, tekst, x, y, em, px) {
     });
 }
 
+/**
+ * De achterkant van het etiket: ingrediënten en hoe je de matcha maakt. Het etiket gaat helemaal om het blik, dus ook
+ * daar staat tekst. Getekend in de afgerolde textuur (1 pixel is ongeveer 1 pixel op het blik), de shader zorgt voor de
+ * verkorting. De achterkant ligt op de naad van de textuur, daarom wordt hij links en rechts samen getekend.
+ */
+function etiketOmheen(canvas, e) {
+    if (!e) { return; }
+    const g = canvas.getContext('2d');
+    const B = canvas.width;
+    const y0 = H_LAB0 - H_TOP;
+    g.save();
+    g.globalCompositeOperation = 'multiply';
+    g.textAlign = 'center';
+    g.textBaseline = 'middle';
+
+    const blok = function(x, y, kop, regels) {
+        if (!kop && !(regels || []).length) { return y; }
+        g.fillStyle = '#1f2a1b';
+        g.font = '600 10.5px "Hanken Grotesk", sans-serif';
+        spatie(g, (kop || '').toUpperCase(), x, y, 0.35, 10.5);
+        g.fillStyle = '#7a9a3f';
+        g.fillRect(x - 12, y + 11, 24, 1.5);
+        g.fillStyle = '#3f4a3a';
+        g.font = '500 12px "Hanken Grotesk", sans-serif';
+        (regels || []).slice(0, 3).forEach(function(regel, i) {
+            g.fillText(regel, x, y + 29 + i * 18);
+        });
+        return y + 29 + Math.max(1, (regels || []).length) * 18;
+    };
+    const achter = function(x) {
+        g.fillStyle = '#1f2a1b';
+        g.font = '500 28px "Shippori Mincho", serif';
+        g.fillText(e.teken || '', x, y0 + 32);
+        const y = blok(x, y0 + 68, e.achterKop, e.achterRegels);
+        blok(x, y + 6, e.achterKop2, e.achterRegels2);
+    };
+    achter(0);
+    achter(B);
+    g.restore();
+}
+
 /** Zet het etiket (multiply, zoals op de foto) in de afgerolde textuur, op de voorkant van het blik. */
 function etiketInTextuur(canvas, laag) {
     const g = canvas.getContext('2d');
@@ -198,6 +275,33 @@ function etiketInTextuur(canvas, laag) {
     g.putImageData(beeld, 0, 0);
 }
 
+/**
+ * Tone-op-tone merk op het lak: het teken zes keer rond. Dit staat in een eigen laag (0,5 = geen verandering)
+ * en wordt pas zichtbaar als het blik draait, dus de stilstaande weergave blijft gelijk aan de foto.
+ */
+function merkLaag(breedte, hoogte, teken) {
+    const c = document.createElement('canvas');
+    c.width = breedte;
+    c.height = hoogte;
+    const g = c.getContext('2d');
+    g.fillStyle = 'rgb(128,128,128)';
+    g.fillRect(0, 0, breedte, hoogte);
+    g.textAlign = 'center';
+    g.textBaseline = 'middle';
+    g.font = '500 58px "Shippori Mincho", serif';
+    const zones = [(H_LAB0 + 330) / 2 - H_TOP, (H_LAB1 + H_BOT) / 2 - H_TOP];   // boven en onder het etiket
+    for (let k = 0; k < 6; k++) {
+        const x = ((k + 0.5) / 6) * breedte;
+        zones.forEach(function(y) {
+            g.fillStyle = 'rgb(106,106,106)';
+            g.fillText(teken, x + 1.2, y + 1.2);
+            g.fillStyle = 'rgb(152,152,152)';
+            g.fillText(teken, x, y);
+        });
+    }
+    return c;
+}
+
 export async function start(houder, opties) {
     const breedte = houder.clientWidth;
     const hoogte = houder.clientHeight;
@@ -229,6 +333,7 @@ export async function start(houder, opties) {
     canvas.height = afbeelding.naturalHeight;
     canvas.getContext('2d').drawImage(afbeelding, 0, 0);
     etiketInTextuur(canvas, etiketLaag(opties));
+    etiketOmheen(canvas, Object.assign({ teken: opties.teken }, opties.etiket));
 
     const albedo = new CanvasTexture(canvas);
     albedo.wrapS = RepeatWrapping;
@@ -237,6 +342,14 @@ export async function start(houder, opties) {
     albedo.generateMipmaps = false;
     albedo.magFilter = LinearFilter;
     albedo.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
+
+    const merkCanvas = merkLaag(canvas.width, canvas.height, opties.teken);
+    const merk = new CanvasTexture(merkCanvas);
+    merk.wrapS = RepeatWrapping;
+    merk.wrapT = ClampToEdgeWrapping;
+    merk.minFilter = LinearFilter;
+    merk.magFilter = LinearFilter;
+    merk.generateMipmaps = false;
 
     const materiaal = new ShaderMaterial({
         vertexShader: VERTEX,
@@ -249,6 +362,9 @@ export async function start(houder, opties) {
             uLak: { value: tabel(data.lichtLak, 3) },
             uPapier: { value: tabel(data.lichtPapier, 3) },
             uGlans: { value: glans },
+            uMerk: { value: merk },
+            uNaadX: { value: [349.6, 355.0, 351.8] },
+            uMerkSterkte: { value: 0 },
             uGlansRect: { value: data.glans },
             uStage: { value: [breedte, hoogte] },
             uScale: { value: Math.max(breedte, hoogte) / FOTO },
@@ -266,57 +382,57 @@ export async function start(houder, opties) {
     const camera = new Camera();
     houder.appendChild(renderer.domElement);
 
-    // Draaien: slepen (muis, vinger, pen) en pijltjestoetsen, met uitloop
+    // Eén volledige draai, vanzelf: rustig op gang, rustig tot stilstand. Bezoekers kunnen er niet aan draaien.
     let hoek = 0;
-    let snelheid = 0;
-    let sleept = false;
-    let laatsteX = 0;
-    let bezig = false;
-    let zichtbaar = true;
 
     function teken() {
         materiaal.uniforms.uRot.value = -hoek;
+        // Hoe ver het blik van de beginstand af staat (0 tot 3,14): het merk komt geleidelijk in beeld
+        const rond = ((hoek % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+        const af = Math.min(rond, 2 * Math.PI - rond);
+        const t = Math.max(0, Math.min(1, (af - 0.03) / 0.45));
+        materiaal.uniforms.uMerkSterkte.value = t * t * (3 - 2 * t);
         renderer.render(scene, camera);
     }
 
-    function lus() {
-        if (!zichtbaar || document.hidden) { bezig = false; return; }
-        if (!sleept) {
-            hoek += snelheid;
-            snelheid *= 0.93;
-        }
-        teken();
-        if (sleept || Math.abs(snelheid) > 0.0004) {
-            requestAnimationFrame(lus);
-        } else {
-            snelheid = 0;
-            bezig = false;
-        }
+    // Rustige draaitafel: zacht op gang, snelheid in het midden en een lange, vloeiende uitloop. Dit is een cubic-bezier
+    // (0,55 / 0 / 0,1 / 1), zoals bij een CSS-overgang, zodat het blik niet "klapt" aan het begin of het eind.
+    function bezier(x1, y1, x2, y2) {
+        const cx = 3 * x1;
+        const bx = 3 * (x2 - x1) - cx;
+        const ax = 1 - cx - bx;
+        const cy = 3 * y1;
+        const by = 3 * (y2 - y1) - cy;
+        const ay = 1 - cy - by;
+        const px = function(t) { return ((ax * t + bx) * t + cx) * t; };
+        const py = function(t) { return ((ay * t + by) * t + cy) * t; };
+        const dx = function(t) { return (3 * ax * t + 2 * bx) * t + cx; };
+        return function(x) {
+            let t = x;
+            for (let i = 0; i < 8; i++) {
+                const f = px(t) - x;
+                const d = dx(t);
+                if (Math.abs(f) < 1e-5 || Math.abs(d) < 1e-6) { break; }
+                t -= f / d;
+            }
+            return py(Math.max(0, Math.min(1, t)));
+        };
     }
-    function start_() {
-        if (!bezig) { bezig = true; requestAnimationFrame(lus); }
+    const ease = bezier(0.55, 0, 0.1, 1);
+
+    function speel(duur) {
+        return new Promise(function(klaar) {
+            let t0 = null;
+            function stap(nu) {
+                if (t0 === null) { t0 = nu; }
+                const x = Math.min(1, (nu - t0) / duur);
+                hoek = ease(x) * 2 * Math.PI;
+                teken();
+                if (x < 1) { requestAnimationFrame(stap); } else { hoek = 0; teken(); klaar(); }
+            }
+            requestAnimationFrame(stap);
+        });
     }
-
-    const el = renderer.domElement;
-    el.style.touchAction = 'pan-y';
-    el.addEventListener('pointerdown', function(e) { sleept = true; laatsteX = e.clientX; snelheid = 0; el.setPointerCapture(e.pointerId); houder.classList.add('is-sleept'); start_(); });
-    el.addEventListener('pointermove', function(e) {
-        if (!sleept) { return; }
-        const d = (e.clientX - laatsteX) * 0.011;
-        hoek += d;
-        snelheid = d;
-        laatsteX = e.clientX;
-    });
-    const los = function() { sleept = false; houder.classList.remove('is-sleept'); start_(); };
-    el.addEventListener('pointerup', los);
-    el.addEventListener('pointercancel', los);
-    houder.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') { snelheid = -0.05; start_(); e.preventDefault(); }
-        if (e.key === 'ArrowRight') { snelheid = 0.05; start_(); e.preventDefault(); }
-    });
-
-    const waarnemer = new IntersectionObserver(function(items) { zichtbaar = items[0].isIntersecting; if (zichtbaar) { teken(); } });
-    waarnemer.observe(houder);
 
     const resize = new ResizeObserver(function() {
         const b = houder.clientWidth;
@@ -330,13 +446,16 @@ export async function start(houder, opties) {
 
     teken();
 
-    return function opruimen() {
-        waarnemer.disconnect();
+    return {
+        speel: speel,
+        zet: function(h) { hoek = h; teken(); },
+        opruimen: function() {
         resize.disconnect();
-        zichtbaar = false;
         albedo.dispose();
+        merk.dispose();
         glans.dispose();
         renderer.dispose();
         renderer.domElement.remove();
+        },
     };
 }

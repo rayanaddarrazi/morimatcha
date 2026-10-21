@@ -142,15 +142,7 @@
 
   /* Blik in 3D */
   .product__hoofd { position: relative; }
-  .blik3d { position: absolute; inset: 0; z-index: 2; border-radius: var(--afronding-groot); background-color: var(--kleur-gerst); background-size: cover; background-position: center; cursor: grab; overflow: hidden; }
-  .blik3d[hidden] { display: none; }
-  .blik3d.is-sleept { cursor: grabbing; }
-  .blik3d:focus-visible { outline: none; box-shadow: inset 0 0 0 3px var(--kleur-matcha); }
+  .blik3d { position: absolute; inset: 0; z-index: 2; border-radius: var(--afronding-groot); background-color: var(--kleur-gerst); background-size: cover; background-position: center; overflow: hidden; pointer-events: none; opacity: 0; transition: opacity 250ms var(--ease); }
+  .blik3d.is-aan { opacity: 1; }
   .blik3d__canvas { display: block; width: 100%; height: 100%; }
-  .blik3d__knop { position: absolute; z-index: 3; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: rgba(255, 255, 255, 0.92); color: var(--kleur-mos); font-size: 14px; font-weight: 500; box-shadow: inset 0 0 0 1px var(--kleur-lijn); cursor: pointer; transition: background-color 200ms var(--ease); }
-  .blik3d__knop:hover { background: var(--kleur-wit); }
-  .blik3d__knop:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--kleur-wit), 0 0 0 5px var(--kleur-matcha); }
-  .blik3d__knop svg { width: 16px; height: 16px; color: var(--kleur-matcha); }
-  .blik3d__hint { position: absolute; z-index: 3; right: 16px; top: 16px; margin: 0; font-size: 14px; color: var(--kleur-steen); pointer-events: none; }
-  .blik3d__hint[hidden] { display: none; }
 }

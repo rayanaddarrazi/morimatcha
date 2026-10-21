@@ -72,10 +72,11 @@ module.exports = ({ f, defineGroup }) => {
         f.textarea('seo_beschrijving_standaard', 'Standaard beschrijving voor zoekmachines', { instructions: 'Wordt gebruikt als een pagina of product geen eigen beschrijving heeft.' }),
 
         f.tab('Blik in 3D'),
-        f.bool('blik3d_aan', 'Knop "Draai het blik" tonen op de productpagina', { default: true, instructions: 'Het 3D-blik laadt pas na een klik, zodat de pagina snel blijft. Zonder WebGL blijft de foto staan.' }),
-        f.text('blik3d_knop', 'Knop: 3D openen'),
-        f.text('blik3d_terug', 'Knop: terug naar de foto'),
-        f.text('blik3d_hint', 'Hulptekst bij het blik'),
+        f.bool('blik3d_aan', 'Blik op de productpagina één keer laten draaien', { default: true, instructions: 'Het blik maakt vanzelf één volledige draai en blijft dan stilstaan. Het 3D-script laadt pas als de pagina klaar is. Bij "minder beweging" in het apparaat staat het blik gewoon stil.' }),
+        f.text('etiket_achter_kop', 'Etiket achterkant: eerste kop (ingrediënten)'),
+        f.repeater('etiket_achter_regels', 'Etiket achterkant: regels onder de eerste kop', [f.text('tekst', 'Regel')], { layout: 'table', max: 3, button: 'Regel toevoegen' }),
+        f.text('etiket_achter_kop2', 'Etiket achterkant: tweede kop'),
+        f.repeater('etiket_achter_regels2', 'Etiket achterkant: regels onder de tweede kop', [f.text('tekst', 'Regel')], { layout: 'table', max: 3, button: 'Regel toevoegen' }),
 
         f.tab('Mijn account'),
         f.text('acc_titel', 'Kleine regel boven de groet'),

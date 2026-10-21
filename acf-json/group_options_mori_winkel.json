@@ -1325,11 +1325,11 @@
         },
         {
             "key": "field_options_mori_winkel_blik3d_aan",
-            "label": "Knop \"Draai het blik\" tonen op de productpagina",
+            "label": "Blik op de productpagina één keer laten draaien",
             "name": "blik3d_aan",
             "aria-label": "",
             "type": "true_false",
-            "instructions": "Het 3D-blik laadt pas na een klik, zodat de pagina snel blijft. Zonder WebGL blijft de foto staan.",
+            "instructions": "Het blik maakt vanzelf één volledige draai en blijft dan stilstaan. Het 3D-script laadt pas als de pagina klaar is. Bij \"minder beweging\" in het apparaat staat het blik gewoon stil.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -1344,9 +1344,9 @@
             "ui_off_text": "Uit"
         },
         {
-            "key": "field_options_mori_winkel_blik3d_knop",
-            "label": "Knop: 3D openen",
-            "name": "blik3d_knop",
+            "key": "field_options_mori_winkel_etiket_achter_kop",
+            "label": "Etiket achterkant: eerste kop (ingrediënten)",
+            "name": "etiket_achter_kop",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -1364,9 +1364,53 @@
             "append": ""
         },
         {
-            "key": "field_options_mori_winkel_blik3d_terug",
-            "label": "Knop: terug naar de foto",
-            "name": "blik3d_terug",
+            "key": "field_options_mori_winkel_etiket_achter_regels",
+            "label": "Etiket achterkant: regels onder de eerste kop",
+            "name": "etiket_achter_regels",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 3,
+            "collapsed": "",
+            "button_label": "Regel toevoegen",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_options_mori_winkel_etiket_achter_regels_tekst",
+                    "label": "Regel",
+                    "name": "tekst",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_options_mori_winkel_etiket_achter_kop2",
+            "label": "Etiket achterkant: tweede kop",
+            "name": "etiket_achter_kop2",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -1384,11 +1428,11 @@
             "append": ""
         },
         {
-            "key": "field_options_mori_winkel_blik3d_hint",
-            "label": "Hulptekst bij het blik",
-            "name": "blik3d_hint",
+            "key": "field_options_mori_winkel_etiket_achter_regels2",
+            "label": "Etiket achterkant: regels onder de tweede kop",
+            "name": "etiket_achter_regels2",
             "aria-label": "",
-            "type": "text",
+            "type": "repeater",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -1397,11 +1441,35 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 3,
+            "collapsed": "",
+            "button_label": "Regel toevoegen",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_options_mori_winkel_etiket_achter_regels2_tekst",
+                    "label": "Regel",
+                    "name": "tekst",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
         },
         {
             "key": "field_options_mori_winkel_tab_mijn_account",
@@ -4024,5 +4092,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1792570806
+    "modified": 1792576092
 }

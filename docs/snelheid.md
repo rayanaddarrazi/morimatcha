@@ -11,7 +11,7 @@
 - Fraunces ingekort (vaste SOFT en WONK, gewicht 300 tot 400): 120 kB naar 58 kB.
 - Foto's als WebP met `srcset`, `loading="lazy"` onder de vouw, eerste foto `fetchpriority="high"`.
 - Eén CSS-bestand (110 kB, 19 kB gzip), scripts met `defer`.
-- 3D-blik als apart bestand, pas bij een klik geladen.
+- 3D-blik als apart bestand, pas geladen als de pagina klaar is (idle), en alleen als het apparaat geen "minder beweging" vraagt.
 
 ## Metingen (lokaal, 19 oktober 2026)
 | Pagina | Mobiel gesimuleerd (trage 4G, zonder compressie) | Mobiel zonder vertraging |

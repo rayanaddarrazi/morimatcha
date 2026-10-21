@@ -208,15 +208,10 @@
 
     render(false);
 
-    /* ---------- Blik in 3D: laadt Three.js pas na een klik, met de foto als terugval ---------- */
+    /* ---------- Blik in 3D: maakt vanzelf één volledige draai en blijft dan stilstaan op de foto ---------- */
     const hoofd = document.querySelector('[data-blik3d]');
-    if (hoofd) {
-        const knop = hoofd.querySelector('[data-blik3d-knop]');
+    if (hoofd && !reduceMotion) {
         const podium = hoofd.querySelector('[data-blik3d-stage]');
-        const hint = hoofd.querySelector('[data-blik3d-hint]');
-        let opruimen = null;
-        let laden = false;
-
         const webgl = function() {
             try {
                 const c = document.createElement('canvas');
@@ -225,36 +220,22 @@
                 return false;
             }
         };
-        if (!webgl()) {
-            knop.hidden = true;
-        }
 
-        const sluiten = function() {
-            if (opruimen) {
-                opruimen(); opruimen = null; 
-            }
-            podium.hidden = true;
-            if (hint) {
-                hint.hidden = true; 
-            }
-            hoofd.classList.remove('is-3d');
-            knop.setAttribute('aria-pressed', 'false');
-            knop.querySelector('span').textContent = knop.getAttribute('data-label-open');
+        const zichtbaar = function() {
+            return new Promise(function(klaar) {
+                if (!('IntersectionObserver' in window)) { klaar(); return; }
+                const waarnemer = new IntersectionObserver(function(items) {
+                    if (items[0].isIntersecting) { waarnemer.disconnect(); klaar(); }
+                }, { threshold: 0.6 });
+                waarnemer.observe(hoofd);
+            });
         };
 
-        knop.addEventListener('click', function() {
-            if (hoofd.classList.contains('is-3d')) {
-                sluiten();
-                return;
-            }
-            if (laden) {
-                return; 
-            }
-            laden = true;
-            const t0 = performance.now();
+        const draai = function() {
             const regelEl = document.querySelector('.product__hoofdbeeld .etiket__regel');
-            podium.hidden = false;
-            hoofd.classList.add('is-3d');
+            let blik = null;
+            let etiket = {};
+            try { etiket = JSON.parse(hoofd.getAttribute('data-etiket') || '{}'); } catch (e) { etiket = {}; }
             import(hoofd.getAttribute('data-module')).then(function(mod) {
                 return mod.start(podium, {
                     teken: hoofd.getAttribute('data-teken'),
@@ -262,34 +243,32 @@
                     regel: regelEl ? regelEl.textContent : '',
                     textuur: hoofd.getAttribute('data-textuur'),
                     glans: hoofd.getAttribute('data-glans'),
-                    reduceMotion: reduceMotion,
+                    etiket: etiket,
                 });
-            }).then(function(stop) {
-                opruimen = stop;
-                knop.setAttribute('aria-pressed', 'true');
-                knop.querySelector('span').textContent = knop.getAttribute('data-label-dicht');
-                if (hint) {
-                    hint.hidden = false; 
-                }
-                podium.focus({ preventScroll: true });
-                const ms = Math.round(performance.now() - t0);
-                hoofd.setAttribute('data-laadtijd', String(ms));
-                if (window.console && console.info) {
-                    console.info('Blik 3D geladen in ' + ms + ' ms'); 
-                }
+            }).then(function(b) {
+                blik = b;
+                return zichtbaar();
+            }).then(function() {
+                podium.classList.add('is-aan');
+                return new Promise(function(r) { setTimeout(r, 300); }).then(function() { return blik.speel(5400); });
+            }).then(function() {
+                // Terug naar de foto: stilstaand is het beeld gelijk aan de foto
+                podium.classList.remove('is-aan');
+                setTimeout(function() { blik.opruimen(); podium.remove(); }, 300);
             }).catch(function() {
-                // terugval: de foto blijft staan
-                sluiten();
-                knop.hidden = true;
-            }).finally(function() {
-                laden = false; 
+                if (blik) { blik.opruimen(); }
+                podium.remove();
             });
-        });
+        };
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && hoofd.classList.contains('is-3d')) {
-                sluiten(); knop.focus(); 
-            }
-        });
+        if (webgl()) {
+            const start = function() { if ('requestIdleCallback' in window) { requestIdleCallback(draai, { timeout: 2500 }); } else { setTimeout(draai, 800); } };
+            if (document.readyState === 'complete') { start(); } else { window.addEventListener('load', start, { once: true }); }
+        } else {
+            podium.remove();
+        }
+    } else if (hoofd) {
+        const podium = hoofd.querySelector('[data-blik3d-stage]');
+        if (podium) { podium.remove(); }
     }
 })();

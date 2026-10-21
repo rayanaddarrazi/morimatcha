@@ -70,10 +70,15 @@ $config = array(
 			<?php
 			// Het 3D-blik is gemaakt van deze ene productfoto. Is de foto vervangen, dan blijft alleen de foto staan.
 			$foto_sleutel = $hoofd_id ? get_post_meta( $hoofd_id, '_kj_seed_key', true ) : '';
-			$blik3d       = $is_variable && kj_option( 'blik3d_aan', true ) && 'product-mori-matcha' === $foto_sleutel && file_exists( get_template_directory() . '/assets/images/blik-textuur.webp' );
+			$blik3d       = $is_variable && kj_option( 'blik3d_aan', true ) && 'product-mori-matcha' === $foto_sleutel && file_exists( get_template_directory() . '/assets/images/blik-textuur.webp' ) && file_exists( get_template_directory() . '/assets/images/blik-achtergrond.webp' );
 			$foto_url     = $blik3d ? wp_get_attachment_image_url( $hoofd_id, 'mori-1440' ) : '';
 			?>
-			<div class="product__hoofd"<?php echo $blik3d ? ' data-blik3d data-module="' . esc_url( get_template_directory_uri() . '/assets/js/blik3d.js?v=' . filemtime( get_template_directory() . '/assets/js/blik3d.js' ) ) . '" data-textuur="' . esc_url( get_template_directory_uri() . '/assets/images/blik-textuur.webp' ) . '" data-glans="' . esc_url( get_template_directory_uri() . '/assets/images/blik-glans.webp' ) . '" data-teken="' . esc_attr( (string) kj_option( 'etiket_teken', '森' ) ) . '" data-naam="' . esc_attr( (string) kj_option( 'etiket_naam', 'MORI' ) ) . '"' : ''; ?>>
+			<div class="product__hoofd"<?php echo $blik3d ? ' data-blik3d data-module="' . esc_url( get_template_directory_uri() . '/assets/js/blik3d.js?v=' . filemtime( get_template_directory() . '/assets/js/blik3d.js' ) ) . '" data-textuur="' . esc_url( get_template_directory_uri() . '/assets/images/blik-textuur.webp?v=' . filemtime( get_template_directory() . '/assets/images/blik-textuur.webp' ) ) . '" data-glans="' . esc_url( get_template_directory_uri() . '/assets/images/blik-glans.webp?v=' . filemtime( get_template_directory() . '/assets/images/blik-glans.webp' ) ) . '" data-teken="' . esc_attr( (string) kj_option( 'etiket_teken', '森' ) ) . '" data-naam="' . esc_attr( (string) kj_option( 'etiket_naam', 'MORI' ) ) . '" data-etiket="' . esc_attr( wp_json_encode( array(
+				'achterKop'   => (string) kj_option( 'etiket_achter_kop', '' ),
+				'achterRegels' => array_values( array_filter( array_map( fn( $r ) => (string) ( $r['tekst'] ?? '' ), (array) kj_option( 'etiket_achter_regels', array() ) ) ) ),
+				'achterKop2'  => (string) kj_option( 'etiket_achter_kop2', '' ),
+				'achterRegels2' => array_values( array_filter( array_map( fn( $r ) => (string) ( $r['tekst'] ?? '' ), (array) kj_option( 'etiket_achter_regels2', array() ) ) ) ),
+			) ) ) . '"' : ''; ?>>
 			<?php
 			kj_component( 'foto-vlak', array(
 				'image'  => $hoofd_id,
@@ -85,12 +90,7 @@ $config = array(
 			) );
 			?>
 			<?php if ( $blik3d ) : ?>
-				<div class="blik3d" data-blik3d-stage style="background-image: url('<?php echo esc_url( $foto_url ); ?>')" tabindex="0" role="group" aria-label="<?php echo esc_attr( (string) kj_option( 'blik3d_hint', '' ) ); ?>" hidden></div>
-				<button type="button" class="blik3d__knop" data-blik3d-knop data-label-open="<?php echo esc_attr( (string) kj_option( 'blik3d_knop', '' ) ); ?>" data-label-dicht="<?php echo esc_attr( (string) kj_option( 'blik3d_terug', '' ) ); ?>" aria-pressed="false">
-					<?php echo kj_svg( 'herhalen' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-					<span><?php echo esc_html( (string) kj_option( 'blik3d_knop', '' ) ); ?></span>
-				</button>
-				<p class="blik3d__hint" data-blik3d-hint hidden><?php echo esc_html( (string) kj_option( 'blik3d_hint', '' ) ); ?></p>
+				<div class="blik3d" data-blik3d-stage style="background-image: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/blik-achtergrond.webp?v=' . filemtime( get_template_directory() . '/assets/images/blik-achtergrond.webp' ) ); ?>')" aria-hidden="true"></div>
 			<?php endif; ?>
 			</div>
 			<?php if ( $galerij_ids ) : ?>

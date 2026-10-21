@@ -95,9 +95,16 @@ $opties = array(
     'bev_abo_knop'       => 'Naar mijn abonnement',
 
     'blik3d_aan'         => 1,
-    'blik3d_knop'        => 'Draai het blik',
-    'blik3d_terug'       => 'Terug naar de foto',
-    'blik3d_hint'        => 'Sleep om het blik te draaien',
+    'etiket_achter_kop'  => 'Ingrediënten',
+    'etiket_achter_regels' => array(
+        array( 'tekst' => 'Matcha, fijngemalen groene thee' ),
+        array( 'tekst' => 'Geen suiker, geen smaakstoffen' ),
+    ),
+    'etiket_achter_kop2' => 'Zo maak je hem',
+    'etiket_achter_regels2' => array(
+        array( 'tekst' => '2 gram matcha, 70 ml water van 80 °C' ),
+        array( 'tekst' => '15 seconden kloppen' ),
+    ),
 
     'acc_titel'          => 'Mijn account',
     'acc_groet'          => 'Hoi %s',

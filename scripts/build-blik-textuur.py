@@ -21,7 +21,7 @@ im = np.array(Image.open(FOTO).convert('RGB')).astype(np.float64)
 H, W, _ = im.shape
 r, g, b = im[..., 0], im[..., 1], im[..., 2]
 
-XC = 507.0           # midden van het blik in de foto (px)
+XC = 509.4           # midden van het blik in de foto (px), gemeten aan de randen van het etiket
 # Kromming van de ringen door de camerahoek: A(h) = A0 + K * (h - H0). Gemeten aan de naad van het deksel
 # (7,2 px) en de boven- en onderrand van het etiket (13,5 en 21,8 px); lager op het blik is de hoek groter.
 A0, K, H0 = 7.17, 0.0415, 314.1
@@ -33,23 +33,22 @@ Y0, Y1 = 232, 872    # rijen waarin het blik staat
 H_TOP = 243.8        # bovenste ring van het deksel (op de hoogte-as)
 H_BOT = 832.4        # onderste ring van de voet
 
-# Rand rechts per rij uit de foto (blik is donker of groen, de achtergrond beige)
-blik = ((r - b) < 22) | (g > r + 6)
-blik &= ((r + g + b) / 3 < 175)
-rechts = np.full(Y1 - Y0, np.nan)
-for i, y in enumerate(range(Y0, Y1)):
-    xs = np.where(blik[y, 480:720])[0]
-    if len(xs) > 20:
-        rechts[i] = xs.max() + 480
-# gaten (etiketrijen) opvullen en gladstrijken
-idx = np.arange(len(rechts))
-ok = ~np.isnan(rechts)
-rechts = np.interp(idx, idx[ok], rechts[ok])
-k = 9
-pad = np.pad(rechts, k, mode='edge')
-mediaan = np.array([np.median(pad[i:i + 2 * k + 1]) for i in range(len(rechts))])
-straal = np.clip(mediaan + 1.0 - XC, 160, 170)   # halve breedte
-# de rand van het deksel en de voet zelf zijn al in de mediaan opgenomen
+# Halve breedte per rij. Gemeten aan de randen van het etiket, dat precies tot aan de rand van het blik loopt:
+# links 341,3 en rechts 677,5, dus midden 509,4 en straal 168,1. Het deksel is iets breder (169) en het blik loopt
+# onderaan weer iets uit (168,5). Een zachte overgang zodat de rand geen trapjes krijgt.
+rijen_y = np.arange(Y0, Y1)
+straal = np.full(len(rijen_y), 168.1)
+straal[rijen_y >= 254] = 169.0                      # deksel
+# De bovenrand van het deksel is afgeschuind: de halve breedte groeit in tien rijen van 154 naar 168 (gemeten aan de foto)
+afschuining = {232: 148.0, 238: 152.0, 240: 154.0, 242: 156.5, 244: 157.8, 246: 158.7, 248: 159.3, 250: 160.1, 252: 167.0}
+for yy_, r_ in afschuining.items():
+    straal[(rijen_y >= yy_) & (rijen_y < 254)] = r_
+straal[rijen_y < 232 + 0] = 148.0
+straal[(rijen_y >= 318) & (rijen_y <= 826)] = 168.1  # blik
+straal[rijen_y > 826] = 169.4                       # voet
+_kr = np.exp(-0.5 * (np.arange(-4, 5) / 1.0) ** 2)
+_kr /= _kr.sum()
+straal = np.convolve(np.pad(straal, 4, mode='edge'), _kr, mode='valid')
 
 # Lichtverloop per materiaal: S(s) = helderheid op breedte s (-1..1) gedeeld door de helderheid in het midden.
 # Het lak (groen) heeft een glans links, het papier (etiket) niet, dus ze krijgen elk een eigen verloop.
@@ -119,6 +118,7 @@ dec = np.array(Image.open(os.path.join(THEMA, 'assets', 'images', 'blik-textuur.
 TH, TW, _ = dec.shape
 GX0, GX1, GY0, GY1 = 330, 690, Y0, Y1
 res = np.full((GY1 - GY0, GX1 - GX0, 3), 128, dtype=np.uint8)
+resf = np.zeros((GY1 - GY0, GX1 - GX0, 3))
 def tex_sample(u, v):
     x = u * TW - 0.5
     y = np.clip(v * TH - 0.5, 0, TH - 1.001)
@@ -136,6 +136,8 @@ def licht_tabel(t, sx):
     i0 = np.floor(xx).astype(int)
     f = (xx - i0)[..., None]
     return t[i0] * (1 - f) + t[i0 + 1] * f
+RAND_BOVEN = np.median(im[340:445, 344:347].reshape(-1, 3), axis=0)
+RAND_ONDER = np.median(im[690:815, 344:347].reshape(-1, 3), axis=0)
 for yy in range(GY0, GY1):
     idx = yy - Y0
     R = round((straal[idx] - 150) / 40 * 255) / 255 * 40 + 150   # zoals de shader hem uit de 8-bits tabel leest
@@ -158,7 +160,22 @@ for yy in range(GY0, GY1):
     echt = im[yy, GX0:GX1]
     verschil = np.clip(echt - voorspeld, -48, 48)   # scherpe randen (etiket, deksel) komen uit de textuur zelf, niet uit de glanslaag
     verschil[~ok2] = 0
+    # Op de plek van de naad (links op het lak) komt alleen nog beeld uit de textuur: de glanslaag staat vast op het
+    # scherm en zou de lijntjes daar laten staan terwijl het blik draait.
+    naad_zone = (xs > 336) & (xs < 366) & ~papier & (hh >= 318) & (hh <= 830)
+    if naad_zone.any():
+        # Het stuk met de twee lijntjes: daar komt een zachte overgang van de rand naar het lak ernaast, zonder lijntjes
+        # (die worden in de shader getekend) en zonder harde grens.
+        boven_zone = hh[naad_zone] < H_LAB0
+        rand = np.where(boven_zone[:, None], RAND_BOVEN, RAND_ONDER)
+        binnen = echt[(xs >= 366) & (xs < 374)].mean(axis=0)
+        t = np.clip((xs[naad_zone] - 346.0) / 22.0, 0.0, 1.0)
+        t = (t * t * (3 - 2 * t))[:, None]
+        doel = rand * (1 - t) + binnen * t
+        verschil[naad_zone] = np.clip(doel - voorspeld[naad_zone], -48, 48)
+    resf[yy - GY0] = verschil
     res[yy - GY0] = np.clip(np.round(verschil / 255 * 127.5 + 127.5), 0, 255).astype(np.uint8)
+# (De naad, twee dunne zilveren lijntjes links, wordt in de shader getekend: zie blik3d.src.js.)
 # Grover afronden (stappen van 4 niveaus, onzichtbaar) zodat het verliesvrij kleiner wordt
 res = (np.round((res.astype(np.int32) - 128) / 4.0) * 4 + 128).clip(0, 255).astype(np.uint8)
 Image.fromarray(res).save(os.path.join(THEMA, 'assets', 'images', 'blik-glans.webp'), 'WEBP', lossless=True, method=6)
@@ -175,3 +192,24 @@ data = {
 with open(os.path.join(THEMA, 'assets', 'js', 'blik-data.json'), 'w') as f:
     json.dump(data, f, separators=(',', ':'))
 print('glans', os.path.getsize(os.path.join(THEMA, 'assets', 'images', 'blik-glans.webp')) // 1024, 'kB'); print('textuur', tex.shape, os.path.getsize(os.path.join(THEMA, 'assets', 'images', 'blik-textuur.webp')) // 1024, 'kB')
+
+
+# Achtergrondplaat: de productfoto, met alleen een smalle strook langs de linker- en rechterrand van het blik vervangen door
+# de achtergrond ernaast. Tijdens het draaien ligt het 3D-blik op deze plaat. Op de foto zelf zit langs de rand van het
+# blik een donkergrijs randje; dat zou als vaste lijn achter het draaiende blik blijven staan. Het binnenste van het blik
+# blijft de foto (daar ligt toch het 3D-blik overheen), zodat boven en onder het blik niets verandert.
+plaat = np.array(Image.open(FOTO).convert('RGB')).astype(np.float64)
+rng = np.random.default_rng(7)
+for yy in range(Y0 + 10, Y1 - 10):
+    R = float(straal[yy - Y0])
+    l0 = int(math.floor(XC - R - 12))
+    l1 = int(math.floor(XC - R + 0.5))
+    r0 = int(math.ceil(XC + R - 0.5))
+    r1 = int(math.ceil(XC + R + 3))
+    links = plaat[yy, l0 - 6:l0 - 1].mean(axis=0)
+    rechts = plaat[yy, r1 + 2:r1 + 7].mean(axis=0)
+    plaat[yy, l0:l1 + 1] = links + rng.normal(0, 1.6, (l1 - l0 + 1, 1))
+    plaat[yy, r0:r1 + 1] = rechts + rng.normal(0, 1.6, (r1 - r0 + 1, 1))
+plaat = np.clip(np.round(plaat), 0, 255).astype('uint8')
+Image.fromarray(plaat).save(os.path.join(THEMA, 'assets', 'images', 'blik-achtergrond.webp'), 'WEBP', quality=92, method=6)
+print('achtergrond', os.path.getsize(os.path.join(THEMA, 'assets', 'images', 'blik-achtergrond.webp')) // 1024, 'kB')
