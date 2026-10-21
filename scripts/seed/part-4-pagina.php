@@ -214,10 +214,10 @@ function kj_seed_menu( $naam, $items ) {
 
 $locations = array(
     'hoofdmenu'   => kj_seed_menu( 'Hoofdmenu', array(
-        array( 'Shop', $shop_url ),
-        array( 'Matcha', $product_url ),
-        array( 'Abonnement', home_url( '/abonnement/' ) ),
-        array( 'Bereiden', home_url( '/bereiden/' ) ),
+        array( 'Shop', $shop_url, 'Matcha, startersets en gereedschap' ),
+        array( 'Matcha', $product_url, 'Zacht en romig, voor puur of met melk' ),
+        array( 'Abonnement', home_url( '/abonnement/' ), 'Elke maand een blik, 10% korting' ),
+        array( 'Bereiden', home_url( '/bereiden/' ), 'Klaar in een minuut' ),
     ) ),
     'footer_shop' => kj_seed_menu( 'Footer: Shop', array(
         array( 'Matcha', $product_url ),

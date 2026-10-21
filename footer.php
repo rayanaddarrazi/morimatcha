@@ -55,7 +55,7 @@ $melding   = isset( $_GET['nieuwsbrief'] ) ? sanitize_key( wp_unslash( $_GET['ni
 			<div class="site-footer__kolommen">
 				<div class="site-footer__merk">
 					<span class="logo logo--footer"><?php echo kj_logo( 'wit', 'volledig' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
-					<p class="hidden lg:block"><?php echo esc_html( (string) kj_option( 'footer_merk_tekst' ) ); ?></p>
+					<p><?php echo esc_html( (string) kj_option( 'footer_merk_tekst' ) ); ?></p>
 				</div>
 				<div class="site-footer__links">
 					<?php foreach ( $kolommen as $kolom ) :
