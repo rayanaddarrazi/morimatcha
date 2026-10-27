@@ -80,32 +80,6 @@
             "new_lines": ""
         },
         {
-            "key": "field_layout_bereiding_weergave",
-            "label": "Weergave",
-            "name": "weergave",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "tabs": "Tabs (Puur / Met melk)",
-                "gestapeld": "Onder elkaar"
-            },
-            "default_value": "tabs",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
             "key": "field_layout_bereiding_tip",
             "label": "Tip onderaan",
             "name": "tip",
@@ -372,5 +346,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1792576092
+    "modified": 1793089608
 }

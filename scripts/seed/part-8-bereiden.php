@@ -44,7 +44,6 @@ $blokken = array(
         'titel'         => 'Zo maak je hem',
         'intro'         => 'Klaar in een minuut. Je hebt een kom, een bamboe klopper en een zeefje nodig.',
         'tip'           => 'Te sterk of te slap? Neem de volgende keer iets meer of minder poeder. Er is geen fout antwoord.',
-        'weergave'      => 'gestapeld',
         'varianten'     => array(
             array( 'naam' => 'Puur', 'stappen' => array(
                 $stap( 'lepel', '2 g', 'Matcha', 'Eén volle theelepel. Zeef hem in je kom, dan krijg je geen klontjes.' ),

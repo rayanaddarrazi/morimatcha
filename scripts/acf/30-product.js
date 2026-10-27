@@ -70,7 +70,6 @@ module.exports = ({ f, defineGroup, defineLayout }) => {
         f.text('eyebrow', 'Eyebrow', { default: 'Bereiden' }),
         f.text('titel', 'Titel'),
         f.textarea('intro', 'Intro'),
-        f.select('weergave', 'Weergave', { tabs: 'Tabs (Puur / Met melk)', gestapeld: 'Onder elkaar' }, { default: 'tabs' }),
         f.text('tip', 'Tip onderaan', { instructions: 'Leeg = geen tip.' }),
         f.repeater('varianten', 'Manieren van bereiden', [
             f.text('naam', 'Naam van het tabblad', { width: 30, instructions: 'Bijvoorbeeld Puur of Met melk.' }),

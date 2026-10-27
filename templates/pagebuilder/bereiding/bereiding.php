@@ -16,7 +16,7 @@ if ( empty( $varianten ) ) {
 	return;
 }
 $uid = 'ber-' . wp_unique_id();
-$gestapeld = 'gestapeld' === get_sub_field( 'weergave' );
+$gestapeld = false; // altijd één kaart met een filter (tabs) tussen de manieren van bereiden
 $tabs_tonen = ! $gestapeld && count( $varianten ) > 1;
 ?>
 
