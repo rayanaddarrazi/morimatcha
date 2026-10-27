@@ -229,12 +229,27 @@ add_action( 'send_headers', function () {
     header( 'Permissions-Policy: camera=(), microphone=(), geolocation=()' );
 } );
 
-/** Klanten komen niet in het dashboard; zij blijven in hun account. */
+/**
+ * Klanten komen niet in het dashboard. Wie /wp-admin opent met een klantaccount (of zonder rechten) krijgt het
+ * inlogscherm van WordPress, zodat je met een beheerder kunt inloggen. Bezoekers zonder account en de AJAX- en
+ * admin-post-aanvragen van de winkel (nieuwsbrief, winkelwagen, abonnement) blijven ongemoeid.
+ */
+// WooCommerce stuurt klanten zelf al van het dashboard naar Mijn account. Dat blokkeert het inloggen als beheerder in
+// dezelfde browser, dus zetten we dat uit en doet de regel hieronder het werk.
+add_filter( 'woocommerce_prevent_admin_access', '__return_false' );
+add_filter( 'pre_option_woocommerce_lock_down_admin', function () {
+    return 'no';
+} );
+
 add_action( 'admin_init', function () {
-    if ( wp_doing_ajax() || current_user_can( 'edit_posts' ) || current_user_can( 'manage_woocommerce' ) ) {
+    global $pagenow;
+    if ( ! is_user_logged_in() || wp_doing_ajax() || 'admin-post.php' === $pagenow || 'admin-ajax.php' === $pagenow ) {
         return;
     }
-    wp_safe_redirect( wc_get_page_permalink( 'myaccount' ) );
+    if ( current_user_can( 'edit_posts' ) || current_user_can( 'manage_woocommerce' ) ) {
+        return;
+    }
+    wp_safe_redirect( add_query_arg( 'reauth', '1', wp_login_url( admin_url() ) ) );
     exit;
 } );
 add_filter( 'show_admin_bar', function ( $toon ) {

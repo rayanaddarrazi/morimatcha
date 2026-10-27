@@ -38,7 +38,8 @@ uniform sampler2D uLak;
 uniform sampler2D uPapier;
 uniform sampler2D uGlans;
 uniform sampler2D uMerk;
-uniform vec3 uNaadX;
+uniform sampler2D uNaadP;
+uniform float uNaadAnker, uNaadX0, uNaadB;
 uniform float uMerkSterkte;
 uniform vec4 uGlansRect;
 uniform vec2 uStage;
@@ -82,31 +83,21 @@ void main() {
         kleur += (texture2D(uGlans, vec2(g.x, 1.0 - g.y)).rgb - 0.5) * 2.0;
     }
     kleur = clamp(kleur, 0.0, 1.0);
-    // De naad: twee dunne zilveren lijntjes met een donker randje ertussen, links op het lak (boven en onder het etiket).
-    // Ze zijn getekend met een vaste dikte op het scherm, zoals op de foto, en schuiven met het blik mee.
-    if ((h >= 322.0 && h <= uHL0 - 1.0) || (h >= uHL1 + 1.0 && h <= 826.0)) {
-        bool boven = h < uHL0;
-        float s1 = (uNaadX.x - uXc) / NAAD_R;
-        float s2 = (uNaadX.y - uXc) / NAAD_R;
-        float sg = (uNaadX.z - uXc) / NAAD_R;
-        float t1 = asin(s1) - uRot;
-        float t2 = asin(s2) - uRot;
-        float tg = asin(sg) - uRot;
-        float x1 = uXc + NAAD_R * sin(t1);
-        float x2 = uXc + NAAD_R * sin(t2);
-        float xg = uXc + NAAD_R * sin(tg);
-        float v1 = smoothstep(0.03, 0.2, cos(t1));
-        float v2 = smoothstep(0.03, 0.2, cos(t2));
-        float vg = smoothstep(0.03, 0.2, cos(tg));
-        float c1 = clamp(0.5 + (1.6 - abs(f.x - x1)) * uScale, 0.0, 1.0) * v1;
-        float c2 = clamp(0.5 + (1.5 - abs(f.x - x2)) * uScale, 0.0, 1.0) * v2;
-        float cg = clamp(0.5 + (0.8 - abs(f.x - xg)) * uScale, 0.0, 1.0) * vg;
-        vec3 zilver1 = boven ? vec3(0.57, 0.57, 0.56) : vec3(0.65, 0.65, 0.64);
-        vec3 zilver2 = boven ? vec3(0.50, 0.50, 0.50) : vec3(0.71, 0.71, 0.70);
-        vec3 donker = boven ? vec3(0.29, 0.30, 0.30) : vec3(0.37, 0.38, 0.38);
-        kleur = mix(kleur, zilver1, c1);
-        kleur = mix(kleur, zilver2, c2);
-        kleur = mix(kleur, donker, cg);
+    // De naad: twee zilveren lijntjes met een donker randje, links op het lak (boven en onder het etiket). Dit is het
+    // profiel van de foto zelf (mediaan over alle rijen), als een plaatje met vaste breedte dat met het blik meeschuift.
+    // Daardoor zijn kleur, dikte en stijl in rust gelijk aan de foto en blijven ze dat tijdens het draaien.
+    if ((h >= 315.4 && h <= uHL0 + 1.4) || (h >= uHL1 - 1.4 && h <= 819.0)) {
+        float th = asin((uNaadAnker - uXc) / NAAD_R) - uRot;
+        float vis = smoothstep(0.02, 0.22, cos(th));
+        float xpos = uXc + NAAD_R * sin(th);
+        float tx = (f.x - xpos + uNaadAnker - uNaadX0) / uNaadB;
+        if (tx >= 0.0 && tx <= 1.0 && vis > 0.0) {
+            // plakje: 6 boven het etiket (rij 0 tot 5) en 6 eronder (rij 6 tot 11), met zachte overgang tussen de plakjes
+            float rij = h < uHL0 ? clamp((h - 322.0) / (uHL0 - 1.0 - 322.0), 0.0, 1.0) * 6.0 : 6.0 + clamp((h - uHL1 - 1.0) / (826.0 - uHL1 - 1.0), 0.0, 1.0) * 6.0;
+            float vy = (clamp(rij, h < uHL0 ? 0.5 : 6.5, h < uHL0 ? 5.5 : 11.5)) / 12.0;
+            vec4 c = texture2D(uNaadP, vec2(tx, vy));
+            kleur = mix(kleur, c.rgb, c.a * vis);
+        }
     }
     gl_FragColor = vec4(clamp(kleur, 0.0, 1.0) * alpha, alpha);
 }`;
@@ -130,6 +121,30 @@ function tabel(waarden, kanalen) {
     t.magFilter = LinearFilter;
     t.wrapS = ClampToEdgeWrapping;
     t.wrapT = ClampToEdgeWrapping;
+    t.needsUpdate = true;
+    return t;
+}
+
+/**
+ * Het profiel van de naad als een kleine textuur: 6 plakjes van boven naar beneden boven het etiket en 6 eronder
+ * (de lijntjes zijn bovenaan lichter), kleuren in 0 tot 255. De shader mengt tussen de plakjes.
+ */
+function naadProfiel() {
+    const n = data.naad.boven[0].length;
+    const rijen = data.naad.boven.length + data.naad.onder.length;
+    const px = new Uint8Array(n * rijen * 4);
+    data.naad.boven.concat(data.naad.onder).forEach(function(plak, r) {
+        plak.forEach(function(v, i) {
+            const o = (r * n + i) * 4;
+            px[o] = Math.round(v[0]); px[o + 1] = Math.round(v[1]); px[o + 2] = Math.round(v[2]); px[o + 3] = Math.round(v[3] * 255);
+        });
+    });
+    const t = new DataTexture(px, n, rijen, RGBAFormat, UnsignedByteType);
+    t.minFilter = LinearFilter;
+    t.magFilter = LinearFilter;
+    t.wrapS = ClampToEdgeWrapping;
+    t.wrapT = ClampToEdgeWrapping;
+    t.premultiplyAlpha = false;
     t.needsUpdate = true;
     return t;
 }
@@ -363,7 +378,8 @@ export async function start(houder, opties) {
             uPapier: { value: tabel(data.lichtPapier, 3) },
             uGlans: { value: glans },
             uMerk: { value: merk },
-            uNaadX: { value: [349.6, 355.0, 351.8] },
+            uNaadP: { value: naadProfiel() },
+            uNaadAnker: { value: data.naad.anker }, uNaadX0: { value: data.naad.x0 }, uNaadB: { value: data.naad.boven[0].length },
             uMerkSterkte: { value: 0 },
             uGlansRect: { value: data.glans },
             uStage: { value: [breedte, hoogte] },

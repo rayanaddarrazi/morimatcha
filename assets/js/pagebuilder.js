@@ -7,7 +7,7 @@
  * @author Kay Jilesen
  * 
  * This file combines all pagebuilder block JavaScript files.
- * Generated: 2026-10-21T10:02:04.086Z
+ * Generated: 2026-10-21T10:12:07.543Z
  */
 
 (function() {

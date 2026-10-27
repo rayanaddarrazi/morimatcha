@@ -180,7 +180,41 @@ for yy in range(GY0, GY1):
 res = (np.round((res.astype(np.int32) - 128) / 4.0) * 4 + 128).clip(0, 255).astype(np.uint8)
 Image.fromarray(res).save(os.path.join(THEMA, 'assets', 'images', 'blik-glans.webp'), 'WEBP', lossless=True, method=6)
 
+# Profiel van de naad (twee zilveren lijntjes met een donker randje): de mediaan van alle rijen boven en onder het etiket,
+# van x = 342 tot 362. Precies wat er op de foto staat, zonder korrel. De shader schuift dit "plaatje" mee met het blik.
+NX0, NXN = 342, 20
+def naad_profiel_blok(a, b):
+    # De lijntjes lopen op de foto niet perfect recht (ze verschuiven een tiende pixel per paar rijen). Daarom eerst elke
+    # rij op de rest uitlijnen en dan pas de mediaan nemen: zo blijven de lijntjes scherp in plaats van uitgesmeerd.
+    xs = np.arange(NX0 - 4, NX0 + NXN + 4, dtype=np.float64)
+    rijen_ = im[a:b, NX0 - 4:NX0 + NXN + 4, :]                      # rijen x breedte x 3
+    ref = np.median(rijen_, axis=0)
+    wl = np.array([0.299, 0.587, 0.114])
+    for _ in range(3):
+        uitgelijnd = np.empty_like(rijen_)
+        for i in range(rijen_.shape[0]):
+            beste, besteS = None, 0.0
+            for sh in np.arange(-1.6, 1.61, 0.1):
+                cand = np.stack([np.interp(xs + sh, xs, rijen_[i][:, c]) for c in range(3)], axis=1)
+                fout = ((cand[6:-6] - ref[6:-6]) ** 2).sum()
+                if beste is None or fout < beste:
+                    beste, besteS = fout, sh
+            uitgelijnd[i] = np.stack([np.interp(xs + besteS, xs, rijen_[i][:, c]) for c in range(3)], axis=1)
+        ref = np.median(uitgelijnd, axis=0)
+    kleur = ref[4:4 + NXN]
+    alfa = np.zeros(NXN)
+    for i in range(NXN):
+        x = NX0 + i
+        alfa[i] = np.clip((x - 346.5) / 1.0, 0, 1) * np.clip((358.0 - x) / 1.0, 0, 1)   # van de rand van het lijntje tot het lak
+    return [[round(float(v), 1) for v in kleur[i]] + [round(float(alfa[i]), 3)] for i in range(NXN)]
+def naad_profiel(a, b, n=6):
+    # n plakjes van boven naar beneden: de lijntjes zijn bovenaan lichter dan onderaan, en dat blijft zo
+    rand = np.linspace(a, b, n + 1).astype(int)
+    return [naad_profiel_blok(max(a, (rand[i] + rand[i + 1]) // 2 - 14), min(b, (rand[i] + rand[i + 1]) // 2 + 14)) for i in range(n)]
+NAAD_PROFIEL = {'x0': NX0, 'anker': 352.0, 'boven': naad_profiel(326, 456), 'onder': naad_profiel(680, 822), 'bovenRijen': [322, H_LAB0 - 1], 'onderRijen': [H_LAB1 + 1, 826]}
+
 data = {
+    'naad': NAAD_PROFIEL,
     'glans': [GX0, GY0, GX1 - GX0, GY1 - GY0],
     'foto': 1024, 'xc': XC, 'a0': A0, 'k': K, 'h0': H0, 'y0': Y0, 'hTop': H_TOP, 'hBot': H_BOT,
     'straal': [round(float(v), 2) for v in straal],
