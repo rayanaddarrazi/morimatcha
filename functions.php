@@ -15,5 +15,6 @@ require_once get_template_directory() . '/inc/template-functions.php';
 require_once get_template_directory() . '/inc/woocommerce.php';
 require_once get_template_directory() . '/inc/abonnementen.php';
 require_once get_template_directory() . '/inc/kassa.php';
+require_once get_template_directory() . '/inc/btw.php';
 require_once get_template_directory() . '/inc/account.php';
 require_once get_template_directory() . '/inc/toegang.php';
