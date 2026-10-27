@@ -22,6 +22,8 @@ if ( $kassa ) {
 
 		if ( $kassa || ( function_exists( 'is_account_page' ) && is_account_page() ) ) {
 			the_content();
+		} elseif ( function_exists( 'is_cart' ) && is_cart() ) {
+			get_template_part( 'templates/components/winkelwagen-leeg' );
 		} elseif ( have_rows( 'pagebuilder' ) ) {
 			get_template_part( 'templates/pagebuilder/loop' );
 		}

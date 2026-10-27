@@ -852,6 +852,26 @@
             "append": ""
         },
         {
+            "key": "field_options_mori_cart_leeg_knop",
+            "label": "Knoptekst bij een lege winkelwagen",
+            "name": "cart_leeg_knop",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "De knop brengt de bezoeker terug naar de shop.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_options_mori_cart_verwijder",
             "label": "Knoptekst verwijderen",
             "name": "cart_verwijder",
@@ -1717,5 +1737,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1793089608
+    "modified": 1793092192
 }

@@ -50,6 +50,7 @@ module.exports = ({ f, defineGroup }) => {
         f.text('cart_verzending_gratis_kort', 'Verzending: regel in het totaal bij gratis'),
         f.text('cart_verzending_later', 'Verzending: regel in het totaal als nog niet gratis'),
         f.text('cart_leeg', 'Tekst bij een lege winkelwagen'),
+        f.text('cart_leeg_knop', 'Knoptekst bij een lege winkelwagen', { instructions: 'De knop brengt de bezoeker terug naar de shop.' }),
         f.text('cart_verwijder', 'Knoptekst verwijderen'),
         f.text('cart_afrekenen', 'Knoptekst afrekenen'),
         f.textarea('cart_noot', 'Tekst onder de knop', { instructions: 'Bijvoorbeeld hoe je een abonnement opzegt.' }),

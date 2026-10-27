@@ -119,6 +119,13 @@ function kj_cart_drawer_inner() {
     <div class="cart-drawer__producten">
         <?php if ( $cart->is_empty() ) : ?>
             <p class="cart-drawer__leeg"><?php echo esc_html( (string) kj_option( 'cart_leeg', 'Je winkelwagen is nog leeg.' ) ); ?></p>
+            <?php
+            kj_component( 'button', array(
+                'label'   => (string) kj_option( 'cart_leeg_knop', 'Naar de shop' ),
+                'url'     => wc_get_page_permalink( 'shop' ),
+                'variant' => 'secundair',
+            ) );
+            ?>
         <?php else : ?>
             <?php foreach ( $cart->get_cart() as $key => $item ) :
                 $product = $item['data'];

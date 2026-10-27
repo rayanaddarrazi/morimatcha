@@ -53,6 +53,7 @@ $opties = array(
     'cart_verzending_gratis_kort'    => 'Gratis',
     'cart_verzending_later'          => 'Bij het afrekenen',
     'cart_leeg'                      => 'Je winkelwagen is nog leeg.',
+    'cart_leeg_knop'                 => 'Naar de shop',
     'cart_verwijder'                 => 'Verwijder',
     'cart_afrekenen'                 => 'Afrekenen',
     'cart_noot'                      => 'Je abonnement kun je daarna altijd zelf pauzeren of opzeggen in je account.',
