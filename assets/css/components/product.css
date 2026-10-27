@@ -1,14 +1,9 @@
 /**
- * Productpagina: kruimelpad, galerij, maatkiezer, aankoopkeuze, aantal, zekerheden, Blik-illustratie
+ * Productpagina: galerij, maatkiezer, aankoopkeuze, aantal, zekerheden, Blik-illustratie
  */
 
 @layer components {
 
-  .kruimelpad { padding-top: 24px; }
-  .kruimelpad ol { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; @apply text-klein; color: var(--kleur-steen); }
-  .kruimelpad li + li::before { content: '/'; margin-right: 8px; color: var(--kleur-lijn); }
-  .kruimelpad a:hover { color: var(--kleur-mos); }
-  .kruimelpad [aria-current] { color: var(--kleur-mos); }
 
   .product { padding-block: 16px 64px; }
   @media (min-width: 1024px) { .product { padding-block: 32px 128px; } }
