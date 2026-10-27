@@ -125,3 +125,12 @@ document.querySelectorAll('[data-inlog]').forEach((blok) => {
         });
     });
 });
+
+/* Tabbladen: het actieve tabblad komt in beeld op een smal scherm */
+(function () {
+    const actief = document.querySelector('.account-nav__link.is-actief');
+    const lijst = actief && actief.closest('ul');
+    if (lijst && lijst.scrollWidth > lijst.clientWidth) {
+        lijst.scrollLeft = Math.max(0, actief.offsetLeft - 16);
+    }
+})();

@@ -121,19 +121,24 @@ add_action( 'wp_enqueue_scripts', function () {
     }
 }, 30 );
 
+/** Naam van een bestelregel, met de maat erbij ("Mori Matcha 60 gram"). */
+function kj_item_naam( $item ) {
+    $product = $item->get_product();
+    if ( $product && $product->is_type( 'variation' ) ) {
+        $gram = kj_variation_gram( $product );
+        return wc_get_product( $product->get_parent_id() )->get_name() . ( $gram ? ' ' . (int) $gram . ' gram' : '' );
+    }
+    return $item->get_name();
+}
+
+/** De producten van een bestelling op een rij, bijvoorbeeld "Mori Matcha 60 gram, Zeefje". */
+function kj_order_namen( $order ) {
+    return implode( ', ', array_map( 'kj_item_naam', $order->get_items() ) );
+}
+
 /** Titel van de laatste bestelling voor Mijn account. */
 function kj_order_regel( $order ) {
-    $namen = array();
-    foreach ( $order->get_items() as $item ) {
-        $product = $item->get_product();
-        if ( $product && $product->is_type( 'variation' ) ) {
-            $gram    = kj_variation_gram( $product );
-            $namen[] = wc_get_product( $product->get_parent_id() )->get_name() . ( $gram ? ' ' . (int) $gram . ' gram' : '' );
-        } else {
-            $namen[] = $item->get_name();
-        }
-    }
-    return sprintf( 'Bestelling %s, %s', $order->get_order_number(), implode( ', ', $namen ) );
+    return sprintf( 'Bestelling %s, %s', $order->get_order_number(), kj_order_namen( $order ) );
 }
 
 /** Foto van het blik voor in de samenvatting. */

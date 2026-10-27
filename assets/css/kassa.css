@@ -226,63 +226,161 @@
   .abo-donker .kj-button { --knop-bg: var(--kleur-rijstpapier); --knop-tekst: var(--kleur-mos); --icoon-bg: var(--kleur-mos); --icoon-kleur: var(--kleur-rijstpapier); margin-top: 8px; }
 
   /* ---------- Mijn account ---------- */
-  .site-main--account { padding-block: 64px 120px; min-height: 860px; }
-  @media (max-width: 1023px) { .site-main--account { padding-block: 32px 80px; min-height: 0; } }
-  .account__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: start; }
-  @media (min-width: 1024px) {
-    .account__grid { grid-template-columns: repeat(12, 1fr); gap: 32px; }
-    .account__zij { grid-column: 1 / span 4; position: sticky; top: 140px; }
-    .account__inhoud { grid-column: 5 / span 8; }
-  }
-  .account__zij { background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 24px; box-shadow: inset 0 0 0 1px var(--kleur-lijn); }
-  .account__profiel { display: flex; align-items: center; gap: 16px; padding-bottom: 24px; border-bottom: 1px solid var(--kleur-lijn); }
-  .account__avatar { flex: none; width: 52px; height: 52px; border-radius: 26px; background: var(--kleur-mos); color: var(--kleur-rijstpapier); display: inline-flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 22px; }
-  .account__wie { min-width: 0; }
-  .account__groet { margin: 0; font-size: 22px; line-height: 28px; font-weight: 400; }
-  .account__mail { margin: 2px 0 0; font-size: 14px; line-height: 20px; color: var(--kleur-steen); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .account__menu { margin-top: 16px; }
-  .account__menu ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-  .account__link { display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 14px; border-radius: var(--afronding-middel); font-size: 15px; line-height: 20px; color: var(--kleur-mos); transition: background-color 200ms var(--ease), color 200ms var(--ease); }
-  .account__link svg { width: 20px; height: 20px; flex: none; color: var(--kleur-steen); transition: color 200ms var(--ease); }
-  .account__link:hover { background: var(--kleur-rijstpapier); }
-  .account__link.is-actief { background: var(--kleur-mos); color: var(--kleur-rijstpapier); font-weight: 500; }
-  .account__link.is-actief svg { color: var(--kleur-jong-blad); }
-  .account__uit-rij { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--kleur-lijn); }
-  .account__uit { color: var(--kleur-steen); }
-  .account__uit:hover svg, .account__uit:hover { color: var(--kleur-mos); }
-  @media (max-width: 1023px) {
-    .account__zij { padding: 16px; }
-    .account__profiel { padding-bottom: 16px; }
-    .account__menu ul { flex-direction: row; overflow-x: auto; gap: 8px; padding-bottom: 4px; scrollbar-width: none; }
-    .account__menu ul::-webkit-scrollbar { display: none; }
-    .account__link { white-space: nowrap; height: 44px; background: var(--kleur-rijstpapier); }
-    .account__uit-rij { margin: 0; padding: 0; border: 0; }
+  .site-main--account { padding-block: 56px 120px; min-height: 860px; }
+  @media (max-width: 1023px) { .site-main--account { padding-block: 24px 80px; min-height: 0; } }
+  .account { display: flex; flex-direction: column; }
+
+  /* Kop met groet */
+  .account-hoofd { display: flex; align-items: center; gap: 20px; }
+  .account-hoofd__avatar { flex: none; width: 64px; height: 64px; border-radius: 32px; background: var(--kleur-mos); color: var(--kleur-rijstpapier); display: inline-flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 28px; }
+  .account-hoofd__wie { flex: 1; min-width: 0; }
+  .account-hoofd__groet { margin: 0; font-size: 40px; line-height: 46px; font-weight: 300; letter-spacing: -0.02em; }
+  .account-hoofd__meta { margin: 4px 0 0; display: flex; flex-wrap: wrap; gap: 4px 8px; font-size: 14px; line-height: 20px; color: var(--kleur-steen); }
+  .account-hoofd__uit { flex: none; display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; font-size: 14px; color: var(--kleur-mos); box-shadow: inset 0 0 0 1px var(--kleur-lijn); transition: background-color 200ms var(--ease), box-shadow 200ms var(--ease); }
+  .account-hoofd__uit svg { width: 18px; height: 18px; color: var(--kleur-steen); }
+  .account-hoofd__uit:hover { background: var(--kleur-wit); box-shadow: inset 0 0 0 1px var(--kleur-mos); }
+  @media (max-width: 639px) {
+    .account-hoofd { gap: 14px; }
+    .account-hoofd__avatar { width: 52px; height: 52px; border-radius: 26px; font-size: 22px; }
+    .account-hoofd__groet { font-size: 30px; line-height: 36px; }
+    .account-hoofd__uit { width: 44px; padding: 0; justify-content: center; }
+    .account-hoofd__uit span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .account-hoofd__meta span[aria-hidden] { display: none; }
+    .account-hoofd__meta span { flex-basis: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   }
 
-  .account__inhoud { min-width: 0; display: flex; flex-direction: column; gap: 32px; }
+  /* Tabbladen */
+  .account-nav { margin-top: 32px; border-bottom: 1px solid var(--kleur-lijn); }
+  .account-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 32px; overflow-x: auto; scrollbar-width: none; }
+  .account-nav ul::-webkit-scrollbar { display: none; }
+  .account-nav__link { position: relative; display: flex; align-items: center; gap: 10px; height: 56px; white-space: nowrap; font-size: 16px; color: var(--kleur-steen); transition: color 200ms var(--ease); }
+  .account-nav__link svg { width: 20px; height: 20px; flex: none; }
+  .account-nav__link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--kleur-mos); transform: scaleX(0); transform-origin: left; transition: transform 300ms var(--ease); }
+  .account-nav__link:hover { color: var(--kleur-mos); }
+  .account-nav__link.is-actief { color: var(--kleur-mos); font-weight: 500; }
+  .account-nav__link.is-actief svg { color: var(--kleur-matcha); }
+  .account-nav__link.is-actief::after { transform: scaleX(1); }
+  .account-nav__teller { min-width: 22px; height: 22px; padding: 0 7px; border-radius: 11px; background: var(--kleur-gerst); color: var(--kleur-mos); font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; }
+  .account-nav__punt { width: 8px; height: 8px; border-radius: 4px; background: var(--kleur-gelukt); }
+  .account-nav__punt--gepauzeerd { background: var(--kleur-letop); }
+  .account-nav__punt--betaling { background: var(--kleur-fout); }
+  .account-nav__punt--opgezegd { background: var(--kleur-lijn); }
+  @media (max-width: 639px) { .account-nav { margin-top: 20px; margin-inline: -16px; padding-inline: 16px; } .account-nav ul { gap: 24px; } .account-nav__link { height: 52px; font-size: 15px; } }
+
+  /* Inhoud */
+  .account__inhoud { margin-top: 40px; min-width: 0; display: flex; flex-direction: column; gap: 32px; }
+  @media (max-width: 639px) { .account__inhoud { margin-top: 28px; gap: 24px; } }
   .account__inhoud > .woocommerce-notices-wrapper:empty, .account__inhoud > form[id^="form-"] { display: none; }
-  .account-kop { display: flex; align-items: flex-end; min-height: 72px; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .account-kop__titel { margin: 0; font-weight: 300; font-size: 52px; line-height: 56px; letter-spacing: -0.02em; }
-  @media (max-width: 639px) { .account-kop__titel { font-size: 44px; line-height: 50px; } }
-  .account-kop__sinds { margin: 0 0 10px; font-size: 14px; color: var(--kleur-steen); }
+  .account-kop { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: -8px; }
+  .account-kop__titel { margin: 0; font-weight: 300; font-size: 36px; line-height: 44px; letter-spacing: -0.02em; }
+  .account-kop__sub { margin: 4px 0 0; font-size: 15px; line-height: 22px; color: var(--kleur-steen); }
+  .account-kop__terug { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--kleur-mos); }
+  .account-kop__terug svg { width: 16px; height: 16px; transform: rotate(180deg); }
+  .account-kop__terug:hover span { text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 639px) { .account-kop__titel { font-size: 30px; line-height: 38px; } }
   .account-melding { margin-top: 0; padding: 18px 24px; }
   .account-melding--gelukt { background: var(--kleur-jong-blad); }
-  .account-leeg { background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 32px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+  .account-leeg { background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 40px 32px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; box-shadow: inset 0 0 0 1px var(--kleur-lijn); }
   .account-leeg p { margin: 0; }
+  .account-leeg__icoon { width: 48px; height: 48px; border-radius: 24px; background: var(--kleur-rijstpapier); display: inline-flex; align-items: center; justify-content: center; color: var(--kleur-mos); }
+  .account-leeg__icoon svg { width: 22px; height: 22px; }
 
-  .leveringen { background: var(--kleur-wit); border-radius: var(--afronding-groot); overflow: hidden; }
-  .leveringen__kop { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 32px; border-bottom: 1px solid var(--kleur-lijn); }
-  .leveringen__kop h2 { margin: 0; font-size: 22px; line-height: 28px; font-weight: 400; }
-  .leveringen__lijst { list-style: none; margin: 0; padding: 0; }
-  .leveringen__rij { display: flex; align-items: center; gap: 24px; padding: 20px 32px; min-height: 84px; }
-  .leveringen__rij + .leveringen__rij { border-top: 1px solid var(--kleur-lijn); }
-  .leveringen__tekst { flex: 1; min-width: 0; }
-  .leveringen__datum { font-size: 14px; line-height: 20px; font-weight: 500; }
-  .leveringen__datum:hover { text-decoration: underline; }
-  .leveringen__sub { margin: 4px 0 0; font-size: 14px; line-height: 20px; color: var(--kleur-steen); }
-  .leveringen__prijs { font-size: 14px; font-weight: 500; min-width: 64px; text-align: right; }
-  .leveringen__pagina { display: flex; justify-content: space-between; padding: 16px 32px; border-top: 1px solid var(--kleur-lijn); }
-  @media (max-width: 639px) { .leveringen__kop, .leveringen__rij { padding-inline: 20px; } .leveringen__rij { flex-wrap: wrap; gap: 8px 16px; } }
+  /* Kerncijfers */
+  .account-cijfers { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .account-cijfer { background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 24px 28px; box-shadow: inset 0 0 0 1px var(--kleur-lijn); display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .account-cijfer__label { font-size: 13px; line-height: 18px; color: var(--kleur-steen); }
+  .account-cijfer__waarde { font-size: 32px; line-height: 40px; font-weight: 300; letter-spacing: -0.01em; }
+  .account-cijfer__sub { font-size: 14px; line-height: 20px; color: var(--kleur-steen); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .account-cijfer__link { color: var(--kleur-mos); text-decoration: underline; text-underline-offset: 3px; align-self: flex-start; }
+  @media (max-width: 1023px) { .account-cijfers { grid-template-columns: 1fr; gap: 12px; } .account-cijfer { padding: 18px 20px; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; } .account-cijfer__label { flex-basis: 100%; } .account-cijfer__waarde { font-size: 26px; line-height: 32px; } }
+
+  /* Hoofdkolom met zijkolom */
+  .account-raster { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: start; }
+  @media (min-width: 1024px) { .account-raster { grid-template-columns: minmax(0, 1fr) 340px; gap: 32px; } .account-raster__zij { position: sticky; top: 120px; } }
+  .account-raster__hoofd, .account-raster__zij { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+  .account-paneel { background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 28px; box-shadow: inset 0 0 0 1px var(--kleur-lijn); display: flex; flex-direction: column; gap: 16px; }
+  .account-paneel__titel { margin: 0; font-size: 20px; line-height: 26px; font-weight: 400; }
+  .account-paneel__tekst { margin: 0; font-style: normal; font-size: 15px; line-height: 24px; }
+  .account-paneel__tekst--leeg, .account-paneel__sub { color: var(--kleur-steen); }
+  .account-paneel__sub { margin: 0; font-size: 14px; line-height: 20px; }
+  .account-paneel__link { align-self: flex-start; font-size: 14px; font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+  .account-paneel__links { list-style: none; margin: 0; padding: 0; }
+  .account-paneel__links li + li { border-top: 1px solid var(--kleur-lijn); }
+  .account-paneel__links a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0; font-size: 15px; transition: padding 200ms var(--ease); }
+  .account-paneel__links a svg { width: 16px; height: 16px; color: var(--kleur-steen); transition: transform 200ms var(--ease); }
+  .account-paneel__links a:hover svg { transform: translateX(3px); color: var(--kleur-mos); }
+
+  /* Bestellingen */
+  .bestellingen { background: var(--kleur-wit); border-radius: var(--afronding-groot); overflow: hidden; box-shadow: inset 0 0 0 1px var(--kleur-lijn); }
+  .bestellingen__kop { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 28px; border-bottom: 1px solid var(--kleur-lijn); }
+  .bestellingen__kop h2 { margin: 0; font-size: 20px; line-height: 26px; font-weight: 400; }
+  .bestellingen__lijst { list-style: none; margin: 0; padding: 0; }
+  .bestellingen__lijst li + li { border-top: 1px solid var(--kleur-lijn); }
+  .bestelling-rij { display: flex; align-items: center; gap: 20px; padding: 18px 28px; transition: background-color 200ms var(--ease); }
+  .bestelling-rij:hover { background: var(--kleur-rijstpapier); }
+  .bestelling-rij__fotos { flex: none; display: flex; padding-left: 12px; }
+  .bestelling-rij__foto { width: 56px; height: 56px; margin-left: -12px; border-radius: 14px; background: var(--kleur-gerst); box-shadow: 0 0 0 3px var(--kleur-wit); overflow: hidden; display: inline-flex; align-items: center; justify-content: center; transition: box-shadow 200ms var(--ease); }
+  .bestelling-rij:hover .bestelling-rij__foto { box-shadow: 0 0 0 3px var(--kleur-rijstpapier); }
+  .bestelling-rij__foto img { width: 100%; height: 100%; object-fit: cover; }
+  .bestelling-rij__foto--meer { font-size: 13px; font-weight: 500; background: var(--kleur-rijstpapier); }
+  .bestelling-rij__tekst { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .bestelling-rij__nummer { font-size: 15px; font-weight: 500; line-height: 22px; }
+  .bestelling-rij__sub { font-size: 14px; line-height: 20px; color: var(--kleur-steen); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bestelling-rij__prijs { font-size: 15px; font-weight: 500; min-width: 72px; text-align: right; }
+  .bestelling-rij__pijl svg { width: 16px; height: 16px; color: var(--kleur-steen); transition: transform 200ms var(--ease), color 200ms var(--ease); }
+  .bestelling-rij:hover .bestelling-rij__pijl svg { transform: translateX(3px); color: var(--kleur-mos); }
+  @media (max-width: 639px) {
+    .bestellingen__kop { padding: 20px; }
+    .bestelling-rij { flex-wrap: wrap; gap: 12px 14px; padding: 16px 20px; }
+    .bestelling-rij__tekst { flex-basis: calc(100% - 140px); }
+    .bestelling-rij__foto { width: 48px; height: 48px; }
+    .bestelling-rij__prijs { margin-left: auto; }
+    .bestelling-rij__pijl { display: none; }
+  }
+  .account-filter { display: flex; gap: 8px; flex-wrap: wrap; }
+  .account-filter__knop { height: 40px; padding: 0 18px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 14px; color: var(--kleur-mos); box-shadow: inset 0 0 0 1px var(--kleur-lijn); transition: background-color 200ms var(--ease), box-shadow 200ms var(--ease); }
+  .account-filter__knop:hover { background: var(--kleur-wit); box-shadow: inset 0 0 0 1px var(--kleur-mos); }
+  .account-filter__knop.is-actief { background: var(--kleur-mos); color: var(--kleur-rijstpapier); box-shadow: none; }
+  .account-paginas { display: flex; align-items: center; justify-content: center; gap: 16px; font-size: 14px; color: var(--kleur-steen); }
+  .account-paginas a { width: 40px; height: 40px; border-radius: 20px; display: inline-flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 1px var(--kleur-lijn); color: var(--kleur-mos); }
+  .account-paginas a:hover { background: var(--kleur-wit); }
+
+  /* Eén bestelling */
+  .order-status { background: var(--kleur-wit); border-radius: var(--afronding-groot); padding: 28px; box-shadow: inset 0 0 0 1px var(--kleur-lijn); display: flex; flex-direction: column; gap: 28px; }
+  .order-status__kop { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .order-status__betaling { padding: 20px; border-radius: var(--afronding-middel); background: var(--kleur-rijstpapier); font-size: 15px; line-height: 24px; }
+  .order-status__betaling h2, .order-status__betaling h3 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 18px; margin: 0 0 8px; }
+  .order-status__betaling ul { list-style: none; margin: 0; padding: 0; }
+  .order-stappen { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr auto; }
+  .order-stappen__stap:last-child { align-items: flex-end; }
+  .order-stappen__stap { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--kleur-steen); }
+  .order-stappen__stap::before { content: ''; position: absolute; top: 13px; left: 28px; right: -2px; height: 2px; background: var(--kleur-lijn); }
+  .order-stappen__stap:last-child::before { display: none; }
+  .order-stappen__stap.is-klaar::before { background: var(--kleur-matcha); }
+  .order-stappen__punt { position: relative; z-index: 1; width: 28px; height: 28px; border-radius: 14px; background: var(--kleur-wit); box-shadow: inset 0 0 0 2px var(--kleur-lijn); display: inline-flex; align-items: center; justify-content: center; color: var(--kleur-rijstpapier); }
+  .order-stappen__punt svg { width: 14px; height: 14px; }
+  .order-stappen__stap.is-klaar .order-stappen__punt, .order-stappen__stap.is-nu .order-stappen__punt { background: var(--kleur-matcha); box-shadow: none; }
+  .order-stappen__stap.is-nu { color: var(--kleur-mos); font-weight: 500; }
+  .order-artikelen { background: var(--kleur-wit); border-radius: var(--afronding-groot); box-shadow: inset 0 0 0 1px var(--kleur-lijn); overflow: hidden; }
+  .order-artikelen__titel { margin: 0; padding: 24px 28px; font-size: 20px; line-height: 26px; font-weight: 400; border-bottom: 1px solid var(--kleur-lijn); }
+  .order-artikelen ul { list-style: none; margin: 0; padding: 0; }
+  .order-regel { display: flex; align-items: center; gap: 18px; padding: 20px 28px; }
+  .order-regel + .order-regel { border-top: 1px solid var(--kleur-lijn); }
+  .order-regel__foto { flex: none; width: 72px; height: 72px; border-radius: 14px; background: var(--kleur-gerst); overflow: hidden; display: inline-flex; }
+  .order-regel__foto img { width: 100%; height: 100%; object-fit: cover; }
+  .order-regel__tekst { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .order-regel__naam { font-weight: 500; }
+  .order-regel__sub { font-size: 14px; color: var(--kleur-steen); }
+  .order-regel__prijs { font-weight: 500; }
+  .order-artikelen__acties { padding: 20px 28px 28px; border-top: 1px solid var(--kleur-lijn); }
+  .order-kosten { margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+  .order-kosten > div { display: flex; justify-content: space-between; gap: 16px; }
+  .order-kosten dt { color: var(--kleur-steen); }
+  .order-kosten dd { margin: 0; }
+  .order-kosten__totaal { padding-top: 14px; margin-top: 4px; border-top: 1px solid var(--kleur-lijn); font-weight: 500; }
+  .order-kosten__totaal dt { color: var(--kleur-mos); }
+  .order-kosten__btw { font-size: 13px; }
+  @media (max-width: 639px) { .order-status, .account-paneel { padding: 22px 20px; } .order-artikelen__titel { padding: 20px; } .order-regel { padding: 16px 20px; gap: 14px; } .order-regel__foto { width: 56px; height: 56px; } .order-artikelen__acties { padding: 16px 20px 20px; } }
 
   /* Vensters */
   .dialoog { border: 0; padding: 0; background: var(--kleur-wit); border-radius: var(--afronding-groot); width: min(594px, calc(100vw - 32px)); max-height: calc(100vh - 32px); color: var(--kleur-mos); }

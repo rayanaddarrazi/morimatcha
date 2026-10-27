@@ -16,18 +16,62 @@ add_action( 'init', function () {
     add_rewrite_endpoint( 'abonnement', EP_ROOT | EP_PAGES );
 } );
 
-/** De zijbalk: uit Instellingen Mori, in de volgorde van het ontwerp. */
+/** Tekst uit Instellingen Mori, met een Nederlandse standaardtekst als het veld leeg is. */
+function kj_acc( $sleutel, $standaard = '' ) {
+    $waarde = (string) kj_option( $sleutel, '' );
+    return '' !== $waarde ? $waarde : $standaard;
+}
+
+/** Aantal bestellingen van een klant (alle statussen behalve concepten). */
+function kj_account_aantal_bestellingen( $user_id ) {
+    static $cache = array();
+    if ( ! isset( $cache[ $user_id ] ) ) {
+        $cache[ $user_id ] = count( wc_get_orders( array( 'customer_id' => $user_id, 'limit' => -1, 'return' => 'ids', 'status' => array_keys( wc_get_order_statuses() ) ) ) );
+    }
+    return $cache[ $user_id ];
+}
+
+/** Het menu bovenaan: uit Instellingen Mori, met een teller bij Bestellingen en een statuspunt bij Abonnement. */
 function kj_account_menu() {
     $rijen = (array) kj_option( 'acc_menu', array() );
     $menu  = array();
     $nu    = WC()->query->get_current_endpoint();
+    $user  = get_current_user_id();
+    $abo   = kj_abo_van_klant( $user );
     foreach ( $rijen as $rij ) {
         $sleutel = $rij['sleutel'];
         $url     = 'dashboard' === $sleutel ? wc_get_page_permalink( 'myaccount' ) : wc_get_account_endpoint_url( $sleutel );
         $actief  = 'dashboard' === $sleutel ? '' === $nu : ( $nu === $sleutel || ( 'orders' === $sleutel && 'view-order' === $nu ) );
-        $menu[]  = array( 'naam' => $rij['naam'], 'icoon' => $rij['icoon'], 'url' => $url, 'actief' => $actief );
+        $teller  = 'orders' === $sleutel ? kj_account_aantal_bestellingen( $user ) : 0;
+        $punt    = 'abonnement' === $sleutel && $abo ? $abo['status'] : '';
+        $menu[]  = array( 'naam' => $rij['naam'], 'icoon' => $rij['icoon'], 'url' => $url, 'actief' => $actief, 'teller' => $teller, 'punt' => $punt );
     }
     return $menu;
+}
+
+/** Miniaturen van de producten in een bestelling (maximaal $max) en het aantal dat er nog bij komt. */
+function kj_order_miniaturen( $order, $max = 3 ) {
+    $html  = array();
+    $items = array_values( $order->get_items() );
+    foreach ( array_slice( $items, 0, $max ) as $item ) {
+        $product = $item->get_product();
+        $html[]  = $product ? kj_cart_thumb( $product, 'thumbnail' ) : '';
+    }
+    return array( array_filter( $html ), max( 0, count( $items ) - $max ) );
+}
+
+/** Welke stap van de bestelling is bereikt: 1 besteld, 2 betaald, 3 bezorgd. 0 bij geannuleerd of mislukt. */
+function kj_order_stap( $order ) {
+    switch ( $order->get_status() ) {
+        case 'completed':
+            return 3;
+        case 'processing':
+            return 2;
+        case 'pending':
+        case 'on-hold':
+            return 1;
+    }
+    return 0;
 }
 
 /* ---------- Gegevens van het abonnement ---------- */
@@ -127,14 +171,24 @@ function kj_laatste_bestellingen( $user_id, $aantal = 3 ) {
 
 /** Status van een bestelling voor de badge. */
 function kj_order_badge( $order ) {
-    $status = $order->get_status();
-    if ( 'completed' === $status ) {
-        return array( 'Bezorgd', 'blad' );
+    switch ( $order->get_status() ) {
+        case 'completed':
+            return array( kj_acc( 'acc_status_bezorgd', 'Bezorgd' ), 'blad' );
+        case 'on-hold':
+        case 'pending':
+            return array( kj_acc( 'acc_status_wacht', 'Wacht op betaling' ), 'letop' );
+        case 'cancelled':
+        case 'failed':
+            return array( kj_acc( 'acc_status_geannuleerd', 'Geannuleerd' ), 'fout' );
+        case 'refunded':
+            return array( kj_acc( 'acc_status_terugbetaald', 'Terugbetaald' ), 'lijn' );
     }
-    if ( 'on-hold' === $status ) {
-        return array( 'Wacht op betaling', 'letop' );
-    }
-    return array( 'In behandeling', 'blad' );
+    return array( kj_acc( 'acc_status_behandeling', 'In behandeling' ), 'blad' );
+}
+
+/** Pad naar "opnieuw bestellen" van WooCommerce: zet de regels van een eerdere bestelling weer in de winkelwagen. */
+function kj_order_opnieuw_url( $order ) {
+    return wp_nonce_url( add_query_arg( 'order_again', $order->get_id(), wc_get_cart_url() ), 'woocommerce-order_again' );
 }
 
 /** Inhoud van de eindpunten. */
@@ -154,12 +208,20 @@ function kj_account_tabnaam( $sleutel ) {
     return '';
 }
 
-/** Kop bovenaan elke tab: titel links, "Klant sinds" rechts. */
-function kj_account_kop( $titel ) {
-    $user  = wp_get_current_user();
+/** Titel van een tab, met eventueel een korte regel eronder. Terug-link of acties kunnen rechts staan. */
+function kj_account_kop( $titel, $sub = '', $rechts = '' ) {
+    echo '<div class="account-kop"><div><h1 class="account-kop__titel font-serif">' . esc_html( $titel ) . '</h1>';
+    if ( $sub ) {
+        echo '<p class="account-kop__sub">' . esc_html( $sub ) . '</p>';
+    }
+    echo '</div>' . $rechts . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+}
+
+/** Wanneer de klant lid werd, bijvoorbeeld "oktober 2026". */
+function kj_account_sinds( $user ) {
     $abo   = kj_abo_van_klant( $user->ID );
-    $sinds = $abo && $abo['sinds'] ? ucfirst( wp_date( 'F Y', strtotime( $abo['sinds'] ) ) ) : wp_date( 'F Y', strtotime( $user->user_registered ) );
-    echo '<div class="account-kop"><h1 class="account-kop__titel font-serif">' . esc_html( $titel ) . '</h1><p class="account-kop__sinds">' . esc_html( sprintf( (string) kj_option( 'acc_abo_sinds', '%s' ), strtolower( $sinds ) ) ) . '</p></div>';
+    $datum = $abo && $abo['sinds'] ? strtotime( $abo['sinds'] ) : strtotime( $user->user_registered );
+    return wp_date( 'F Y', min( $datum, strtotime( $user->user_registered ) ) );
 }
 
 /* ---------- Gegevens en adressen ---------- */
