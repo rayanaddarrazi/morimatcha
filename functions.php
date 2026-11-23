@@ -18,3 +18,4 @@ require_once get_template_directory() . '/inc/kassa.php';
 require_once get_template_directory() . '/inc/btw.php';
 require_once get_template_directory() . '/inc/account.php';
 require_once get_template_directory() . '/inc/toegang.php';
+require_once get_template_directory() . '/inc/tijdelijk-beeldomzetten.php'; // TIJDELIJK: test xSpeed tegenover Smush, daarna weghalen
