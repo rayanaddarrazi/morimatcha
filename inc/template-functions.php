@@ -191,10 +191,12 @@ add_action( 'after_setup_theme', function () {
 } );
 
 /**
- * Afbeeldingen: nieuwe formaten worden WebP (de originele upload blijft als JPG/PNG-terugval bestaan).
+ * Afbeeldingen: nieuwe formaten werden WebP (de originele upload bleef als JPG/PNG-terugval bestaan).
+ * Tijdelijk uit voor de test xSpeed Cache Pro tegenover Smush Pro: nieuwe uploads blijven JPG/PNG,
+ * zodat de plugins het omzetten kunnen doen. Zet de filter hieronder weer aan om terug te gaan.
  */
-add_filter( 'image_editor_output_format', function ( $formats ) {
-    $formats['image/jpeg'] = 'image/webp';
-    $formats['image/png']  = 'image/webp';
-    return $formats;
-} );
+// add_filter( 'image_editor_output_format', function ( $formats ) {
+//     $formats['image/jpeg'] = 'image/webp';
+//     $formats['image/png']  = 'image/webp';
+//     return $formats;
+// } );
