@@ -84,14 +84,33 @@ function kj_beeld_omzetten( WP_REST_Request $request ) {
             continue;
         }
 
-        if ( ! is_array( $meta ) || empty( $meta['original_image'] ) || ! preg_match( '/\.webp$/i', (string) $file ) ) {
+        if ( ! is_array( $meta ) || ! preg_match( '/\.webp$/i', (string) $file ) ) {
             $rij['uitkomst'] = 'overgeslagen: geen WebP met origineel';
             $rijen[]         = $rij;
             continue;
         }
 
-        $dir    = dirname( $file );
-        $orig   = ( '.' === $dir ? '' : $dir . '/' ) . $meta['original_image'];
+        $dir = dirname( $file );
+        if ( ! empty( $meta['original_image'] ) ) {
+            $orig_naam = $meta['original_image'];
+        } else {
+            // Geen vermelding van het origineel: zoek een bestand met dezelfde naam als JPG of PNG.
+            $orig_naam = '';
+            $basis     = preg_replace( '/\.webp$/i', '', basename( $file ) );
+            foreach ( array( 'png', 'jpg', 'jpeg' ) as $ext ) {
+                if ( file_exists( $upload['basedir'] . '/' . ( '.' === $dir ? '' : $dir . '/' ) . $basis . '.' . $ext ) ) {
+                    $orig_naam = $basis . '.' . $ext;
+                    break;
+                }
+            }
+            if ( '' === $orig_naam ) {
+                $rij['uitkomst'] = 'overgeslagen: geen WebP met origineel';
+                $rijen[]         = $rij;
+                continue;
+            }
+        }
+
+        $orig   = ( '.' === $dir ? '' : $dir . '/' ) . $orig_naam;
         $abs    = $upload['basedir'] . '/' . $orig;
         $rij['origineel'] = $orig;
 
